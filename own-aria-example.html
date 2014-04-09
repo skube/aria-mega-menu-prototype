@@ -635,6 +635,10 @@
                 if ($parent.is('.root-level') || $parent.is('.cat-thumbs') || $parent.is('.opt-trim')) {
 
                     $item.attr('aria-checked', true).siblings().attr('aria-checked',false);
+                    
+                    // show upcoming
+                    this.$upcoming.attr('aria-hidden', false);
+
                     this.$activeItem = this.moveDown($item); 
                     // this.$activeItem.focus();
                 }
