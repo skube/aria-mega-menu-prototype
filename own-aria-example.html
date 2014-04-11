@@ -551,7 +551,7 @@
                     break;
 
                 } else {
-                    this.$activeItem = this.moveToNext($item);
+                    this.$activeItem = ($parent.is('.vert-menu')) ? this.moveDownToNext($item) : this.moveToNext($item);
                     // sets focus to returned item
                     this.$activeItem.focus();
                 }
@@ -592,7 +592,7 @@
                 // else {
                 //     this.$activeItem = this.moveToNext($item);
                 // }
-                this.$activeItem = this.moveToNext($item);
+                this.$activeItem = ($parent.is('.vert-menu')) ? this.moveDownToNext($item) : this.moveToNext($item);
 
                 // sets focus to returned item
                 this.$activeItem.focus();
@@ -619,29 +619,24 @@
 
             case this.keys.UP: {
                 this.$activeItem = this.moveUp($item);
+                // this.$activeItem = ($parent.is('.vert-menu')) ? this.moveUpToNext($item) : this.moveUp($item);
                 this.$activeItem.focus();
                 e.stopPropagation();
                 return false;
             }
 
             case this.keys.DOWN: {
-                $item.attr('aria-checked', true).siblings().attr('aria-checked',false);
                 this.$activeItem = ($parent.is('.vert-menu')) ? this.moveDownToNext($item) : this.moveDown($item);
                 this.$activeItem.focus();
                 e.stopPropagation();
-                return false;
+                return true ;
             }
 
             case this.keys.ENTER:
             case this.keys.SPACE: {
                 if ($parent.is('.root-level') || $parent.is('.cat-thumbs') || $parent.is('.opt-trim')) {
-
-                    $item.attr('aria-checked', true).siblings().attr('aria-checked',false);
-
-
-
                     this.$activeItem = this.moveDown($item);
-                    // this.$activeItem.focus();
+                    this.$activeItem.focus();
                 }
                 else { // process the menu choice
 
@@ -670,6 +665,13 @@
     // move to next sibling (for a normal veritcal menu)
     Menubar.prototype.moveDownToNext = function($item) {
         return $item.next();
+    };
+
+    // Function moveUpToNext is a special case for when moving up actually means
+    // move to previous sibling (for a normal veritcal menu)
+    Menubar.prototype.moveUpToNext = function($item) {
+        // TODO add special case when at top to move to parent
+        return $item.prev();
     };
 
 
@@ -938,6 +940,8 @@
         var $newItem = null;
         var $newItemUL = null;
         var $checkedItem = null;
+
+        $item.attr('aria-checked', true).siblings().attr('aria-checked',false);
 
         if ($parent.is('.root-level') || $parent.is('.cat-thumbs') ) { // this is the root level menu
 
