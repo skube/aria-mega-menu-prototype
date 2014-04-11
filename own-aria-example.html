@@ -619,7 +619,7 @@
 
             case this.keys.UP: {
                 this.$activeItem = this.moveUp($item);
-                // this.$activeItem = ($parent.is('.vert-menu')) ? this.moveUpToNext($item) : this.moveUp($item);
+                // this.$activeItem = ($parent.is('.vert-menu')) ? this.moveUpToPrev($item) : this.moveUp($item);
                 this.$activeItem.focus();
                 e.stopPropagation();
                 return false;
@@ -669,7 +669,7 @@
 
     // Function moveUpToNext is a special case for when moving up actually means
     // move to previous sibling (for a normal veritcal menu)
-    Menubar.prototype.moveUpToNext = function($item) {
+    Menubar.prototype.moveUpToPrev = function($item) {
         // TODO add special case when at top to move to parent
         return $item.prev();
     };
