@@ -989,100 +989,39 @@
 		var $newItemUL = null;
 		var $checkedItem = null;
 
-		// Since there is little consistency, each level behaves slightly differently
-		if ( $parent.is('.root-level') ) {
-		// Root level needs to: 
-		//  - set $item aria-checked true
-		//  - set siblings aria-checked false
-		//  - set siblings' children aria-hidden true
-		//  - show children
-		//  - if exists, jump to (first) upcoming, otherwise (first) child of vert-menu
+		// Basic menu selection, except for upcoming since it doesn't toggle
+		if ( !$parent.is('.upcoming') ) {
 			$item.attr('aria-checked',true).siblings().attr('aria-checked',false);
 			$item.siblings().children().attr('aria-hidden',true);
 			$item.children().attr('aria-hidden',false);
-			// if there is a current toggled child item, move to that, otherwise focus to first
+		}
+
+		// There is little consistency, each level behaves slightly differently
+		if ( $parent.is('.root-level') ) {
+		//  - if exists, jump to (first) upcoming, otherwise (first) child of vert-menu
 			$newItemUL = $item.children().first();
 			$checkedItem = $newItemUL.children().filter('[aria-checked="true"]');
 			$newItem = ($checkedItem.length) ? $checkedItem : $newItemUL.children().filter('[tabindex]').first();
 		} 
 		else if ( $parent.is('.upcoming') ) {
-		// Upcoming needs to: 
 		//  - jump to currently aria-checked cat-thumb, otherwise first cat-thumb
-			// if there is a current toggled child item, move to that, otherwise focus to first
 			$newItemUL = $parent.siblings('ul').first();
 			$checkedItem = $newItemUL.children().filter('[aria-checked="true"]');
 			$newItem = ($checkedItem.length) ? $checkedItem : $newItemUL.children().filter('[tabindex]').first();
 		}
-		else if ($parent.is('.cat-thumbs')) {
-		// cat-thumbs needs to:
-		//  - set $item aria-checked true
-		//  - set siblings aria-checked false
-		//  - set siblings' children aria-hidden true
-		//
-		//	 - if exists, jumps to trims & aria-checked it
-		//  - show panel-content
-			$item.attr('aria-checked',true).siblings().attr('aria-checked',false);
-			$item.siblings().children().attr('aria-hidden',true);
-			$item.children().attr('aria-hidden',false); 
-
-			// 
-			$newItem = $item.children('ul').first().children('.menu-item').first().attr('aria-checked',true);
-
-			$newItem.children('.panel-content').attr('aria-hidden',false);
+		else if ( $parent.is('.cat-thumbs') ) {
+		//	 - if selected, jump to selected trim & aria-checked it, otherwise to first trim
+			$newItemUL = $item.children('ul').first();
+			$checkedItem = $newItemUL.children().filter('[aria-checked="true"]');
+			$newItem = ($checkedItem.length) ? $checkedItem : $newItemUL.children('.menu-item').first().attr('aria-checked',true);
 		} 
-		else {
+		else if ( $parent.is('.opt-trim') ) {
 			// TODO make an array of tabbable elements within .panel-content and tab to each successive one
 			// move to panel-content first tabbable element
 			$newItem = $item.children('.panel-content').find('input');
 		}
 
 		return $newItem;
-/*        
-
-		if ($parent.is('.root-level') || $parent.is('.cat-thumbs') ) { // this is the root level menu
-
-			if ($item.attr('aria-haspopup') != 'true') { // No child menu to move to
-				return $item;
-			}
-
-			// show upcoming
-			this.$upcoming.attr('aria-hidden', false).siblings('.cat-thumbs').attr('aria-hidden', false);
-
-			// if there is a current toggled item, move to that, otherwise focus to first
-			// handle upcoming differently
-			$newItemUL = ($parent.is('.root-level')) ? $item.children().first() : $item.children('ul').first();
-			$checkedItem = $newItemUL.children().filter('[aria-checked="true"]');
-			$newItem = ($checkedItem.length) ? $checkedItem : $newItemUL.children().filter('[tabindex]').first();
-
-			// Hide others
-			$item.siblings()
-				.children().attr('aria-hidden', true);
-
-			// make sure the child menu is visible
-			$newItemUL.attr('aria-hidden', 'false');
-			return $newItem;
-
-		} else if ( $parent.is('.upcoming') ) {
-
-			// if there is a current toggled item, move to that, otherwise focus to first
-			$newItemUL = $item.parent().siblings().first();
-			$checkedItem = $newItemUL.children().filter('[aria-checked="true"]');
-			$newItem = ($checkedItem.length) ? $checkedItem : $newItemUL.children().filter('[tabindex]').first();
-
-			// make sure the child menu is visible
-			$newItemUL.attr('aria-hidden', 'false');
-			return $newItem
-
-		} else if ( $parent.is('.opt-trim') ) {
-
-			// to panel-content
-			$newItem = $item.children('.panel-content');
-
-			// make sure the child menu is visible
-			$newItem.attr('aria-hidden', 'false');
-			return $newItem;
-
-		}*/
 
 /*       // if $item is not the last item in its menu, move to the next item. If startChr is specified, move
 	   // to the next item with a title that begins with that character.
