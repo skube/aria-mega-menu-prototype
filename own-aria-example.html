@@ -597,6 +597,7 @@
 				} else {
 
 					if (e.shiftKey) {
+						// TODO if first item of root-level, move off
 						this.$activeItem = ($parent.is('.vert-menu')) ? this.moveUpToPrev($item) : this.moveToPrevious($item);
 					} else {
 						this.$activeItem = ($parent.is('.vert-menu')) ? this.moveDownToNext($item) : this.moveToNext($item);
@@ -610,39 +611,21 @@
 			}
 
 			case this.keys.ESC: {
-				if ($parent.is('.root-level')) {
-					// hide the child menu and update the aria attributes
-					$item.removeClass('menu-focus').children('ul').first().attr('aria-hidden', 'true');
-					
-					this.$allItems.attr('aria-checked', false).attr('aria-hidden',true);
+				// upcoming is unique
+				if ( $parent.is('.upcoming') ) {
+					$item.parent().siblings().find('[aria-checked=true]').attr('aria-checked',false).end().end().parent().children().attr('aria-hidden',true);
 				}
-				else {
-
-					if ($parent.is('.upcoming')) {
-
-						$parent.next().children().attr('aria-checked', false).end().attr('aria-hidden', true)
-						
-					} else {
-
-						$parent.children().attr('aria-checked', false);
-						
-						// move up one level
-						this.$activeItem = $parent.parent();
-						this.$activeItem.attr('aria-checked',false);
-
-					}
-
-
-					// reset the bChildOpen flag
-					this.bChildOpen = false;
-					// set focus on the new item
-					this.$activeItem.focus();
-					// hide the active menu and update the aria attributes
-					$parent.attr('aria-hidden', 'true');
+				else { // un-check self and siblings, hide all children
+					$item.siblings().andSelf().attr('aria-checked',false).children().attr('aria-hidden',true);
 				}
-
-				// hide upcoming
-				if ( !$parent.is('.opt-trim') ) { this.$upcoming.attr('aria-hidden', true); }
+				// move up one level
+				this.$activeItem = $parent.parent();
+				// reset the bChildOpen flag
+				this.bChildOpen = false;
+				// set focus on the new item
+				this.$activeItem.focus().attr('aria-checked',false);
+				
+				if ( $parent.is('.root-level') ) { $('.adn-mask').hide() }
 
 				e.stopPropagation();
 				return false;
