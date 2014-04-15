@@ -583,6 +583,8 @@
 
 		   case this.keys.TAB: {
 
+		   	// TODO tab to next level while in upcoming
+
 				// if at last item, then move on from navigation
 				if ($parent.is('.root-level') && isLastItem) {
 					// hide all menu items and update their aria attributes
@@ -613,7 +615,7 @@
 			case this.keys.ESC: {
 				// upcoming is unique
 				if ( $parent.is('.upcoming') ) {
-					$item.parent().siblings().find('[aria-checked=true]').attr('aria-checked',false).end().end().parent().children().attr('aria-hidden',true);
+					$item.parent().siblings().find('[aria-checked=true]').attr('aria-checked',false).find('.opt-trim').attr('aria-hidden',true);
 				}
 				else { // un-check self and siblings, hide all children
 					$item.siblings().andSelf().attr('aria-checked',false).children().attr('aria-hidden',true);
