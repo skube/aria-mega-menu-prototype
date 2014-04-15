@@ -3,13 +3,22 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title>Document</title>
+	<base href="http://gm.ca">
 
 	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 <style>
 
-	body { font-family: 'Lato', sans-serif;}
-	/*.menu-focus,*/:focus {outline: 2px solid rgba(0,0,255,0.3); transition: all 0.2s;}
+	body { font-family: 'Lato', sans-serif; margin: 0;padding: 0;}
+	.wrap {width: 990px; margin: 0 auto;}
 
+	/* TODO namespace menu */
+	.accessible-div-nav {background: red;}
+
+	/*.menu-focus,*/
+	*[role='navigation'] :focus {outline: 2px solid rgba(0,0,255,0.3); transition: all 0.2s;}
+
+	.adn-mask {display:none; position: fixed; top: 0; left: 0; opacity: 0.5; width: 100%; height: 100%; background: #000;}
+	
 	.menubar {
 		position: relative;
 		margin: 0;
@@ -106,6 +115,7 @@
 
 	.upcoming {
 		position: absolute;
+		background: green;
 	}
 	.upcoming > * {
 		float: left;
@@ -125,8 +135,12 @@
 </style>
 
 </head>
-<body>
-	<div role="navigation">
+<body class="wrap">
+	<div role="navigation" class="accessible-div-nav">
+
+		<div class="adn-mask" aria-hidden="true"></div>
+
+		<a id="div-logo" href="/gm/english/vehicles/chevrolet/"><img src="/images/divisional/chevrolet/chevrolet_logo_background_2014.gif" alt="Chevrolet" title="Chevrolet"></a>
 
 		<ul id="accessible-div-nav" class="root-level menubar clearfix" role="menubar">
 
@@ -442,6 +456,11 @@
 	// @param(e object) e is the associated event object
 	// @return(boolean) Returns false;
 	Menubar.prototype.handleClick = function($item, e) {
+		$parent = $item.parent();
+
+		if ($parent.is('.root-level')) {
+			$('.adn-mask').show();
+		}
 		// Hide others
 		$item.siblings()
 			.removeClass('.menu-focus').attr('aria-checked', false)
@@ -452,7 +471,7 @@
 			.children().attr('aria-hidden', 'false');
 
 		// TODO if clicking cat-thumbs, and if no trims selected, select first & show panel-content
-		if ($item.parent().is('.cat-thumbs')) {
+		if ($parent.is('.cat-thumbs')) {
 			var $itemTrims = $item.children().children('.menu-item');
 			if ( $itemTrims.filter('[aria-checked=true]').length ) {
 				$itemTrims.filter('[aria-checked=true]').children('.panel-content').attr('aria-hidden',false);
@@ -601,15 +620,15 @@
 
 					if ($parent.is('.upcoming')) {
 
-						$parent.next().children().attr('aria-checked', false).end().attr('aria-hidden', true);
+						$parent.next().children().attr('aria-checked', false).end().attr('aria-hidden', true)
 						
 					} else {
 
 						$parent.children().attr('aria-checked', false);
 						
-					// move up one level
-					this.$activeItem = $parent.parent();
-					this.$activeItem.attr('aria-checked',false);
+						// move up one level
+						this.$activeItem = $parent.parent();
+						this.$activeItem.attr('aria-checked',false);
 
 					}
 
@@ -998,6 +1017,7 @@
 
 		// There is little consistency, each level behaves slightly differently
 		if ( $parent.is('.root-level') ) {
+			$('.adn-mask').show();
 		//  - if exists, jump to (first) upcoming, otherwise (first) child of vert-menu
 			$newItemUL = $item.children().first();
 			$checkedItem = $newItemUL.children().filter('[aria-checked=true]');
@@ -1186,6 +1206,8 @@
 
 
 		this.$activeItem = null;
+
+		$('.adn-mask').hide();
 
 		// allow the event to propagate
 		return true;
