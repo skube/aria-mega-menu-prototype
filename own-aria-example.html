@@ -8,7 +8,7 @@
 <style>
 
 	body { font-family: 'Lato', sans-serif;}
-	/*.menu-focus,*/:focus {outline: 5px dotted rgba(0,0,255,0.3); transition: all 0.2s;}
+	/*.menu-focus,*/:focus {outline: 2px solid rgba(0,0,255,0.3); transition: all 0.2s;}
 
 	.menubar {
 		position: relative;
@@ -233,19 +233,19 @@
 							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
 								TRIM1
 								<div class="menu panel-content" aria-hidden="true">
-									<p>CONTENT1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
+									<p>Truck 1, Trim 1 CONTENT1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
 								</div>
 							</li>
 							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
 								TRIM2
 								<div class="menu panel-content" aria-hidden="true">
-									<p>CONTENT2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
+									<p>Truck1, Trim 2 CONTENT2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
 								</div>
 							</li>
 							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
 								TRIM3
 								<div class="menu panel-content" aria-hidden="true">
-									<p>CONTENT3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
+									<p>Truck 1, Trim 3 CONTENT3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
 								</div>
 							</li>
 					   </ul>
@@ -261,19 +261,19 @@
 							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
 								TRIM1
 								<div class="menu panel-content" aria-hidden="true">
-									<p>CONTENT1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
+									<p>Truck2, Trim 1 CONTENT1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
 								</div>
 							</li>
 							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
 								TRIM2
 								<div class="menu panel-content" aria-hidden="true">
-									<p>CONTENT2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
+									<p>Truck 2, Trim 2, CONTENT2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
 								</div>
 							</li>
 							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
 								TRIM3
 								<div class="menu panel-content" aria-hidden="true">
-									<p>CONTENT3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
+									<p>Truck 2, Trim 3, CONTENT3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
 								</div>
 							</li>
 					   </ul>
@@ -454,8 +454,8 @@
 		// TODO if clicking cat-thumbs, and if no trims selected, select first & show panel-content
 		if ($item.parent().is('.cat-thumbs')) {
 			var $itemTrims = $item.children().children('.menu-item');
-			if ($itemTrims  && $itemTrims.attr('aria-checked')) {
-				$itemTrims.attr('aria-checked').first().children('.panel-content').attr('aria-hidden',false);
+			if ( $itemTrims.filter('[aria-checked=true]').length ) {
+				$itemTrims.filter('[aria-checked=true]').children('.panel-content').attr('aria-hidden',false);
 			} 
 			else {
 				$itemTrims.first().attr('aria-checked',true).children('.panel-content').attr('aria-hidden',false);
@@ -567,9 +567,9 @@
 				// if at last item, then move on from navigation
 				if ($parent.is('.root-level') && isLastItem) {
 					// hide all menu items and update their aria attributes
-					this.$id.find('ul').attr('aria-hidden', 'true');
+					this.$id.find('ul').add('dl').attr('aria-hidden', 'true');
 					// remove focus styling from all menu items
-					this.$allItems.removeClass('menu-focus');
+					this.$allItems.removeClass('menu-focus').attr('aria-checked',false);
 
 					this.$activeItem = null;
 					this.bChildOpen = false;
@@ -1000,20 +1000,21 @@
 		if ( $parent.is('.root-level') ) {
 		//  - if exists, jump to (first) upcoming, otherwise (first) child of vert-menu
 			$newItemUL = $item.children().first();
-			$checkedItem = $newItemUL.children().filter('[aria-checked="true"]');
+			$checkedItem = $newItemUL.children().filter('[aria-checked=true]');
 			$newItem = ($checkedItem.length) ? $checkedItem : $newItemUL.children().filter('[tabindex]').first();
 		} 
 		else if ( $parent.is('.upcoming') ) {
 		//  - jump to currently aria-checked cat-thumb, otherwise first cat-thumb
 			$newItemUL = $parent.siblings('ul').first();
-			$checkedItem = $newItemUL.children().filter('[aria-checked="true"]');
+			$checkedItem = $newItemUL.children().filter('[aria-checked=true]');
 			$newItem = ($checkedItem.length) ? $checkedItem : $newItemUL.children().filter('[tabindex]').first();
 		}
 		else if ( $parent.is('.cat-thumbs') ) {
 		//	 - if selected, jump to selected trim & aria-checked it, otherwise to first trim
 			$newItemUL = $item.children('ul').first();
-			$checkedItem = $newItemUL.children().filter('[aria-checked="true"]');
+			$checkedItem = $newItemUL.children().filter('[aria-checked=true]');
 			$newItem = ($checkedItem.length) ? $checkedItem : $newItemUL.children('.menu-item').first().attr('aria-checked',true);
+			$newItem.children().attr('aria-hidden',false);
 		} 
 		else if ( $parent.is('.opt-trim') ) {
 			// TODO make an array of tabbable elements within .panel-content and tab to each successive one
