@@ -470,7 +470,7 @@
 		$item.focus().attr('aria-checked', true).addClass('menu-focus')
 			.children().attr('aria-hidden', 'false');
 
-		// TODO if clicking cat-thumbs, and if no trims selected, select first & show panel-content
+		// if clicking cat-thumbs, and if no trims selected, select first & show panel-content
 		if ($parent.is('.cat-thumbs')) {
 			var $itemTrims = $item.children().children('.menu-item');
 			if ( $itemTrims.filter('[aria-checked=true]').length ) {
@@ -478,7 +478,6 @@
 			} 
 			else {
 				$itemTrims.first().attr('aria-checked',true).children('.panel-content').attr('aria-hidden',false);
-
 			}
 		}
 
@@ -670,8 +669,8 @@
 			}
 
 			case this.keys.UP: {
-				this.$activeItem = this.moveUp($item);
-				// this.$activeItem = ($parent.is('.vert-menu')) ? this.moveUpToPrev($item) : this.moveUp($item);
+				// this.$activeItem = this.moveUp($item);
+				this.$activeItem = ($parent.is('.vert-menu')) ? this.moveUpToPrev($item) : this.moveUp($item);
 				this.$activeItem.focus();
 				e.stopPropagation();
 				return false;
@@ -723,8 +722,12 @@
 	// Function moveUpToNext is a special case for when moving up actually means
 	// move to previous sibling (for a normal veritcal menu)
 	Menubar.prototype.moveUpToPrev = function($item) {
-		// TODO add special case when at top to move to parent
-		return $item.prev();
+		var $parent = $item.parent(),
+			numChildren = $parent.children().length,
+			isLastItem  = ($item.index() === numChildren-1) ? true : false,
+			isFirstItem = ($item.index() === 0) ? true : false;
+
+		return (isFirstItem) ? this.moveUp($item):$item.prev();
 	};
 
 
