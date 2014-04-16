@@ -576,37 +576,38 @@
 		}
 		var $parent = $item.parent(),
 			numChildren = $parent.children().length,
-			isLastItem = ($item.index() == numChildren-1) ? true : false;
+			isLastItem = ($item.index() === numChildren-1) ? true : false,
+			isFirstItem = ($item.index() === 0) ? true : false;
 
 
 		switch(e.keyCode) {
 
 		   case this.keys.TAB: {
 
-		   	// TODO tab to next level while in upcoming
-
-				// if at last item, then move on from navigation
-				if ($parent.is('.root-level') && isLastItem) {
-					// hide all menu items and update their aria attributes
+				// if at last or first item (going backwards), then move off navigation
+				if ( $parent.is('.root-level') && (isLastItem || (isFirstItem && e.shiftKey)) )  {
 					this.$id.find('ul').add('dl').attr('aria-hidden', 'true');
-					// remove focus styling from all menu items
 					this.$allItems.removeClass('menu-focus').attr('aria-checked',false);
+					$('.adn-mask').hide();
 
 					this.$activeItem = null;
 					this.bChildOpen = false;
 					break;
-
-				} else {
-
+				} 
+				else if ( $parent.is('.upcoming') && isLastItem && !e.shiftKey) {
+					// move on to cat-thumbs
+					this.$activeItem = this.moveDown($item);
+				}
+				else {
 					if (e.shiftKey) {
-						// TODO if first item of root-level, move off
 						this.$activeItem = ($parent.is('.vert-menu')) ? this.moveUpToPrev($item) : this.moveToPrevious($item);
 					} else {
 						this.$activeItem = ($parent.is('.vert-menu')) ? this.moveDownToNext($item) : this.moveToNext($item);
 					}
-					// sets focus to returned item
-					this.$activeItem.focus();
 				}
+
+				// sets focus to returned item
+				this.$activeItem.focus();
 
 				e.stopPropagation();
 				return false;
