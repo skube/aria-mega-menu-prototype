@@ -166,7 +166,9 @@
 								TRIM1
 								<div class="menu panel-content" aria-hidden="true">
 									<p>CONTENT1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.
+									<button type="button">learn more</button>
 									<input type="text">
+									<a href="#">change</a>
 									</p>
 								</div>
 							</li>
@@ -741,13 +743,13 @@
 	// @return (object) Returns the item to move to. Returns $item is no move is possible
 	Menubar.prototype.moveToNext = function($item) {
 
-		var $parent = $item.parent(),            // $item's containing menu
-			$menuItems = $parent.children(), // the items in the currently active menu
-			menuNum = $menuItems.length,         // the number of items in the active menu
-			menuIndex = $menuItems.index($item), // the items index in its menu
-			$newItem = null,
-			$newItemUL = null,
-			$childMenu = null;
+		var $parent    = $item.parent(),          // $item's containing menu
+		    $menuItems = $parent.children(),      // the items in the currently active menu
+		    menuNum    = $menuItems.length,       // the number of items in the active menu
+		    menuIndex  = $menuItems.index($item), // the items index in its menu
+		    $newItem   = null,
+		    $newItemUL = null,
+		    $childMenu = null;
 
 		if ($parent.is('.root-level') || $parent.is('.cat-thumbs') || $parent.is('.opt-trim')) {
 			// this is the root level move to next sibling. This will require closing
@@ -1098,33 +1100,18 @@
 	// @return (object) Returns the item to move to. Returns $item is no move is possible
 	Menubar.prototype.moveUp = function($item) {
 
-	   var $itemUL = $item.parent(); // $item's containing menu
-	   var $menuItems = $itemUL.children('li').not('.separator'); // the items in the currently active menu
-	   var menuNum = $menuItems.length; // the number of items in the active menu
-	   var menuIndex = $menuItems.index($item); // the items index in its menu
-	   var $newItem = null;
-	   var $newItemUL = null;
+		var $parent    = $item.parent(),
+		    $menuItems = $parent.children('li'),
+		    menuNum    = $menuItems.length,
+		    menuIndex  = $menuItems.index($item),
+		    $newItem   = null,
+		    $newItemUL = null;
 
-	   if ($itemUL.is('.root-level')) { // this is the root level menu
-
-		  // nothing to do
-		  return $item;
-	   }
-
-/*       // if $item is not the first item in its menu, move to the previous item
-	   if (menuIndex > 0) {
-
-		  $newItem = $menuItems.eq(menuIndex-1);
-	   }
-	   else {
-		  // loop to top of menu
-		  $newItem = $menuItems.last();
-	   }
-*/
-
-		$newItem = $itemUL.parent();
-		// remove the focus styling from the current item
+		if ($parent.is('.root-level')) { // nothing to do
+			return $item;
+		}
 		$item.removeClass('menu-focus');
+		$newItem = $parent.parent();
 
 		return $newItem;
 	};
