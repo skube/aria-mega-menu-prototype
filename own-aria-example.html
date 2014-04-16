@@ -50,6 +50,14 @@
 		color: black;
 	}
 
+	.cat-thumbs .dimmed {
+		opacity: 0.2
+	}
+	.cat-thumbs .dimmed:focus,
+	.cat-thumbs .dimmed:hover {
+		opacity: 1
+	}
+
 	.vert-menu {
 	   position: absolute;
 		top:2em;
@@ -167,7 +175,7 @@
 								<div class="menu panel-content" aria-hidden="true">
 									<p>CONTENT1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.
 									<button type="button">learn more</button>
-									<input type="text">
+									<input type="text" class="postal-code-input">
 									<a href="#">change</a>
 									</p>
 								</div>
@@ -387,8 +395,9 @@
 		this.$activeItem = null; // jQuery object of the menu item with focus
 
 		this.$upcoming = this.$id.find('.upcoming'); // TODO update to $item's upcoming instead
+		this.$catThumbs = this.$id.find('.cat-thumbs');
 
-		this.vmenu = vmenu;
+		this.vmenu = vmenu; // TODO remove all vmenu references
 		this.bChildOpen = false; // true if child menu is open
 
 		this.keys = {
@@ -413,41 +422,41 @@
 	// @return N/A
 	Menubar.prototype.bindHandlers = function() {
 
-	   var thisObj = this;
+		var thisObj = this;
 
-	   ///////// bind mouse event handlers //////////
+		///////// bind mouse event handlers //////////
 
-	   // bind a click handler
-	   this.$allItems.click(function(e) {
-		  return thisObj.handleClick($(this), e);
-	   });
+		// bind a click handler
+		this.$allItems.click(function(e) {
+			return thisObj.handleClick($(this), e);
+		});
 
-	   //////////// bind key event handlers //////////////////
+		//////////// bind key event handlers //////////////////
 
-	   // bind a keydown handler
-	   this.$allItems.keydown(function(e) {
-		  return thisObj.handleKeyDown($(this), e);
-	   });
+		// bind a keydown handler
+		this.$allItems.keydown(function(e) {
+			return thisObj.handleKeyDown($(this), e);
+		});
 
-	   // bind a keypress handler
-	   this.$allItems.keypress(function(e) {
-		  return thisObj.handleKeyPress($(this), e);
-	   });
+		// bind a keypress handler
+		this.$allItems.keypress(function(e) {
+			return thisObj.handleKeyPress($(this), e);
+		});
 
-	   // bind a focus handler
-	   this.$allItems.focus(function(e) {
-		  return thisObj.handleFocus($(this), e);
-	   });
+		// bind a focus handler
+		this.$allItems.focus(function(e) {
+			return thisObj.handleFocus($(this), e);
+		});
 
-	   // bind a blur handler
-	   this.$allItems.blur(function(e) {
-		  return thisObj.handleBlur($(this), e);
-	   });
+		// bind a blur handler
+		this.$allItems.blur(function(e) {
+			return thisObj.handleBlur($(this), e);
+		});
 
-	   // bind a document click handler
-	   $(document).click(function(e) {
-			 return thisObj.handleDocumentClick(e);
-	   });
+		// bind a document click handler
+		$(document).click(function(e) {
+			return thisObj.handleDocumentClick(e);
+		});
 
 	}; // end bindHandlers()
 
@@ -458,11 +467,25 @@
 	// @param(e object) e is the associated event object
 	// @return(boolean) Returns false;
 	Menubar.prototype.handleClick = function($item, e) {
+		// TODO figure out how to handle tabbing in panel-content
+		var targetTagName = e.target.tagName.toLowerCase();
+		console.log(targetTagName);
+		if (targetTagName === "input" || targetTagName === "a") {
+			e.target.focus();
+			return false;
+		}
 		$parent = $item.parent();
+
 
 		if ($parent.is('.root-level')) {
 			$('.adn-mask').show();
 		}
+		if ($item.is('.panel-content')) {
+			alert('panel-content');
+			return false;
+		} 
+		else {
+
 		// Hide others
 		$item.siblings()
 			.removeClass('.menu-focus').attr('aria-checked', false)
@@ -471,6 +494,7 @@
 		// Show all children
 		$item.focus().attr('aria-checked', true).addClass('menu-focus')
 			.children().attr('aria-hidden', 'false');
+		}
 
 		// if clicking cat-thumbs, and if no trims selected, select first & show panel-content
 		if ($parent.is('.cat-thumbs')) {
@@ -481,6 +505,8 @@
 			else {
 				$itemTrims.first().attr('aria-checked',true).children('.panel-content').attr('aria-hidden',false);
 			}
+			// set siblings to dimmed
+			this.$catThumbs.children().removeClass('dimmed').end().children('[aria-checked=false]').addClass('dimmed');
 		}
 
 		/* if ($parentUL.is('.root-level')) {
@@ -501,7 +527,7 @@
 		}
 		*/
 		e.stopPropagation();
-		// return false;
+		return false;
 	}; // end handleClick()
 
 	// Function handleFocus() is a member function to process focus events
@@ -621,6 +647,8 @@
 				}
 				else { // un-check self and siblings, hide all children
 					$item.siblings().andSelf().attr('aria-checked',false).children().attr('aria-hidden',true);
+					// set siblings to dimmed
+					this.$catThumbs.children().removeClass('dimmed');
 				}
 				// move up one level
 				this.$activeItem = $parent.parent();
@@ -709,6 +737,11 @@
 				}
 			}
 
+			default: {
+				console.log(e.keyCode);
+				return false;;
+			}
+
 	   } // end switch
 
 	   return true;
@@ -744,12 +777,12 @@
 	Menubar.prototype.moveToNext = function($item) {
 
 		var $parent    = $item.parent(),          // $item's containing menu
-		    $menuItems = $parent.children(),      // the items in the currently active menu
-		    menuNum    = $menuItems.length,       // the number of items in the active menu
-		    menuIndex  = $menuItems.index($item), // the items index in its menu
-		    $newItem   = null,
-		    $newItemUL = null,
-		    $childMenu = null;
+			$menuItems = $parent.children(),      // the items in the currently active menu
+			menuNum    = $menuItems.length,       // the number of items in the active menu
+			menuIndex  = $menuItems.index($item), // the items index in its menu
+			$newItem   = null,
+			$newItemUL = null,
+			$childMenu = null;
 
 		if ($parent.is('.root-level') || $parent.is('.cat-thumbs') || $parent.is('.opt-trim')) {
 			// this is the root level move to next sibling. This will require closing
@@ -797,14 +830,14 @@
 			$newItem = (menuIndex < menuNum - 1) ? $item.next() : $menuItems.children().first();
 		}
 /*       else {
-		  // this is not the root level. If there is a child menu to be moved into, do that;
-		  // otherwise, move to the next root-level menu if there is one
-		  if ($item.attr('aria-haspopup') == 'true') {
-			 var $childMenu = $item.children('ul').first();
-			 $newItem = $childMenu.children('li').first();
-			 // show the child menu and update its aria attributes
-			 $childMenu.attr('aria-hidden', 'false');
-		  }
+			// this is not the root level. If there is a child menu to be moved into, do that;
+			// otherwise, move to the next root-level menu if there is one
+			if ($item.attr('aria-haspopup') == 'true') {
+				var $childMenu = $item.children('ul').first();
+				$newItem = $childMenu.children('li').first();
+				// show the child menu and update its aria attributes
+				$childMenu.attr('aria-hidden', 'false');
+			}
 		  else {
 			 // at deepest level, move to the next root-level menu
 			 if (this.vmenu == true) {
@@ -1026,6 +1059,9 @@
 			$checkedItem = $newItemUL.children().filter('[aria-checked=true]');
 			$newItem = ($checkedItem.length) ? $checkedItem : $newItemUL.children('.menu-item').first().attr('aria-checked',true);
 			$newItem.children().attr('aria-hidden',false);
+
+			// set siblings to dimmed
+			$('.cat-thumbs').children().removeClass('dimmed').end().children('[aria-checked=false]').addClass('dimmed');
 		} 
 		else if ( $parent.is('.opt-trim') ) {
 			// TODO make an array of tabbable elements within .panel-content and tab to each successive one
@@ -1184,6 +1220,9 @@
 		this.$activeItem = null;
 
 		$('.adn-mask').hide();
+		
+		// set siblings to dimmed
+		this.$catThumbs.children().removeClass('dimmed')
 
 		// allow the event to propagate
 		return true;
