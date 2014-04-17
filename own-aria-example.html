@@ -537,26 +537,26 @@
 	// @return(boolean) Returns true;
 	Menubar.prototype.handleFocus = function($item, e) {
 
-	   // if activeItem is null, we are getting focus from outside the menu. Store
-	   // the item that triggered the event
-	   if (this.$activeItem == null) {
-		  this.$activeItem = $item;
-	   }
-	   else if ($item[0] != this.$activeItem[0]) {
-		  return true;
-	   }
+		// if activeItem is null, we are getting focus from outside the menu. Store
+		// the item that triggered the event
+		if (this.$activeItem == null) {
+			this.$activeItem = $item;
+		}
+		else if ($item[0] != this.$activeItem[0]) {
+			return true;
+		}
 
-	   // get the set of jquery objects for all the parent items of the active item
-	   var $parentItems = this.$activeItem.parentsUntil('div').filter('li');
+		// get the set of jquery objects for all the parent items of the active item
+		var $parentItems = this.$activeItem.parentsUntil('div').filter('li');
 
-	   // remove focus styling from all other menu items
-	   this.$allItems.removeClass('menu-focus');
+		// remove focus styling from all other menu items
+		this.$allItems.removeClass('menu-focus');
 
-	   // add focus styling to the active item
-	   this.$activeItem.addClass('menu-focus');
+		// add focus styling to the active item
+		this.$activeItem.addClass('menu-focus');
 
-	   // add focus styling to all parent items.
-	   // $parentItems.addClass('menu-focus');
+		// add focus styling to all parent items.
+		// $parentItems.addClass('menu-focus');
 
 		/*if (this.vmenu == true) {
 		  // if the bChildOpen flag has been set, open the active item's child menu (if applicable)
@@ -573,7 +573,7 @@
 		  else {
 			 this.vmenu = false;
 		  }
-	   }*/
+		}*/
 
 	   return true;
 	}; // end handleFocus()
@@ -644,11 +644,14 @@
 				// upcoming is unique
 				if ( $parent.is('.upcoming') ) {
 					$item.parent().siblings().find('[aria-checked=true]').attr('aria-checked',false).find('.opt-trim').attr('aria-hidden',true);
+					this.$catThumbs.children().removeClass('dimmed');
 				}
 				else { // un-check self and siblings, hide all children
 					$item.siblings().andSelf().attr('aria-checked',false).children().attr('aria-hidden',true);
 					// set siblings to dimmed
-					this.$catThumbs.children().removeClass('dimmed');
+					if ( !$parent.is('.root-level') ) {
+						this.$catThumbs.children().removeClass('dimmed');
+					}
 				}
 				// move up one level
 				this.$activeItem = $parent.parent();
