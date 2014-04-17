@@ -601,15 +601,15 @@
 			// Modifier key pressed: Do not process
 			return true;
 		}
-		var $parent = $item.parent(),
+		var $parent    = $item.parent(),
 			numChildren = $parent.children().length,
-			isLastItem = ($item.index() === numChildren-1) ? true : false,
+			isLastItem  = ($item.index() === numChildren-1) ? true : false,
 			isFirstItem = ($item.index() === 0) ? true : false;
 
 
 		switch(e.keyCode) {
 
-		   case this.keys.TAB: {
+			case this.keys.TAB: {
 
 				// if at last or first item (going backwards), then move off navigation
 				if ( $parent.is('.root-level') && (isLastItem || (isFirstItem && e.shiftKey)) )  {
@@ -660,7 +660,7 @@
 				// set focus on the new item
 				this.$activeItem.focus().attr('aria-checked',false);
 				
-				if ( $parent.is('.root-level') ) { $('.adn-mask').hide() }
+				if ( $parent.is('.root-level') ) { $('.adn-mask').hide(); }
 
 				e.stopPropagation();
 				return false;
@@ -841,48 +841,48 @@
 				// show the child menu and update its aria attributes
 				$childMenu.attr('aria-hidden', 'false');
 			}
-		  else {
-			 // at deepest level, move to the next root-level menu
-			 if (this.vmenu == true) {
+			else {
+				// at deepest level, move to the next root-level menu
+				if (this.vmenu == true) {
 				// do nothing
 				return $item;
-			 }
-			 var $parentMenus = null;
-			 var $rootItem = null;
-			 // get list of all parent menus for item, up to the root level
-			 $parentMenus = $item.parentsUntil('div').filter('ul').not('.root-level');
-			 // hide the current menu and update its aria attributes accordingly
-			 $parentMenus.attr('aria-hidden', 'true');
-			 // remove the focus styling from the active menu
-			 $parentMenus.find('li').removeClass('menu-focus');
-			 $parentMenus.last().parent().removeClass('menu-focus');
+				}
+				var $parentMenus = null;
+				var $rootItem = null;
+				// get list of all parent menus for item, up to the root level
+				$parentMenus = $item.parentsUntil('div').filter('ul').not('.root-level');
+				// hide the current menu and update its aria attributes accordingly
+				$parentMenus.attr('aria-hidden', 'true');
+				// remove the focus styling from the active menu
+				$parentMenus.find('li').removeClass('menu-focus');
+				$parentMenus.last().parent().removeClass('menu-focus');
 
-			 $rootItem = $parentMenus.last().parent(); // the containing root for the menu
+				$rootItem = $parentMenus.last().parent(); // the containing root for the menu
 
-			 menuIndex = this.$rootItems.index($rootItem);
-			 // if this is not the last root menu item, move to the next one
-			 if (menuIndex < this.$rootItems.length-1) {
+				menuIndex = this.$rootItems.index($rootItem);
+				// if this is not the last root menu item, move to the next one
+				if (menuIndex < this.$rootItems.length-1) {
 				$newItem = $rootItem.next();
-			 } else { // loop
+				} else { // loop
 				$newItem = this.$rootItems.first();
-			 }
+				}
 
-			 // add the focus styling to the new menu
-			 $newItem.addClass('menu-focus');
+				// add the focus styling to the new menu
+				$newItem.addClass('menu-focus');
 
-			 if ($newItem.attr('aria-haspopup') == 'true') {
-				var $childMenu = $newItem.children('ul').first();
+				if ($newItem.attr('aria-haspopup') == 'true') {
+					var $childMenu = $newItem.children('ul').first();
 
-				$newItem = $childMenu.children('li').first();
+					$newItem = $childMenu.children('li').first();
 
-				// show the child menu and update it's aria attributes
-				$childMenu.attr('aria-hidden', 'false');
-				this.bChildOpen == true;
-			 }
-		  }
-	   }*/
+					// show the child menu and update it's aria attributes
+					$childMenu.attr('aria-hidden', 'false');
+					this.bChildOpen == true;
+				}
+			}
+		}*/
 
-	   return $newItem;
+		return $newItem;
 	};
 
 	// Function moveToPrevious() is a member function to move to the previous menu level.
@@ -1062,14 +1062,15 @@
 			$checkedItem = $newItemUL.children().filter('[aria-checked=true]');
 			$newItem = ($checkedItem.length) ? $checkedItem : $newItemUL.children('.menu-item').first().attr('aria-checked',true);
 			$newItem.children().attr('aria-hidden',false);
-
+			// if there is not trim
+			$newItem = ($item.children('.panel-content').length) ? $item.children('.panel-content') : $newItem ;
 			// set siblings to dimmed
 			$('.cat-thumbs').children().removeClass('dimmed').end().children('[aria-checked=false]').addClass('dimmed');
 		} 
 		else if ( $parent.is('.opt-trim') ) {
 			// TODO make an array of tabbable elements within .panel-content and tab to each successive one
 			// move to panel-content first tabbable element
-			$newItem = $item.children('.panel-content').find('input');
+			$newItem = $item.children('.panel-content');//.find('input');
 		}
 
 		return $newItem;
