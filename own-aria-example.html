@@ -6,7 +6,7 @@
 	<base href="http://gm.ca">
 
 	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-<style>
+<style type="text/css">
 
 	body { font-family: 'Lato', sans-serif; margin: 0;padding: 0;}
 	.wrap {width: 990px; margin: 0 auto;}
@@ -15,9 +15,11 @@
 	.accessible-div-nav {background: red;}
 
 	/*.menu-focus,*/
-	*[role='navigation'] :focus {outline: 2px solid rgba(0,0,255,0.3); transition: all 0.2s;}
+	*[role='navigation'] :focus {outline: 2px solid blue; transition: all 0.2s;}
 
-	.adn-mask {display:none; position: fixed; top: 0; left: 0; opacity: 0.5; width: 100%; height: 100%; background: #000;}
+	.adn-mask {display:none; position: fixed; top: 0; left: 0; opacity: 0.5; 
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";/* IE 8 */
+   width: 100%; height: 100%; background: #000;}
 	
 	.menubar {
 		position: relative;
@@ -51,11 +53,13 @@
 	}
 
 	.cat-thumbs .dimmed {
-		opacity: 0.2
+		opacity: 0.2;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)"; /* IE 8 */
 	}
 	.cat-thumbs .dimmed:focus,
 	.cat-thumbs .dimmed:hover {
-		opacity: 1
+		opacity: 1;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; /* IE 8 */
 	}
 
 	.vert-menu {
@@ -150,29 +154,89 @@
 
 		<a id="div-logo" href="/gm/english/vehicles/chevrolet/"><img src="/images/divisional/chevrolet/chevrolet_logo_background_2014.gif" alt="Chevrolet" title="Chevrolet"></a>
 
+<!-- 		<ul role="menubar">
+			<li role="presentation">
+
+				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false"  id="carsbtn" aria-owns="cars_upcoming car_models">CARS</button>
+
+				<dl role="menu" id="cars_upcoming" aria-hidden="true">
+					<dt role="presentation" id="cars_upcoming_label">Upcoming vehicles</dt>
+					<dd role="presentation" aria-describedby="cars_upcoming_label"><a role="menuitem" href="#">2014 Camaro</a></dd>
+					<dd role="presentation" aria-describedby="cars_upcoming_label"><a role="menuitem" href="#">2014 Colorado</a></dd>
+					<dd role="presentation" aria-describedby="cars_upcoming_label"><a role="menuitem" href="#">2014 Colorado</a></dd>
+				</dl>
+
+				<ul role="menu" id="car_models" aria-hidden="true">
+
+					<li role="presentation" id="mdl_01">
+						<button role="menuitem" aria-haspopup="true" aria-expanded="true" aria-checked="false"  id="sparkBtn" aria-owns="veh01_car_trims">Spark</button>
+
+						<dl role="menu" id="veh01_car_trims" aria-hidden="true">
+							<dt role="presentation" id="car_trims_desc_01">Select a Model</dt>
+							<dd role="presentation" aria-describedby="car_trims_desc_01">
+								<button role="menuitem" aria-haspopup="true" aria-expanded="true" aria-checked="false		" aria-owns="car_trim_01_content">Trim 1</button>
+
+								<div id="car_trim_01_content" aria-hidden="false">
+									
+									<p>something</p>
+									<input type="text" />
+									<button type="button">choose</button>
+									
+								</div>
+							</dd>
+							<dd role="presentation" aria-describedby="car_trims_desc_01">
+								<button role="menuitem" aria-haspopup="true" aria-expanded="true" aria-checked="false" aria-owns="car_trim_02_content">Trim 2</button>
+
+								<div id="car_trim_02_content" aria-hidden="false">Content here</div>
+							</dd>
+							<dd role="presentation" aria-describedby="car_trims_desc_01">
+								<button role="menuitem" aria-haspopup="true" aria-expanded="true" aria-checked="false" aria-owns="car_trim_03_content">Trim 2</button>
+
+								<div id="car_trim_03_content" aria-hidden="false">Content here</div>
+							</dd>
+						</dl>
+					</li>
+
+					<li role="presentation" id="mdl_02" aria-hidden="true">
+						<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false"  id="sonicBtn" aria-owns="veh02_content">Sonic</button>
+
+						<div id="veh02_content">asdf</div>
+					</li>
+
+				</ul>
+
+			</li>
+			<li role="presentation">
+
+				<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" id="trucksbtn" aria-owns="trucktrims trucks_upcoming"  aria-controls="trucktrims trucks_upcoming">Trucks</button>
+
+
+			</li>
+		</ul> -->
+
 		<ul id="accessible-div-nav" class="root-level menubar clearfix" role="menubar">
 
-			<li class="menu-parent" role="menuitem" aria-haspopup="true" tabindex="0">
+			<li class="menu-parent" role="menuitem" aria-haspopup="true" tabindex="0" aria-expanded="false">
 				CARS
 			   <dl class="menu upcoming" role="menu" aria-hidden="true">
-					<dt>upcoming</dt>
-					<dd class="menu-item" role="menuitem" tabindex="-1"><a href="http://google.ca">future</a></dd>
-					<dd class="menu-item" role="menuitem" tabindex="-1"><a href="#">future</a></dd>
-					<dd class="menu-item" role="menuitem" tabindex="-1"><a href="#">future</a></dd>
-					<dd class="menu-item" role="menuitem" tabindex="-1"><a href="#">future</a></dd>
+					<dt id="adn_cars_upcoming_desc">upcoming vehicles</dt>
+					<dd class="menu-item" role="menuitem" tabindex="-1" aria-label="Upcoming Vehicles - future"><a href="http://google.ca">future</a></dd>
+					<dd class="menu-item" role="menuitem" tabindex="-1" aria-describedby="adn_cars_upcoming_desc"><a href="#">future</a></dd>
+					<dd class="menu-item" role="menuitem" tabindex="-1" aria-describedby="adn_cars_upcoming_desc"><a href="#">future</a></dd>
+					<dd class="menu-item" role="menuitem" tabindex="-1" aria-describedby="adn_cars_upcoming_desc"><a href="#">future</a></dd>
 				</dl>
 				<ul class="cat-thumbs menu" role="menu" aria-hidden="true">
-					<li class="menu-parent menu-item" role="menuitem" aria-haspopup="true" tabindex="-1">
+					<li class="menu-parent menu-item" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="-1">
 						<div>
 							<img src="http://placehold.it/114x40" alt="">
 							<h3>car.</h3>
 							<p>from $29,000</p>
 						</div>
 						<ul class="opt-trim menu" role="menu" aria-hidden="true">
-							<li class="menu-description">select a model</li>
-							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
+							<li class="menu-description" id="adn_cars_trim_01_desc" role="presentation">select a model</li>
+							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1" aria-expanded="false" aria-describedby="adn_cars_trim_01_desc">
 								TRIM1
-								<div class="menu panel-content" aria-hidden="true">
+								<div class="menu panel-content" aria-hidden="true" tabindex="-1">
 									<p>CONTENT1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.
 									<button type="button">learn more</button>
 									<input type="text" class="postal-code-input">
@@ -182,13 +246,75 @@
 							</li>
 							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
 								TRIM2
-								<div class="menu panel-content" aria-hidden="true">
-									<p>CONTENT2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
+								<div class="menu panel-content" aria-hidden="true" tabindex="-1">
+
+<div class="trim_2014_chev_trax">
+
+	<div class="vehicleNameContainer">2014 Trax </div>
+	
+		<div class="learnMore">
+			<div class="lm">
+				<a href="/gm/english/vehicles/chevrolet/trax/overview">Learn More</a>
+			</div>
+		</div>
+	
+		<div class="msrp">MSRP From $18,695 <sup>Ω</sup></div>
+	
+		<p class="pc">Enter your postal code to see local offers: 
+			<span class="basePC">POSTAL CODE</span> (<a class="changePC" href="#">Change</a>)
+		</p>
+		<form>
+			<p class="pcSubmit">Enter your postal code to see local offers: 
+				<input type="text" name="flyout-pc" class="flyout-pc" maxlength="7"> 
+				(<a href="#" class="submitPC">Submit</a>)
+			</p>
+		</form>						
+															
+		<p class="infoTxt">Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+							
+		<div class="hockeyCard">
+			<a href="/gm/english/vehicles/chevrolet/trax/overview"><img src="/images/divisional/chevrolet/vehicles/chev_trax_hockey_card.jpg" alt="" title=""></a>
+		</div>																	
+					
+		<!-- specs  start-->
+		<div class="specsBoxes">
+			<div class="specBox">
+				<div class="specBox-fuel-efficiency">
+					<div class="title">Fuel Efficiency</div>
+					<div class="fuel-efficiency"></div>
+					<div class="amt">5.7
+						<div class="feature">L/100km hwy<sup>1</sup></div>
+					</div>
+				</div>
+			</div>
+			<div class="specBox">
+				<div class="specBox-interior-volume">
+					<div class="title">Cargo Volume</div>
+					<div class="interior-volume"></div>
+					<div class="amt">1,371
+						<div class="feature">L (48.4 cu. ft.)</div>
+					</div>
+				</div>
+			</div>
+			<div class="specBox">
+				<div class="specBox-turbo-engine">
+					<div class="title">Standard</div>
+					<div class="turbo-engine"></div>
+					<div class="amt">Turbo
+						<div class="feature">engine</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- specs  end-->
+
+</div>
+
 								</div>
 							</li>
 							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
 								TRIM3
-								<div class="menu panel-content" aria-hidden="true">
+								<div class="menu panel-content" aria-hidden="true" tabindex="-1">
 									<p>CONTENT3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
 								</div>
 							</li>
@@ -200,7 +326,7 @@
 							<h3>lorem.</h3>
 							<p>from $29,000</p>
 						</div>
-						<div class="menu panel-content" aria-hidden="true">
+						<div class="menu panel-content" aria-hidden="true" tabindex="-1">
 							<p>CONTENT1 div here Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.
 							<input type="text">
 							</p>
@@ -216,19 +342,19 @@
 							<li class="menu-description">select a model</li>
 							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
 								TRIM1
-								<div class="menu panel-content" aria-hidden="true">
+								<div class="menu panel-content" aria-hidden="true" tabindex="-1">
 									<p>CONTENT1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
 								</div>
 							</li>
 							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
 								TRIM2
-								<div class="menu panel-content" aria-hidden="true">
+								<div class="menu panel-content" aria-hidden="true" tabindex="-1">
 									<p>CONTENT2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
 								</div>
 							</li>
 							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
 								TRIM3
-								<div class="menu panel-content" aria-hidden="true">
+								<div class="menu panel-content" aria-hidden="true" tabindex="-1">
 									<p>CONTENT3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
 								</div>
 							</li>
@@ -366,11 +492,12 @@
 
 <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 
+
 <script>
 
 
 	$(document).ready(function() {
-		  var menu1 = new Menubar('accessible-div-nav', false);
+		var menu1 = new Menubar('accessible-div-nav', false);
 
 	}); // end ready()
 
@@ -468,12 +595,12 @@
 	// @return(boolean) Returns false;
 	Menubar.prototype.handleClick = function($item, e) {
 		// TODO figure out how to handle tabbing in panel-content
-		var targetTagName = e.target.tagName.toLowerCase();
-		console.log(targetTagName);
+/*		var targetTagName = e.target.tagName.toLowerCase();
+		// console.log(targetTagName);
 		if (targetTagName === "input" || targetTagName === "a") {
 			e.target.focus();
-			return false;
-		}
+			// return false;
+		}*/
 		$parent = $item.parent();
 
 
@@ -485,15 +612,14 @@
 			return false;
 		} 
 		else {
+			// Hide others
+			$item.siblings()
+				.removeClass('.menu-focus').attr('aria-checked', false).attr('aria-expanded',false)
+				.children().attr('aria-hidden', true);
 
-		// Hide others
-		$item.siblings()
-			.removeClass('.menu-focus').attr('aria-checked', false)
-			.children().attr('aria-hidden', true);
-
-		// Show all children
-		$item.focus().attr('aria-checked', true).addClass('menu-focus')
-			.children().attr('aria-hidden', 'false');
+			// Show all children
+			$item.focus().attr('aria-checked', true).attr('aria-expanded',true).addClass('menu-focus')
+				.children().attr('aria-hidden', 'false');
 		}
 
 		// if clicking cat-thumbs, and if no trims selected, select first & show panel-content
@@ -507,27 +633,31 @@
 			}
 			// set siblings to dimmed
 			this.$catThumbs.children().removeClass('dimmed').end().children('[aria-checked=false]').addClass('dimmed');
+			e.stopPropagation ? e.stopPropagation() : (e.cancelBubble=true); // IE<9?
+			return false;
 		}
 
 		/* if ($parentUL.is('.root-level')) {
 			// open the child menu if it is closed
 			$item.children('ul').first().attr('aria-hidden', 'false');
-		}
-		else {
+		}*/
+		else if ($parent.is('.upcoming')){
 			// process the menu choice
-			this.processMenuChoice($item);
+			// this.processMenuChoice($item);
 
 			// remove hover and focus styling
-			this.$allItems.removeClass('menu-hover menu-focus');
+			// this.$allItems.removeClass('menu-hover menu-focus');
 
 			// close the menu
 			// this.$id.find('ul').not('.root-level').attr('aria-hidden','true');
 			// move focus to the text area
 			// this.textarea.$id.focus();
+			e.stopPropagation ? e.stopPropagation() : (e.cancelBubble=true); // IE<9?
+			return true;
+		} else {
+			e.stopPropagation ? e.stopPropagation() : (e.cancelBubble=true); // IE<9?
+			return false;
 		}
-		*/
-		e.stopPropagation();
-		return false;
 	}; // end handleClick()
 
 	// Function handleFocus() is a member function to process focus events
@@ -609,7 +739,7 @@
 
 		switch(e.keyCode) {
 
-			case this.keys.TAB: {
+			case this.keys.TAB:
 
 				// if at last or first item (going backwards), then move off navigation
 				if ( $parent.is('.root-level') && (isLastItem || (isFirstItem && e.shiftKey)) )  {
@@ -636,18 +766,23 @@
 				// sets focus to returned item
 				this.$activeItem.focus();
 
-				e.stopPropagation();
-				return false;
-			}
+				if ($parent.is('.root-level,.upcoming,.cat-thumbs,.opt-trim')) {
+					e.stopPropagation();
+					return false;
+				}
+				else {
+					alert('a');
+				}
+				break;
 
-			case this.keys.ESC: {
+			case this.keys.ESC:
 				// upcoming is unique
 				if ( $parent.is('.upcoming') ) {
 					$item.parent().siblings().find('[aria-checked=true]').attr('aria-checked',false).find('.opt-trim').attr('aria-hidden',true);
 					this.$catThumbs.children().removeClass('dimmed');
 				}
 				else { // un-check self and siblings, hide all children
-					$item.siblings().andSelf().attr('aria-checked',false).children().attr('aria-hidden',true);
+					$item.siblings().andSelf().attr('aria-checked',false).children().attr('aria-hidden',true).attr('aria-expanded',false);
 					// set siblings to dimmed
 					if ( !$parent.is('.root-level') ) {
 						this.$catThumbs.children().removeClass('dimmed');
@@ -658,15 +793,17 @@
 				// reset the bChildOpen flag
 				this.bChildOpen = false;
 				// set focus on the new item
-				this.$activeItem.focus().attr('aria-checked',false);
+				this.$activeItem.focus().attr('aria-checked',false).attr('aria-expanded',false);
 				
-				if ( $parent.is('.root-level') ) { $('.adn-mask').hide(); }
+				if ( $parent.is('.root-level') ) { 
+					$('.adn-mask').hide();
+					$item.attr('aria-expanded',false);
+				}
 
 				e.stopPropagation();
 				return false;
-			}
 
-			case this.keys.RIGHT: {
+			case this.keys.RIGHT:
 				// if (this.vmenu == true && $itemUL.is('.root-level')) {
 				//     // If this is a vertical menu and the root-level is active, move
 				//     // to the next item in the menu
@@ -682,9 +819,8 @@
 
 				e.stopPropagation();
 				return false;
-			}
 
-			case this.keys.LEFT: {
+			case this.keys.LEFT:
 				// if (this.vmenu == true && $itemUL.is('.root-level')) {
 				// // If this is a vertical menu and the root-level is active, move
 				// // to the previous item in the menu
@@ -699,25 +835,22 @@
 				this.$activeItem.focus();
 				e.stopPropagation();
 				return false;
-			}
 
-			case this.keys.UP: {
+			case this.keys.UP:
 				// this.$activeItem = this.moveUp($item);
 				this.$activeItem = ($parent.is('.vert-menu')) ? this.moveUpToPrev($item) : this.moveUp($item);
 				this.$activeItem.focus();
 				e.stopPropagation();
 				return false;
-			}
 
-			case this.keys.DOWN: {
+			case this.keys.DOWN: 
 				this.$activeItem = ($parent.is('.vert-menu')) ? this.moveDownToNext($item) : this.moveDown($item);
 				this.$activeItem.focus();
 				e.stopPropagation();
 				return true ;
-			}
 
 			case this.keys.ENTER:
-			case this.keys.SPACE: {
+			case this.keys.SPACE:
 				if ($parent.is('.root-level') || $parent.is('.cat-thumbs') || $parent.is('.opt-trim')) {
 					this.$activeItem = this.moveDown($item);
 					this.$activeItem.focus();
@@ -738,16 +871,16 @@
 					// this.textarea.$id.focus();
 					return true;
 				}
-			}
+				break;
 
-			default: {
-				console.log(e.keyCode);
-				return false;;
-			}
+			default: 
+				// console.log(e.keyCode);
+				return false;
+			
 
-	   } // end switch
+		} // end switch
 
-	   return true;
+		return true;
 
 	}; // end handleMenuKeyDown()
 
@@ -1037,9 +1170,9 @@
 
 		// Basic menu selection, except for upcoming since it doesn't toggle
 		if ( !$parent.is('.upcoming') ) {
-			$item.attr('aria-checked',true).siblings().attr('aria-checked',false);
-			$item.siblings().children().attr('aria-hidden',true);
-			$item.children().attr('aria-hidden',false);
+			$item.attr('aria-checked',true).attr('aria-expanded',true).siblings().attr('aria-checked',false).attr('aria-expanded',false);
+			$item.siblings().children().attr('aria-hidden',true).attr('aria-expanded',false);
+			$item.children().attr('aria-hidden',false).attr('aria-expanded',true);
 		}
 
 		// There is little consistency, each level behaves slightly differently
@@ -1062,7 +1195,7 @@
 			$checkedItem = $newItemUL.children().filter('[aria-checked=true]');
 			$newItem = ($checkedItem.length) ? $checkedItem : $newItemUL.children('.menu-item').first().attr('aria-checked',true);
 			$newItem.children().attr('aria-hidden',false);
-			// if there is not trim
+			// if there is no trim
 			$newItem = ($item.children('.panel-content').length) ? $item.children('.panel-content') : $newItem ;
 			// set siblings to dimmed
 			$('.cat-thumbs').children().removeClass('dimmed').end().children('[aria-checked=false]').addClass('dimmed');
@@ -1070,7 +1203,11 @@
 		else if ( $parent.is('.opt-trim') ) {
 			// TODO make an array of tabbable elements within .panel-content and tab to each successive one
 			// move to panel-content first tabbable element
-			$newItem = $item.children('.panel-content');//.find('input');
+
+			$newItem = $item.children('.panel-content').find('a,input,button')[0];//.find('input');
+		}
+		else if ($item.parentsUntil('.panel-content')) {
+			alert('here')
 		}
 
 		return $newItem;
@@ -1243,7 +1380,7 @@
 	  var menuName = $item.parent().attr('id');
 	  // var choice = $item.attr('id');
 
-	  console.log(menuName);
+	  // console.log(menuName);
 
 	  $item.children()[0].click();
 
