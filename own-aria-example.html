@@ -1175,18 +1175,6 @@
 			$panelItems = null,
 			$checkedItem = null;
 
-		// Handle navigation within the content
-		if ($parent.is('.opt-trim')) { 
-			if (!this.isInPanel) {this.isInPanel = true;}
-			$panelItems = $item.children('.panel-content').find('a,input:visible,button');//,[tabindex]
-			// jump to next, otherwise jump to first 
-			if ($panelItems){
-				$newItem = $panelItems[this.panelItemIndex+1]; 
-				++this.panelItemIndex;
-			}
-			// return $newItem;
-		}
-
 		// Basic menu selection, except for upcoming since it doesn't toggle
 		if ( !$parent.is('.upcoming') ) {
 			$item.attr('aria-checked',true).attr('aria-expanded',true).siblings().attr('aria-checked',false).attr('aria-expanded',false);
@@ -1209,38 +1197,48 @@
 			$newItem = ($checkedItem.length) ? $checkedItem : $newItemUL.children().filter('[tabindex]').first();
 		}
 		else if ( $parent.is('.cat-thumbs') ) {
-		// TODO determine whether there is a trim sub-nav or not
 		//	- if selected, jump to selected trim & aria-checked it, otherwise to first trim
 			$newItemUL = $item.children('ul').first();
 			if ($newItemUL.length) {
 				$checkedItem = $newItemUL.children().filter('[aria-checked=true]');
 				$newItem = ($checkedItem.length) ? $checkedItem : $newItemUL.children('.menu-item').first().attr('aria-checked',true);
 				$newItem.children().attr('aria-hidden',false);
-
 			}
 			else { // there is no trim level
-					
 				$panelItems = $item.children('.panel-content').find('a,input:visible,button');//,[tabindex]
 				// jump to next, otherwise jump to first 
 				if ($panelItems){
-					$newItem = $panelItems[this.panelItemIndex+1]; 
-					++this.panelItemIndex;
+					// stop at last
+					if($panelItems.length == this.panelItemIndex+1) {
+						$newItem = $panelItems[this.panelItemIndex];
+					}
+					else {
+						$newItem = $panelItems[this.panelItemIndex+1]; 
+						++this.panelItemIndex;
+					}
 				}
 				this.isInPanel = true;
 			}
 			// set siblings to dimmed
 			$('.cat-thumbs').children().removeClass('dimmed').end().children('[aria-checked=false]').addClass('dimmed');
-
-		} 
-		/*		else if ( $parent.is('.opt-trim') ) {
-			// move to panel-content first tabbable element
-			var $panelItems = $item.children('.panel-content').find('a,input:visible,button');
-			// jump to next, otherwise jump to first 
-			$newItem = $panelItems[this.panelItemIndex+1]; 
-			++this.panelItemIndex;
-			this.isInPanel = true;
 		}
-*/
+		else if ($parent.is('.opt-trim')) { 
+		// Handle navigation within the content
+			if (!this.isInPanel) {this.isInPanel = true;}
+			$panelItems = $item.children('.panel-content').find('a,input:visible,button');//,[tabindex]
+			// jump to next, otherwise jump to first 
+			if ($panelItems){
+				// stop at last
+				if($panelItems.length == this.panelItemIndex+1) {
+					$newItem = $panelItems[this.panelItemIndex];
+				}
+				else {
+					$newItem = $panelItems[this.panelItemIndex+1]; 
+					++this.panelItemIndex;
+				}
+			}
+		}
+
 		return $newItem;
 
 /*       // if $item is not the last item in its menu, move to the next item. If startChr is specified, move
