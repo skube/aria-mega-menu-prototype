@@ -237,6 +237,7 @@
 							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1" aria-expanded="false" aria-describedby="adn_cars_trim_01_desc">
 								TRIM1
 								<div class="menu panel-content" aria-hidden="true" tabindex="-1">
+									<h4 tabindex="-1">Orlando 2014</h4>
 									<p>CONTENT1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.
 									<button type="button">learn more</button>
 									<input type="text" class="postal-code-input">
@@ -248,67 +249,67 @@
 								TRIM2
 								<div class="menu panel-content" aria-hidden="true" tabindex="-1">
 
-<div class="trim_2014_chev_trax">
+									<div class="trim_2014_chev_trax">
 
-	<div class="vehicleNameContainer">2014 Trax </div>
-	
-		<div class="learnMore">
-			<div class="lm">
-				<a href="/gm/english/vehicles/chevrolet/trax/overview">Learn More</a>
-			</div>
-		</div>
-	
-		<div class="msrp">MSRP From $18,695 <sup>Ω</sup></div>
-	
-		<p class="pc">Enter your postal code to see local offers: 
-			<span class="basePC">POSTAL CODE</span> (<a class="changePC" href="#">Change</a>)
-		</p>
-		<form>
-			<p class="pcSubmit">Enter your postal code to see local offers: 
-				<input type="text" name="flyout-pc" class="flyout-pc" maxlength="7"> 
-				(<a href="#" class="submitPC">Submit</a>)
-			</p>
-		</form>						
-															
-		<p class="infoTxt">Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
-							
-		<div class="hockeyCard">
-			<a href="/gm/english/vehicles/chevrolet/trax/overview"><img src="/images/divisional/chevrolet/vehicles/chev_trax_hockey_card.jpg" alt="" title=""></a>
-		</div>																	
-					
-		<!-- specs  start-->
-		<div class="specsBoxes">
-			<div class="specBox">
-				<div class="specBox-fuel-efficiency">
-					<div class="title">Fuel Efficiency</div>
-					<div class="fuel-efficiency"></div>
-					<div class="amt">5.7
-						<div class="feature">L/100km hwy<sup>1</sup></div>
-					</div>
-				</div>
-			</div>
-			<div class="specBox">
-				<div class="specBox-interior-volume">
-					<div class="title">Cargo Volume</div>
-					<div class="interior-volume"></div>
-					<div class="amt">1,371
-						<div class="feature">L (48.4 cu. ft.)</div>
-					</div>
-				</div>
-			</div>
-			<div class="specBox">
-				<div class="specBox-turbo-engine">
-					<div class="title">Standard</div>
-					<div class="turbo-engine"></div>
-					<div class="amt">Turbo
-						<div class="feature">engine</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- specs  end-->
+										<div class="vehicleNameContainer">2014 Trax </div>
+										
+											<div class="learnMore">
+												<div class="lm">
+													<a href="/gm/english/vehicles/chevrolet/trax/overview">Learn More</a>
+												</div>
+											</div>
+										
+											<div class="msrp">MSRP From $18,695 <sup>Ω</sup></div>
+										
+											<p class="pc">Enter your postal code to see local offers: 
+												<span class="basePC">POSTAL CODE</span> (<a class="changePC" href="#">Change</a>)
+											</p>
+											<form>
+												<p class="pcSubmit">Enter your postal code to see local offers: 
+													<input type="text" name="flyout-pc" class="flyout-pc" maxlength="7"> 
+													(<a href="#" class="submitPC">Submit</a>)
+												</p>
+											</form>						
+																								
+											<p class="infoTxt">Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+																
+											<div class="hockeyCard">
+												<a href="/gm/english/vehicles/chevrolet/trax/overview"><img src="/images/divisional/chevrolet/vehicles/chev_trax_hockey_card.jpg" alt="" title=""></a>
+											</div>																	
+														
+											<!-- specs  start-->
+											<div class="specsBoxes">
+												<div class="specBox">
+													<div class="specBox-fuel-efficiency">
+														<div class="title">Fuel Efficiency</div>
+														<div class="fuel-efficiency"></div>
+														<div class="amt">5.7
+															<div class="feature">L/100km hwy<sup>1</sup></div>
+														</div>
+													</div>
+												</div>
+												<div class="specBox">
+													<div class="specBox-interior-volume">
+														<div class="title">Cargo Volume</div>
+														<div class="interior-volume"></div>
+														<div class="amt">1,371
+															<div class="feature">L (48.4 cu. ft.)</div>
+														</div>
+													</div>
+												</div>
+												<div class="specBox">
+													<div class="specBox-turbo-engine">
+														<div class="title">Standard</div>
+														<div class="turbo-engine"></div>
+														<div class="amt">Turbo
+															<div class="feature">engine</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- specs  end-->
 
-</div>
+									</div>
 
 								</div>
 							</li>
@@ -523,6 +524,8 @@
 
 		this.$upcoming = this.$id.find('.upcoming'); // TODO update to $item's upcoming instead
 		this.$catThumbs = this.$id.find('.cat-thumbs');
+		this.isInPanel = false; // track whether currently inside panel-content
+		this.panelItemIndex = -1; // which element has focus inside panel-content
 
 		this.vmenu = vmenu; // TODO remove all vmenu references
 		this.bChildOpen = false; // true if child menu is open
@@ -594,33 +597,25 @@
 	// @param(e object) e is the associated event object
 	// @return(boolean) Returns false;
 	Menubar.prototype.handleClick = function($item, e) {
-		// TODO figure out how to handle tabbing in panel-content
-/*		var targetTagName = e.target.tagName.toLowerCase();
-		// console.log(targetTagName);
-		if (targetTagName === "input" || targetTagName === "a") {
-			e.target.focus();
-			// return false;
-		}*/
-		$parent = $item.parent();
 
+		var
+			$parent = $item.parent();
 
 		if ($parent.is('.root-level')) {
 			$('.adn-mask').show();
 		}
-		if ($item.is('.panel-content')) {
-			alert('panel-content');
-			return false;
-		} 
-		else {
-			// Hide others
-			$item.siblings()
-				.removeClass('.menu-focus').attr('aria-checked', false).attr('aria-expanded',false)
-				.children().attr('aria-hidden', true);
 
-			// Show all children
-			$item.focus().attr('aria-checked', true).attr('aria-expanded',true).addClass('menu-focus')
-				.children().attr('aria-hidden', 'false');
-		}
+		// Hide others
+		$item.siblings()
+			.removeClass('.menu-focus').attr('aria-checked', false).attr('aria-expanded',false)
+			.children().attr('aria-hidden', true);
+
+		// Show all children
+		$item.focus().attr('aria-checked', true).attr('aria-expanded',true).addClass('menu-focus')
+			.children().attr('aria-hidden', 'false');
+
+		this.isInPanel = false;
+		this.panelItemIndex = -1;
 
 		// if clicking cat-thumbs, and if no trims selected, select first & show panel-content
 		if ($parent.is('.cat-thumbs')) {
@@ -727,7 +722,7 @@
 	// @return(boolean) Returns false if consuming; true if propagating
 	Menubar.prototype.handleKeyDown = function($item, e) {
 
-		if (e.altKey || e.ctrlKey) {
+		if (e.altKey || e.ctrlKey || e.shiftKey) {
 			// Modifier key pressed: Do not process
 			return true;
 		}
@@ -740,6 +735,11 @@
 		switch(e.keyCode) {
 
 			case this.keys.TAB:
+
+				if(this.isInPanel) { // allow for normal tabbing
+					//TODO handle first/last cases
+					return;
+				}
 
 				// if at last or first item (going backwards), then move off navigation
 				if ( $parent.is('.root-level') && (isLastItem || (isFirstItem && e.shiftKey)) )  {
@@ -770,9 +770,6 @@
 					e.stopPropagation();
 					return false;
 				}
-				else {
-					alert('a');
-				}
 				break;
 
 			case this.keys.ESC:
@@ -792,6 +789,8 @@
 				this.$activeItem = $parent.parent();
 				// reset the bChildOpen flag
 				this.bChildOpen = false;
+				this.isInPanel = false;
+				this.panelItemIndex = -1;
 				// set focus on the new item
 				this.$activeItem.focus().attr('aria-checked',false).attr('aria-expanded',false);
 				
@@ -912,13 +911,19 @@
 	// @return (object) Returns the item to move to. Returns $item is no move is possible
 	Menubar.prototype.moveToNext = function($item) {
 
-		var $parent    = $item.parent(),          // $item's containing menu
+		var 
+			$parent    = $item.parent(),          // $item's containing menu
 			$menuItems = $parent.children(),      // the items in the currently active menu
 			menuNum    = $menuItems.length,       // the number of items in the active menu
 			menuIndex  = $menuItems.index($item), // the items index in its menu
 			$newItem   = null,
 			$newItemUL = null,
 			$childMenu = null;
+
+		if (this.isInPanel) {
+			// TODO move to next visible input, link or button
+			return;
+		}
 
 		if ($parent.is('.root-level') || $parent.is('.cat-thumbs') || $parent.is('.opt-trim')) {
 			// this is the root level move to next sibling. This will require closing
@@ -1164,9 +1169,23 @@
 		// var $menuItems = $parent.children('li').not('.separator'); // the items in the currently active menu
 		// var menuNum = $menuItems.length; // the number of items in the active menu
 		// var menuIndex = $menuItems.index($item); // the items index in its menu
-		var $newItem = null;
-		var $newItemUL = null;
-		var $checkedItem = null;
+		var
+			$newItem = null,
+			$newItemUL = null,
+			$panelItems = null,
+			$checkedItem = null;
+
+		// Handle navigation within the content
+		if ($parent.is('.opt-trim')) { 
+			if (!this.isInPanel) {this.isInPanel = true;}
+			$panelItems = $item.children('.panel-content').find('a,input:visible,button');//,[tabindex]
+			// jump to next, otherwise jump to first 
+			if ($panelItems){
+				$newItem = $panelItems[this.panelItemIndex+1]; 
+				++this.panelItemIndex;
+			}
+			// return $newItem;
+		}
 
 		// Basic menu selection, except for upcoming since it doesn't toggle
 		if ( !$parent.is('.upcoming') ) {
@@ -1178,38 +1197,50 @@
 		// There is little consistency, each level behaves slightly differently
 		if ( $parent.is('.root-level') ) {
 			$('.adn-mask').show();
-		//  - if exists, jump to (first) upcoming, otherwise (first) child of vert-menu
+		// - if exists, jump to (first) upcoming, otherwise (first) child of vert-menu
 			$newItemUL = $item.children().first();
 			$checkedItem = $newItemUL.children().filter('[aria-checked=true]');
 			$newItem = ($checkedItem.length) ? $checkedItem : $newItemUL.children().filter('[tabindex]').first();
 		} 
 		else if ( $parent.is('.upcoming') ) {
-		//  - jump to currently aria-checked cat-thumb, otherwise first cat-thumb
+		// - jump to currently aria-checked cat-thumb, otherwise first cat-thumb
 			$newItemUL = $parent.siblings('ul').first();
 			$checkedItem = $newItemUL.children().filter('[aria-checked=true]');
 			$newItem = ($checkedItem.length) ? $checkedItem : $newItemUL.children().filter('[tabindex]').first();
 		}
 		else if ( $parent.is('.cat-thumbs') ) {
-		//	 - if selected, jump to selected trim & aria-checked it, otherwise to first trim
+		// TODO determine whether there is a trim sub-nav or not
+		//	- if selected, jump to selected trim & aria-checked it, otherwise to first trim
 			$newItemUL = $item.children('ul').first();
-			$checkedItem = $newItemUL.children().filter('[aria-checked=true]');
-			$newItem = ($checkedItem.length) ? $checkedItem : $newItemUL.children('.menu-item').first().attr('aria-checked',true);
-			$newItem.children().attr('aria-hidden',false);
-			// if there is no trim
-			$newItem = ($item.children('.panel-content').length) ? $item.children('.panel-content') : $newItem ;
+			if ($newItemUL.length) {
+				$checkedItem = $newItemUL.children().filter('[aria-checked=true]');
+				$newItem = ($checkedItem.length) ? $checkedItem : $newItemUL.children('.menu-item').first().attr('aria-checked',true);
+				$newItem.children().attr('aria-hidden',false);
+
+			}
+			else { // there is no trim level
+					
+				$panelItems = $item.children('.panel-content').find('a,input:visible,button');//,[tabindex]
+				// jump to next, otherwise jump to first 
+				if ($panelItems){
+					$newItem = $panelItems[this.panelItemIndex+1]; 
+					++this.panelItemIndex;
+				}
+				this.isInPanel = true;
+			}
 			// set siblings to dimmed
 			$('.cat-thumbs').children().removeClass('dimmed').end().children('[aria-checked=false]').addClass('dimmed');
+
 		} 
-		else if ( $parent.is('.opt-trim') ) {
-			// TODO make an array of tabbable elements within .panel-content and tab to each successive one
+		/*		else if ( $parent.is('.opt-trim') ) {
 			// move to panel-content first tabbable element
-
-			$newItem = $item.children('.panel-content').find('a,input,button')[0];//.find('input');
+			var $panelItems = $item.children('.panel-content').find('a,input:visible,button');
+			// jump to next, otherwise jump to first 
+			$newItem = $panelItems[this.panelItemIndex+1]; 
+			++this.panelItemIndex;
+			this.isInPanel = true;
 		}
-		else if ($item.parentsUntil('.panel-content')) {
-			alert('here')
-		}
-
+*/
 		return $newItem;
 
 /*       // if $item is not the last item in its menu, move to the next item. If startChr is specified, move
@@ -1277,19 +1308,28 @@
 	// @return (object) Returns the item to move to. Returns $item is no move is possible
 	Menubar.prototype.moveUp = function($item) {
 
-		var $parent    = $item.parent(),
-		    $menuItems = $parent.children('li'),
-		    menuNum    = $menuItems.length,
-		    menuIndex  = $menuItems.index($item),
-		    $newItem   = null,
-		    $newItemUL = null;
+		var 
+			$parent    = $item.parent(),
+		   $menuItems = $parent.children('li'),
+		   menuNum    = $menuItems.length,
+		   menuIndex  = $menuItems.index($item),
+		   $newItem   = null,
+		   $newItemUL = null;
 
 		if ($parent.is('.root-level')) { // nothing to do
-			return $item;
+			$newItem = $item;
 		}
-		$item.removeClass('menu-focus');
-		$newItem = $parent.parent();
-
+		else if (this.isInPanel) {
+			var $panelItems = $item.children('.panel-content').find('a,input:visible,button');//,[tabindex]
+			// jump to next, otherwise jump to first 
+			if (this.panelItemIndex === 0 ) {this.isInPanel = false;}
+			$newItem = (this.panelItemIndex===0) ? $item : $panelItems[this.panelItemIndex-1]; 
+			--this.panelItemIndex;
+		}
+		else {
+			$item.removeClass('menu-focus');
+			$newItem = $parent.parent();
+		}
 		return $newItem;
 	};
 
@@ -1304,7 +1344,7 @@
 	// @return(boolean) Returns false if consuming; true if propagating
 	Menubar.prototype.handleKeyPress = function($item, e) {
 
-	   if (e.altKey || e.ctrlKey || e.shiftKey) {
+	   if (e.altKey || e.ctrlKey || e.shiftKey || this.isInPanel) {
 		   // Modifier key pressed: Do not process
 		   return true;
 	   }
