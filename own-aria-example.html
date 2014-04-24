@@ -316,7 +316,12 @@
 							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
 								TRIM3
 								<div class="menu panel-content" aria-hidden="true" tabindex="-1">
-									<p>CONTENT3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
+									<h4 tabindex="-1">Sonic 2014</h4>
+									<p>CONTENT1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.
+									<button type="button">learn more</button>
+									<input type="text" class="postal-code-input">
+									<a href="#">change</a>
+									</p>
 								</div>
 							</li>
 					   </ul>
@@ -328,8 +333,11 @@
 							<p>from $29,000</p>
 						</div>
 						<div class="menu panel-content" aria-hidden="true" tabindex="-1">
-							<p>CONTENT1 div here Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.
-							<input type="text">
+							<h4 tabindex="-1">Spark 2014</h4>
+							<p>CONTENT1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.
+							<button type="button">learn more</button>
+							<input type="text" class="postal-code-input">
+							<a href="#">change</a>
 							</p>
 						</div>
 					</li>
@@ -722,7 +730,7 @@
 	// @return(boolean) Returns false if consuming; true if propagating
 	Menubar.prototype.handleKeyDown = function($item, e) {
 
-		if (e.altKey || e.ctrlKey || e.shiftKey) {
+		if (e.altKey || e.ctrlKey ) {
 			// Modifier key pressed: Do not process
 			return true;
 		}
@@ -736,10 +744,6 @@
 
 			case this.keys.TAB:
 
-				if(this.isInPanel) { // allow for normal tabbing
-					//TODO handle first/last cases
-					return;
-				}
 
 				// if at last or first item (going backwards), then move off navigation
 				if ( $parent.is('.root-level') && (isLastItem || (isFirstItem && e.shiftKey)) )  {
@@ -755,12 +759,15 @@
 					// move on to cat-thumbs
 					this.$activeItem = this.moveDown($item);
 				}
-				else {
+				else if (!this.isInPanel) {
 					if (e.shiftKey) {
 						this.$activeItem = ($parent.is('.vert-menu')) ? this.moveUpToPrev($item) : this.moveToPrevious($item);
 					} else {
 						this.$activeItem = ($parent.is('.vert-menu')) ? this.moveDownToNext($item) : this.moveToNext($item);
 					}
+				}
+				else if (this.isInPanel) {
+					this.$activeItem = (e.shiftKey) ? this.determineNextTabbable($item, "backward"): this.determineNextTabbable($item);
 				}
 
 				// sets focus to returned item
@@ -830,8 +837,10 @@
 				// }
 				// this.$activeItem = this.moveToPrevious($item);
 				this.$activeItem = ($parent.is('.vert-menu')) ? this.moveUpToPrev($item) : this.moveToPrevious($item);
+
 				// sets focus to returned item
 				this.$activeItem.focus();
+
 				e.stopPropagation();
 				return false;
 
@@ -921,11 +930,10 @@
 			$childMenu = null;
 
 		if (this.isInPanel) {
-			// TODO move to next visible input, link or button
-			return;
+			if (!this.isInPanel) {this.isInPanel = true;}
+			$newItem = this.determineNextTabbable($item);
 		}
-
-		if ($parent.is('.root-level') || $parent.is('.cat-thumbs') || $parent.is('.opt-trim')) {
+		else if ($parent.is('.root-level') || $parent.is('.cat-thumbs') || $parent.is('.opt-trim')) {
 			// this is the root level move to next sibling. This will require closing
 			// the current child menu and opening the new one.
 
@@ -966,7 +974,8 @@
 
 
 			}*/
-		} else if ( $parent.is('.upcoming') ) {
+		} 
+		else if ( $parent.is('.upcoming') ) {
 			// wrap around
 			$newItem = (menuIndex < menuNum - 1) ? $item.next() : $menuItems.children().first();
 		}
@@ -1033,14 +1042,18 @@
 	// @return (object) Returns the item to move to. Returns $item is no move is possible
 	Menubar.prototype.moveToPrevious = function($item) {
 
-		var $parent = $item.parent(); // $item's containing menu
-		var $menuItems = $parent.children(); // the items in the currently active menu
-		var menuNum = $menuItems.length; // the number of items in the active menu
-		var menuIndex = $menuItems.index($item); // the items index in its menu
-		var $newItem = null;
-		var $newItemUL = null;
+		var 
+			$parent = $item.parent(), // $item's containing menu
+			$menuItems = $parent.children(), // the items in the currently active menu
+			menuNum = $menuItems.length, // the number of items in the active menu
+			menuIndex = $menuItems.index($item), // the items index in its menu
+			$newItem = null,
+			$newItemUL = null;
 
-		if ( $parent.is('.root-level') || $parent.is('.cat-thumbs') || $parent.is('.opt-trim') ) {
+		if (this.isInPanel) {
+			$newItem = this.determineNextTabbable($item, "backward");
+		}
+		else if ( $parent.is('.root-level') || $parent.is('.cat-thumbs') || $parent.is('.opt-trim') ) {
 			// this is the root level move to previous sibling. This will require closing
 			// the current child menu and opening the new one.
 
@@ -1051,28 +1064,14 @@
 				$newItem = $menuItems.last();
 			}
 
-			/*// close the current child menu (if applicable)
-			if ($item.attr('aria-haspopup') == 'true') {
-
-			 var $childMenu = $item.children('ul').first();
-
-			 if ($childMenu.attr('aria-hidden') == 'false') {
-				// update the child menu's aria-hidden attribute
-				$childMenu.attr('aria-hidden', 'true');
-				this.bChildOpen = true;
-			 }
-			}*/
-
 			// remove the focus styling from the current menu
 			$item.removeClass('menu-focus');
 
 			// open the new child menu (if applicable)
-			if (($newItem.attr('aria-haspopup') == 'true') && (this.bChildOpen == true)) {
-
-				var $childMenu = $newItem.children('ul').first();
+			if ( ($newItem.attr('aria-haspopup') == 'true') && (this.bChildOpen === true) ) {
 
 				// Update the child's aria-hidden attribute
-				$childMenu.attr('aria-hidden', 'false');
+				$newItem.children('ul').first().attr('aria-hidden', 'false');
 
 				/*
 				* Uncomment this section if the first item in the child menu should be
@@ -1090,70 +1089,8 @@
 			$newItem = (menuIndex > 1) ? $item.prev() : $menuItems.children().last();
 		}
 
- /*      else {
-		  // this is not the root level. If there is a parent menu that is not the
-		  // root menu, move up one level; otherwise, move to first item of the previous
-		  // root menu.
-
-		  var $parentLI = $itemUL.parent();
-		  var $parentUL = $parentLI.parent();
-
-		  var $parentMenus = null;
-		  var $rootItem = null;
-
-		  // if this is a vertical menu or is not the first child menu
-		  // of the root-level menu, move up one level.
-		  if (this.vmenu == true || !$parentUL.is('.root-level')) {
-
-			 $newItem = $itemUL.parent();
-
-			 // hide the active menu and update aria-hidden
-			 $itemUL.attr('aria-hidden', 'true');
-
-			 // remove the focus highlight from the $item
-			 $item.removeClass('menu-focus');
-
-			 if (this.vmenu == true) {
-				// set a flag so the focus handler does't reopen the menu
-				this.bChildOpen = false;
-			 }
-
-		  }
-		  else { // move to previous root-level menu
-
-			 // hide the current menu and update the aria attributes accordingly
-			 $itemUL.attr('aria-hidden', 'true');
-
-			 // remove the focus styling from the active menu
-			 $item.removeClass('menu-focus');
-			 $parentLI.removeClass('menu-focus');
-
-			 menuIndex = this.$rootItems.index($parentLI);
-
-			 if (menuIndex > 0) {
-				// move to the previous root-level menu
-				$newItem = $parentLI.prev();
-			 }
-			 else { // loop to last root-level menu
-				$newItem = this.$rootItems.last();
-			 }
-
-			 // add the focus styling to the new menu
-			 $newItem.addClass('menu-focus');
-
-			 if ($newItem.attr('aria-haspopup') == 'true') {
-				var $childMenu = $newItem.children('ul').first();
-
-				// show the child menu and update it's aria attributes
-				$childMenu.attr('aria-hidden', 'false');
-				this.bChildOpen == true;
-
-				$newItem = $childMenu.children('li').first();
-			 }
-		  }
-	   }*/
-
-	   return $newItem;
+		return $newItem;
+		
 	};
 
 	// Function moveDown() is a member function to select the next item in a menu.
@@ -1172,7 +1109,6 @@
 		var
 			$newItem = null,
 			$newItemUL = null,
-			$panelItems = null,
 			$checkedItem = null;
 
 		// Basic menu selection, except for upcoming since it doesn't toggle
@@ -1205,18 +1141,7 @@
 				$newItem.children().attr('aria-hidden',false);
 			}
 			else { // there is no trim level
-				$panelItems = $item.children('.panel-content').find('a,input:visible,button');//,[tabindex]
-				// jump to next, otherwise jump to first 
-				if ($panelItems){
-					// stop at last
-					if($panelItems.length == this.panelItemIndex+1) {
-						$newItem = $panelItems[this.panelItemIndex];
-					}
-					else {
-						$newItem = $panelItems[this.panelItemIndex+1]; 
-						++this.panelItemIndex;
-					}
-				}
+				$newItem = this.determineNextTabbable($item);
 				this.isInPanel = true;
 			}
 			// set siblings to dimmed
@@ -1225,18 +1150,7 @@
 		else if ($parent.is('.opt-trim')) { 
 		// Handle navigation within the content
 			if (!this.isInPanel) {this.isInPanel = true;}
-			$panelItems = $item.children('.panel-content').find('a,input:visible,button');//,[tabindex]
-			// jump to next, otherwise jump to first 
-			if ($panelItems){
-				// stop at last
-				if($panelItems.length == this.panelItemIndex+1) {
-					$newItem = $panelItems[this.panelItemIndex];
-				}
-				else {
-					$newItem = $panelItems[this.panelItemIndex+1]; 
-					++this.panelItemIndex;
-				}
-			}
+			$newItem = this.determineNextTabbable($item);
 		}
 
 		return $newItem;
@@ -1318,11 +1232,7 @@
 			$newItem = $item;
 		}
 		else if (this.isInPanel) {
-			var $panelItems = $item.children('.panel-content').find('a,input:visible,button');//,[tabindex]
-			// jump to next, otherwise jump to first 
-			if (this.panelItemIndex === 0 ) {this.isInPanel = false;}
-			$newItem = (this.panelItemIndex===0) ? $item : $panelItems[this.panelItemIndex-1]; 
-			--this.panelItemIndex;
+			$newItem = this.determineNextTabbable($item, "backward");
 		}
 		else {
 			$item.removeClass('menu-focus');
@@ -1489,6 +1399,41 @@
 	  } // end switch*/
 
 	}; // end processMenuChoice()
+
+	// Function to return $newItem for next tabbable element within .panel-content
+	Menubar.prototype.determineNextTabbable = function($item, direction){
+
+		var
+			$panelItems = null,
+			$newItem = null;
+
+		$panelItems = $item.children('.panel-content').find('a, input:visible, button'); //[tabindex]?
+		if ($panelItems){
+			if (direction == "backward") {
+				// TODO Stop at first
+				if (this.panelItemIndex === 0 ) {
+					this.isInPanel = false;
+					$newItem = $item;// $panelItems[0];
+				}
+				else {
+					$newItem =  $panelItems[this.panelItemIndex - 1]; 
+				}
+				--this.panelItemIndex;
+			}
+			else { // go forward, stopping at last
+				if($panelItems.length == this.panelItemIndex + 1) {
+					$newItem = $panelItems[this.panelItemIndex];
+				}
+				else {
+					$newItem = $panelItems[this.panelItemIndex + 1]; 
+					++this.panelItemIndex;
+				}
+			}
+		}
+
+		return $newItem;
+
+	};
 
 	/////////////// end menu widget definition /////////////////////
 
