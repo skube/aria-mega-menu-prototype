@@ -10,6 +10,7 @@
 
 	body { font-family: 'Lato', sans-serif; margin: 0;padding: 0;}
 	a {display: inline-block;}
+	button {cursor: pointer;}
 
 	.wrap {width: 990px; margin: 0 auto;}
 
@@ -30,7 +31,6 @@
 		list-style: none;
 		border: 1px solid black;
 		background: #589494;
-		cursor: pointer;
 	}
 	.menubar > li {
 		float: left;
@@ -50,7 +50,6 @@
 	.cat-thumbs > li {
 		float: left;
 		list-style: none;
-		padding: 2px 1em;
 		color: black;
 	}
 
@@ -161,7 +160,7 @@
 		<ul id="accessible-div-nav" class="root-level menubar clearfix" role="menubar">
 
 			<li class="menu-parent" role="menuitem" aria-haspopup="true" tabindex="0" aria-expanded="false">
-				CARS
+				<button>CARS</button>
 			   <dl class="menu upcoming" role="menu" aria-hidden="true">
 					<dt id="adn_cars_upcoming_desc">upcoming vehicles</dt>
 					<dd class="menu-item" role="menuitem" tabindex="-1" aria-label="Upcoming Vehicles - future"><a href="http://google.ca">future</a></dd>
@@ -171,15 +170,15 @@
 				</dl>
 				<ul class="cat-thumbs menu" role="menu" aria-hidden="true">
 					<li class="menu-parent menu-item" role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="-1">
-						<div>
-							<img src="http://placehold.it/114x40" alt="">
-							<h3>car.</h3>
+						<button>
+							<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_spar_on.jpg" alt="">
+							<h4>car.</h4>
 							<p>from $29,000</p>
-						</div>
+						</button>
 						<ul class="opt-trim menu" role="menu" aria-hidden="true">
 							<li class="menu-description" id="adn_cars_trim_01_desc" role="presentation">select a model</li>
 							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1" aria-expanded="false" aria-describedby="adn_cars_trim_01_desc">
-								TRIM1
+								<button>TRIM1</button>
 								<div class="menu panel-content" aria-hidden="true" tabindex="-1">
 									<h4 tabindex="-1">Orlando 2014</h4>
 									<p>CONTENT1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.
@@ -190,7 +189,7 @@
 								</div>
 							</li>
 							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
-								TRIM2
+								<button>TRIM2</button>
 								<div class="menu panel-content" aria-hidden="true" tabindex="-1">
 
 									<div class="trim_2014_chev_trax">
@@ -258,7 +257,7 @@
 								</div>
 							</li>
 							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
-								TRIM3
+								<button>TRIM3</button>
 								<div class="menu panel-content" aria-hidden="true" tabindex="-1">
 									<h4 tabindex="-1">Sonic 2014</h4>
 									<p>CONTENT1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.
@@ -271,11 +270,11 @@
 					   </ul>
 					</li>
 					<li class="menu-parent menu-item" role="menuitem" aria-haspopup="true" tabindex="-1">
-						<div>
-							<img src="http://placehold.it/114x40" alt="">
-							<h3>lorem.</h3>
+						<button>
+							<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_soni_on.jpg" alt="">
+							<h4>Sonic</h4>
 							<p>from $29,000</p>
-						</div>
+						</button>
 						<div class="menu panel-content" aria-hidden="true" tabindex="-1">
 							<h4 tabindex="-1">Spark 2014</h4>
 							<p>CONTENT1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.
@@ -286,38 +285,25 @@
 						</div>
 					</li>
 					<li class="menu-parent menu-item" role="menuitem" aria-haspopup="true" tabindex="-1">
-						<div>
-							<img src="http://placehold.it/114x40" alt="">
-							<h3>lorem.</h3>
+						<button>
+							<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_cruz_on.jpg" alt="">
+							<h4>car.</h4>
 							<p>from $29,000</p>
+						</button>
+						<div class="menu panel-content" aria-hidden="true" tabindex="-1">
+							<h4 tabindex="-1">Cruze 2014</h4>
+							<p>CONTENT1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.
+							<button type="button">learn more</button>
+							<input type="text" class="postal-code-input">
+							<a href="#">change</a>
+							</p>
 						</div>
-						<ul class="opt-trim menu" role="menu" aria-hidden="true">
-							<li class="menu-description">select a model</li>
-							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
-								TRIM1
-								<div class="menu panel-content" aria-hidden="true" tabindex="-1">
-									<p>CONTENT1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
-								</div>
-							</li>
-							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
-								TRIM2
-								<div class="menu panel-content" aria-hidden="true" tabindex="-1">
-									<p>CONTENT2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
-								</div>
-							</li>
-							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
-								TRIM3
-								<div class="menu panel-content" aria-hidden="true" tabindex="-1">
-									<p>CONTENT3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
-								</div>
-							</li>
-					   </ul>
-					</li>
+						</li>
 				</ul>
 			</li>
 			<!-- Vertical Menus -->
 			<li class="menu-parent" role="menuitem" aria-haspopup="true" tabindex="-1">
-				HIGHLIGHTS
+				<button>HIGHLIGHTS</button>
 				<ul class="menu vert-menu"  role="menu" aria-hidden="true">
 					<li class="menu-item" role="menuitem"  tabindex="-1">
 						<a href="#">lorem</a>
@@ -991,7 +977,7 @@
 		if ( $parent.is('.root-level') ) {
 			$('.adn-mask').show();
 		// - if exists, jump to (first) upcoming, otherwise (first) child of vert-menu
-			$newItemUL = $item.children().first();
+			$newItemUL = $item.children('ul').first();
 			// if ($newItemUL.is('.vert-menu')) {alert('.vert-menu');}
 			$checkedItem = $newItemUL.children().filter('[aria-checked=true]');
 			$newItem = ($checkedItem.length) ? $checkedItem : $newItemUL.children().filter('[tabindex]').first();
