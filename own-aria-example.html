@@ -9,6 +9,8 @@
 <style type="text/css">
 
 	body { font-family: 'Lato', sans-serif; margin: 0;padding: 0;}
+	a {display: inline-block;}
+
 	.wrap {width: 990px; margin: 0 auto;}
 
 	/* TODO namespace menu */
@@ -148,71 +150,13 @@
 
 </head>
 <body class="wrap">
+
+	<!-- Start Accessible Div Nav -->
 	<div role="navigation" class="accessible-div-nav">
 
 		<div class="adn-mask" aria-hidden="true"></div>
 
 		<a id="div-logo" href="/gm/english/vehicles/chevrolet/"><img src="/images/divisional/chevrolet/chevrolet_logo_background_2014.gif" alt="Chevrolet" title="Chevrolet"></a>
-
-<!-- 		<ul role="menubar">
-			<li role="presentation">
-
-				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false"  id="carsbtn" aria-owns="cars_upcoming car_models">CARS</button>
-
-				<dl role="menu" id="cars_upcoming" aria-hidden="true">
-					<dt role="presentation" id="cars_upcoming_label">Upcoming vehicles</dt>
-					<dd role="presentation" aria-describedby="cars_upcoming_label"><a role="menuitem" href="#">2014 Camaro</a></dd>
-					<dd role="presentation" aria-describedby="cars_upcoming_label"><a role="menuitem" href="#">2014 Colorado</a></dd>
-					<dd role="presentation" aria-describedby="cars_upcoming_label"><a role="menuitem" href="#">2014 Colorado</a></dd>
-				</dl>
-
-				<ul role="menu" id="car_models" aria-hidden="true">
-
-					<li role="presentation" id="mdl_01">
-						<button role="menuitem" aria-haspopup="true" aria-expanded="true" aria-checked="false"  id="sparkBtn" aria-owns="veh01_car_trims">Spark</button>
-
-						<dl role="menu" id="veh01_car_trims" aria-hidden="true">
-							<dt role="presentation" id="car_trims_desc_01">Select a Model</dt>
-							<dd role="presentation" aria-describedby="car_trims_desc_01">
-								<button role="menuitem" aria-haspopup="true" aria-expanded="true" aria-checked="false		" aria-owns="car_trim_01_content">Trim 1</button>
-
-								<div id="car_trim_01_content" aria-hidden="false">
-									
-									<p>something</p>
-									<input type="text" />
-									<button type="button">choose</button>
-									
-								</div>
-							</dd>
-							<dd role="presentation" aria-describedby="car_trims_desc_01">
-								<button role="menuitem" aria-haspopup="true" aria-expanded="true" aria-checked="false" aria-owns="car_trim_02_content">Trim 2</button>
-
-								<div id="car_trim_02_content" aria-hidden="false">Content here</div>
-							</dd>
-							<dd role="presentation" aria-describedby="car_trims_desc_01">
-								<button role="menuitem" aria-haspopup="true" aria-expanded="true" aria-checked="false" aria-owns="car_trim_03_content">Trim 2</button>
-
-								<div id="car_trim_03_content" aria-hidden="false">Content here</div>
-							</dd>
-						</dl>
-					</li>
-
-					<li role="presentation" id="mdl_02" aria-hidden="true">
-						<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false"  id="sonicBtn" aria-owns="veh02_content">Sonic</button>
-
-						<div id="veh02_content">asdf</div>
-					</li>
-
-				</ul>
-
-			</li>
-			<li role="presentation">
-
-				<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" id="trucksbtn" aria-owns="trucktrims trucks_upcoming"  aria-controls="trucktrims trucks_upcoming">Trucks</button>
-
-
-			</li>
-		</ul> -->
 
 		<ul id="accessible-div-nav" class="root-level menubar clearfix" role="menubar">
 
@@ -371,102 +315,7 @@
 					</li>
 				</ul>
 			</li>
-			<li class="menu-parent" role="menuitem" aria-haspopup="true" tabindex="-1">
-				TRUCKS
-				<dl class="menu upcoming" role="menu" aria-hidden="true">
-					<dt>upcoming</dt>
-					<dd class="menu-item" role="menuitem" tabindex="-1"><a href="http://google.ca">future</a></dd>
-					<dd class="menu-item" role="menuitem" tabindex="-1"><a href="#">future</a></dd>
-					<dd class="menu-item" role="menuitem" tabindex="-1"><a href="#">future</a></dd>
-					<dd class="menu-item" role="menuitem" tabindex="-1"><a href="#">future</a></dd>
-				</dl>
-				<ul class="cat-thumbs menu" role="menu" aria-hidden="true">
-					<li class="menu-parent menu-item" role="menuitem" aria-haspopup="true" tabindex="-1">
-						<div>
-							<img src="http://placehold.it/114x40" alt="">
-							<h3>truck1.</h3>
-							<p>from $29,000</p>
-						</div>
-						<ul class="opt-trim menu" role="menu" aria-hidden="true">
-							<li class="menu-description">select a model</li>
-							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
-								TRIM1
-								<div class="menu panel-content" aria-hidden="true">
-									<p>Truck 1, Trim 1 CONTENT1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
-								</div>
-							</li>
-							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
-								TRIM2
-								<div class="menu panel-content" aria-hidden="true">
-									<p>Truck1, Trim 2 CONTENT2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
-								</div>
-							</li>
-							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
-								TRIM3
-								<div class="menu panel-content" aria-hidden="true">
-									<p>Truck 1, Trim 3 CONTENT3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
-								</div>
-							</li>
-					   </ul>
-					</li>
-					<li class="menu-parent menu-item" role="menuitem" aria-haspopup="true" tabindex="-1">
-						<div>
-							<img src="http://placehold.it/114x40" alt="">
-							<h3>truck2.</h3>
-							<p>from $29,000</p>
-						</div>
-						<ul class="opt-trim menu" role="menu" aria-hidden="true">
-							<li class="menu-description">select a model</li>
-							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
-								TRIM1
-								<div class="menu panel-content" aria-hidden="true">
-									<p>Truck2, Trim 1 CONTENT1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
-								</div>
-							</li>
-							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
-								TRIM2
-								<div class="menu panel-content" aria-hidden="true">
-									<p>Truck 2, Trim 2, CONTENT2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
-								</div>
-							</li>
-							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
-								TRIM3
-								<div class="menu panel-content" aria-hidden="true">
-									<p>Truck 2, Trim 3, CONTENT3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
-								</div>
-							</li>
-					   </ul>
-					</li>
-					<li class="menu-parent menu-item" role="menuitem" aria-haspopup="true" tabindex="-1">
-						<div>
-							<img src="http://placehold.it/114x40" alt="">
-							<h3>truck3.</h3>
-							<p>from $29,000</p>
-						</div>
-						<ul class="opt-trim menu" role="menu" aria-hidden="true">
-							<li class="menu-description">select a model</li>
-							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
-								TRIM1
-								<div class="menu panel-content" aria-hidden="true">
-									<p>CONTENT1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
-								</div>
-							</li>
-							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
-								TRIM2
-								<div class="menu panel-content" aria-hidden="true">
-									<p>CONTENT2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
-								</div>
-							</li>
-							<li class="menu-parent menu-item trims" role="menuitem" aria-haspopup='true' tabindex="-1">
-								TRIM3
-								<div class="menu panel-content" aria-hidden="true">
-									<p>CONTENT3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, atque, quaerat libero aspernatur provident ullam quos et a! Ab porro rerum cupiditate laudantium soluta voluptate aut blanditiis fugit dolorem amet.</p>
-								</div>
-							</li>
-					   </ul>
-					</li>
-				</ul>
-			</li>
+			<!-- Vertical Menus -->
 			<li class="menu-parent" role="menuitem" aria-haspopup="true" tabindex="-1">
 				HIGHLIGHTS
 				<ul class="menu vert-menu"  role="menu" aria-hidden="true">
@@ -573,12 +422,12 @@
 
 		// bind a keydown handler
 		this.$allItems.keydown(function(e) {
-			return thisObj.handleKeyDown($(this), e);
+			return ($(e.target).is('input')) ? true : thisObj.handleKeyDown($(this), e);
 		});
 
 		// bind a keypress handler
 		this.$allItems.keypress(function(e) {
-			return thisObj.handleKeyPress($(this), e);
+			return ($(e.target).is('input')) ? true : thisObj.handleKeyPress($(this), e);
 		});
 
 		// bind a focus handler
@@ -610,12 +459,13 @@
 			$parent = $item.parent();
 
 		// TODO e.target is within panel-content
-		if ($(e.target).parents('.panel-content').length) {
-			e.target.focus();
-				e.stopPropagation ? e.stopPropagation() : (e.cancelBubble=true); // IE<9?
-				if (e.target.tagName == "A" || e.target.parentNode.tagName == "A") {return true;}
-				return false;
-
+		if ($(e.target).parents('.panel-content').length || $parent.is('.vert-menu')) {
+			// e.target.focus();
+			e.stopPropagation ? e.stopPropagation() : (e.cancelBubble=true); // IE<9?
+			if ($(e.target).is('a, button') || e.target.parentNode.tagName == "A") {
+				this.processMenuChoice($item);
+				return true;
+			} 
 		} else {
 			if ($parent.is('.root-level')) {
 				$('.adn-mask').show();
@@ -743,54 +593,50 @@
 	// @return(boolean) Returns false if consuming; true if propagating
 	Menubar.prototype.handleKeyDown = function($item, e) {
 
-		if (e.altKey || e.ctrlKey ) {
+		if (e.altKey || e.ctrlKey ||  $(e.target).is('input') ) {
 			// Modifier key pressed: Do not process
 			return true;
 		}
-		var $parent    = $item.parent(),
+		var 
+			$parent     = $item.parent(),
 			numChildren = $parent.children().length,
 			isLastItem  = ($item.index() === numChildren-1) ? true : false,
 			isFirstItem = ($item.index() === 0) ? true : false;
-
 
 		switch(e.keyCode) {
 
 			case this.keys.TAB:
 
-
 				// if at last or first item (going backwards), then move off navigation
-				if ( $parent.is('.root-level') && (isLastItem || (isFirstItem && e.shiftKey)) )  {
+				if ( $parent.is('.root-level') && ( (isLastItem && !e.shiftKey) || (isFirstItem && e.shiftKey) ))  {
+					
 					this.$id.find('ul').add('dl').attr('aria-hidden', 'true');
 					this.$allItems.removeClass('menu-focus').attr('aria-checked',false);
 					$('.adn-mask').hide();
 
 					this.$activeItem = null;
 					this.bChildOpen = false;
-					break;
+					return true; // exit function
 				} 
 				else if ( $parent.is('.upcoming') && isLastItem && !e.shiftKey) {
 					// move on to cat-thumbs
 					this.$activeItem = this.moveDown($item);
 				}
-				else if (!this.isInPanel) {
+				else if (this.isInPanel) {
+					this.$activeItem = (e.shiftKey) ? this.determineNextTabbable($item, "backward"): this.determineNextTabbable($item);
+				}
+				else {
 					if (e.shiftKey) {
 						this.$activeItem = ($parent.is('.vert-menu')) ? this.moveUpToPrev($item) : this.moveToPrevious($item);
 					} else {
 						this.$activeItem = ($parent.is('.vert-menu')) ? this.moveDownToNext($item) : this.moveToNext($item);
 					}
 				}
-				else if (this.isInPanel) {
-					this.$activeItem = (e.shiftKey) ? this.determineNextTabbable($item, "backward"): this.determineNextTabbable($item);
-				}
 
 				// sets focus to returned item
 				this.$activeItem.focus();
-
-				if ($parent.is('.root-level,.upcoming,.cat-thumbs,.opt-trim')) {
-					e.stopPropagation();
-					return false;
-				}
-				break;
+				e.stopPropagation();
+				return false;
 
 			case this.keys.ESC:
 				// upcoming is unique
@@ -835,10 +681,9 @@
 
 				// sets focus to returned item
 				this.$activeItem.focus();
-
 				e.stopPropagation();
-				return false;
-
+				return false;				
+				
 			case this.keys.LEFT:
 				// if (this.vmenu == true && $itemUL.is('.root-level')) {
 				// // If this is a vertical menu and the root-level is active, move
@@ -853,7 +698,6 @@
 
 				// sets focus to returned item
 				this.$activeItem.focus();
-
 				e.stopPropagation();
 				return false;
 
@@ -872,15 +716,21 @@
 
 			case this.keys.ENTER:
 			case this.keys.SPACE:
-				if ($parent.is('.root-level') || $parent.is('.cat-thumbs') || $parent.is('.opt-trim')) {
+				if ($parent.is('.root-level') || $parent.is('.cat-thumbs') || $parent.is('.opt-trim') && !this.isInPanel) {
 					this.$activeItem = this.moveDown($item);
+
 					this.$activeItem.focus();
 					e.stopPropagation();
 					return false;
 				}
 				else { // process the menu choice
+					console.log(e.target);
+					if (e.target.tagName == "INPUT" || $(e.target).is('input') ) {
 
-					this.processMenuChoice($item);
+					} else {
+						this.processMenuChoice($item);
+					}
+					e.stopPropagation ? e.stopPropagation() : (e.cancelBubble=true); // IE<9?
 					/*// remove hover and focus styling
 					this.$allItems.removeClass('menu-hover');
 					this.$allItems.removeClass('menu-focus');
@@ -890,18 +740,24 @@
 					this.$activeItem = null;
 					// move focus to the text area
 					// this.textarea.$id.focus();
+					// TODO figure out how to continue with normal behaviour
+					// e.stopPropagation();
 					return true;
 				}
 				break;
 
 			default: 
-				// console.log(e.keyCode);
+				if (e.target.tagName == "INPUT" || $(e.target).is('input') ) {
+					console.log(e.keyCode);
+					e.target.value += String.fromCharCode(e.which);
+				}
+				// e.stopPropagation ? e.stopPropagation() : (e.cancelBubble=true); // IE<9?
 				return false;
-			
 
 		} // end switch
 
-		return true;
+		// // e.stopPropagation();
+		// return false;
 
 	}; // end handleMenuKeyDown()
 
@@ -1136,6 +992,7 @@
 			$('.adn-mask').show();
 		// - if exists, jump to (first) upcoming, otherwise (first) child of vert-menu
 			$newItemUL = $item.children().first();
+			// if ($newItemUL.is('.vert-menu')) {alert('.vert-menu');}
 			$checkedItem = $newItemUL.children().filter('[aria-checked=true]');
 			$newItem = ($checkedItem.length) ? $checkedItem : $newItemUL.children().filter('[tabindex]').first();
 		} 
@@ -1338,12 +1195,12 @@
 	Menubar.prototype.processMenuChoice = function($item) {
 
 	  // find the parent menu for this item
-	  var menuName = $item.parent().attr('id');
+	  // var menuName = $item.parent().attr('id');
 	  // var choice = $item.attr('id');
 
 	  // console.log(menuName);
 
-	  $item.children()[0].click();
+	  $item.find('a')[0].click();
 
 /*      // call the appropriate textarea function
 	  switch(menuName) {
