@@ -3,9 +3,74 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title>Prototype II</title>
+	<base href="http://gm.ca">
 <style>
+	.wrap {width: 990px; margin: 0 auto;}
+
+	*[role=navigation] *[aria-hidden=true] {display: none}
+
+	.a-dnav {
+		position: relative;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		border: 1px solid black;
+		background: white;
+	}
+	.a-dnav > li,
+	.a-dnav [role=menu] > li,
+	.a-dnav [role=menu] > dt,
+	.a-dnav [role=menu] > dd
+	 {
+		float: left;
+		margin: 0;
+		padding: .25em .35em;
+		list-style: none;
+	}
+	.a-dnav > li:after {content: "\2f"; color:red;}
+
+	.a-dnav__cars,
+	.a-dnav__trucks
+	 {
+	 	position: absolute;
+	 	left: 0;
+	 }
+
+	.a-dnav [role=menu] {
+		position: absolute;
+		top:2em;
+		left: 0;
+		width: 990px;
+		margin: 0;
+		padding: 0;
+		background: #8EBBB4;
+	}
+	.a-dnav .upcoming {
+		top:0.25em;
+	}
 	
-	*[role=navigation] [aria-hidden=true] {display: none}
+	.a-dnav__content {
+		position: absolute;
+		left:0;
+		width: 990px;
+		background: #ccc;
+	}
+
+	*[aria-checked="true"]
+	{
+		background: yellow;
+	}
+
+	
+	.clearfix:before,
+	.clearfix:after {
+		content: " ";
+		display: table;
+	}
+	.clearfix:after {
+		clear: both;
+	}
+
 
 </style>
 
@@ -19,34 +84,36 @@
 - aria-flowto="trucksbtn" (try it?)
 - TODO: create nomenclature to handle unique IDs
 -->
+<div class="wrap">
+
 	<div role="navigation">
 		
-		<ul role="menubar" id="accessible-div-nav">
+		<ul role="menubar" id="accessible-div-nav" class="a-dnav clearfix">
 			<li role="presentation">
 
-				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false"  id="carsbtn" aria-owns="cars_upcoming car_models">CARS</button>
+				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" id="carsbtn" aria-owns="cars">CARS</button>
 
-				<div role="presentation" aria-hidden="true" class="menu-parent">
+				<div id="a-dnav__cars" role="group" aria-hidden="true" class="menu-parent a-dnav__cars">
 					
-					<dl role="menu" id="cars_upcoming">
-						<dt role="presentation" id="cars_upcoming_label">Upcoming vehicles</dt>
+					<dl role="menu" class="upcoming">
+						<dt role="presentation" id="a-dnav__cars--up-title">Upcoming vehicles</dt>
 						<dd role="presentation" aria-label="Upcoming vehicles"><a role="menuitem" href="#">2014 Camaro</a></dd>
-						<dd role="presentation" aria-describedby="cars_upcoming_label"><a role="menuitem" href="#">2014 Colorado</a></dd>
-						<dd role="presentation" aria-describedby="cars_upcoming_label"><a role="menuitem" href="#">2014 Colorado</a></dd>
+						<dd role="presentation" aria-describedby="a-dnav__cars--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
+						<dd role="presentation" aria-describedby="a-dnav__cars--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
 					</dl>
 
-					<ul role="menu" id="car_models">
+					<ul role="menu">
 
-						<li role="presentation" id="mdl_01">
+						<li role="presentation">
 
-							<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false"  id="sparkBtn" aria-owns="veh01_car_trims">Spark</button>
+							<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="veh01_car_trims">Spark</button>
 
 							<dl role="menu" id="veh01_car_trims" aria-hidden="true">
 								<dt role="presentation" id="car_trims_desc_01">Select a Model</dt>
 								<dd role="presentation" aria-describedby="car_trims_desc_01">
 									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="car_trim_01_content">Trim 1</button>
 
-									<div id="car_trim_01_content" aria-hidden="true">
+									<div id="car_trim_01_content" aria-hidden="true" class="a-dnav__content">
 										
 										<p>something</p>
 										<input type="text" />
@@ -57,12 +124,22 @@
 								<dd role="presentation" aria-describedby="car_trims_desc_01">
 									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="car_trim_02_content">Trim 2</button>
 
-									<div id="car_trim_02_content" aria-hidden="true">Content here</div>
+									<div id="car_trim_02_content" aria-hidden="true" class="a-dnav__content">
+										<p>something</p>
+										<input type="text" />
+										<button type="button">choose</button>
+									</div>
+
 								</dd>
 								<dd role="presentation" aria-describedby="car_trims_desc_01">
-									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="car_trim_03_content">Trim 2</button>
+									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="car_trim_03_content">Trim 3</button>
 
-									<div id="car_trim_03_content" aria-hidden="true">Content here</div>
+									<div id="car_trim_03_content" aria-hidden="true" class="a-dnav__content">
+										<p>something</p>
+										<input type="text" />
+										<button type="button">choose</button>
+									</div>
+
 								</dd>
 							</dl>
 						</li>
@@ -70,7 +147,14 @@
 						<li role="presentation" id="mdl_02">
 							<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" id="sonicBtn" aria-owns="veh02_content">Sonic</button>
 
-							<div id="veh02_content" aria-hidden="true">asdf</div>
+							<div id="veh02_content" aria-hidden="true" class="a-dnav__content">
+
+								<p>something</p>
+								<input type="text" />
+								<button type="button">choose</button>
+
+							</div>
+
 						</li>
 
 					</ul>
@@ -80,13 +164,33 @@
 			</li>
 			<li role="presentation">
 
-				<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" id="trucksbtn" aria-owns="trucktrims trucks_upcoming"  aria-controls="trucktrims trucks_upcoming">Trucks</button>
+				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" id="trucksbtn" aria-owns="a-dnav__trucks" aria-controls="a-dnav__trucks">Trucks</button>
+
+				<div id="a-dnav__trucks" role="group" aria-hidden="true" class="menu-parent a-dnav__trucks">
+
+					<dl role="menu" class="upcoming">
+						<dt role="presentation" id="a-dnav__trucks--up-title">Upcoming vehicles</dt>
+						<dd role="presentation" aria-label="Upcoming vehicles"><a role="menuitem" href="#">2014 Truck1</a></dd>
+						<dd role="presentation" aria-describedby="a-dnav__trucks--up-title"><a role="menuitem" href="#">2014 Truck2</a></dd>
+						<dd role="presentation" aria-describedby="a-dnav__trucks--up-title"><a role="menuitem" href="#">2014 Truck3</a></dd>
+					</dl>
+
+	
+				</div>
 
 
 			</li>
 		</ul>
 
 	</div>
+
+	<div role="main">
+		<h1>header</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo, repellat, officia natus id cupiditate molestiae laborum ab in aperiam voluptate necessitatibus eaque minus. Ducimus, voluptates autem ullam reprehenderit assumenda cum!</p>
+		<input type="text">something</input>
+	</div>
+
+</div>
 
 <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 
@@ -100,11 +204,11 @@
 		// define widget properties
 		this.$id = $('#' + id);
 
-		this.$rootItems = this.$id.children('li'); // jQuerry array of all root-level menu items
+		this.$rootItems = this.$id.children('li'); // root-level menu items
 
-		this.$items = this.$id.find('[role=menuitem]'); // jQuery array of menu items
-		this.$parents = this.$id.find('.menu-parent'); // jQuery array of menu items
-		this.$allItems = this.$parents.add(this.$items); // jQuery array of all menu items
+		this.$items = this.$id.find('[role=menuitem]');  // menu items (buttons or anchors)
+		this.$parents = this.$id.find('[role=menu]');    // container (dl or ul)
+		this.$allItems = this.$parents.add(this.$items); // 
 		this.$activeItem = null; // jQuery object of the menu item with focus
 
 		this.keys = {
@@ -124,19 +228,19 @@
 
 	Menubar.prototype.bindHandlers = function() {
 
-		var $this = this;
+		var that = this;
 
-		this.$allItems.click(function(event){
+		this.$items.click(function(event){
 			if (event.target.tagName=="BUTTON") {
-				return	$this.handleClick($(this),event);
+				return	that.handleClick($(this),event);
 			}
 		});
 
-		this.$allItems.keydown(function(event){
+		this.$items.keydown(function(event){
 			// if key is one of this.keys
-			for (var key in $this.keys) {
-				if ($this.keys[key] == event.which) {
-					return $this.handleKeyDown($(this),event);
+			for (var key in that.keys) {
+				if (that.keys[key] == event.which) {
+					return that.handleKeyDown($(this),event);
 				}
 			}
 		});
@@ -149,43 +253,101 @@
 	};
 
 	Menubar.prototype.handleKeyDown = function(elem,event){
-		var $this = $(this);
 		switch(event.keyCode) {
 			case this.keys.TAB:
 				// goto next
 				return;
 			case this.keys.DOWN:
 				return this.moveDown(elem,event);
+			case this.keys.UP:
+				return this.moveUp(elem,event);
+			case this.keys.RIGHT:
+				return this.moveRight(elem,event);
+			case this.keys.LEFT:
+				return this.moveLeft(elem,event);
 		}
 	};
 
 	Menubar.prototype.moveDown = function (elem,event) {
+		var 
+			el = $(elem),
+			closestMenu = el.closest('[role=menu]');
 
+		// drilling down the DOM, except for Upcoming level
+		if (closestMenu.hasClass('upcoming')){
+			el = closestMenu.next();
+		}
+		else {
+			this.toggleState(elem);
+			el = el.next();
+		}
+
+		el.find('[role=menuitem]').first().focus();
 	};
 
+	Menubar.prototype.moveUp = function (elem,event) {
+	};
+
+
+	Menubar.prototype.moveRight = function (elem,event) {
+		var 
+			el = $(elem).parent().next().find('[role=menuitem]').first();
+			selectedItem = this.toggleState(el);
+
+		selectedItem.focus();
+
+		// visibleItems = this.$items.filter(':visible');
+		// myIndex = visibleItems.index(elem);
+		// visibleItems.eq(myIndex+1).focus();
+	};
+
+	Menubar.prototype.moveLeft = function (elem,event) {
+		var 
+			el = $(elem).parent().prev().find('[role=menuitem]').first();
+			selectedItem = this.toggleState(el);
+			
+		selectedItem.focus();
+		
+	};
+
+	// Sets the element aria attributes
 	Menubar.prototype.toggleState = function(elem){
 
 		var 
 			el = $(elem),
-			siblings = el.siblings();
+			owns = el.siblings();
 
-		if (siblings.is(':visible')) {
-			el.attr({
-				'aria-expanded': false,
-				'aria-checked' : false
-			});
-			siblings.attr('aria-hidden',true);
+		if (owns.is(':visible')) {
+			// el.attr({
+			// 	'aria-expanded': false,
+			// 	'aria-checked' : false
+			// });
+			// owns.attr('aria-hidden',true);
 		} else {
-			el.attr({
+			el = el.attr({
 				'aria-expanded': true,
 				'aria-checked' : true
 			});
-			siblings.attr('aria-hidden',false);
+			owns.attr('aria-hidden',false);
+			
 		}
 
-		return true;
+		// hide others
+		this.hideOthers($(elem).parent().siblings().find('[role=menuitem]'));
 
+		return el;
 	};
+
+	Menubar.prototype.hideOthers = function(elems){
+		$(elems).each(function(){
+			$(this).attr({
+				'aria-expanded': false,
+				'aria-checked' : false
+			}).siblings()
+				.attr('aria-hidden',true);
+		});
+	};
+
 
 </script>		
 </body>
