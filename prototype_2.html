@@ -5,6 +5,8 @@
 	<title>Prototype II</title>
 	<base href="http://gm.ca">
 <style>
+
+	button {cursor: pointer}
 	.wrap {width: 990px; margin: 0 auto;}
 
 	*[role=navigation] *[aria-hidden=true] {display: none}
@@ -45,7 +47,7 @@
 		padding: 0;
 		background: #8EBBB4;
 	}
-	.a-dnav .upcoming {
+	.a-dnav .a-dnav__upcoming {
 		top:0.25em;
 	}
 	
@@ -56,8 +58,16 @@
 		background: #ccc;
 	}
 
-	*[aria-checked="true"]
-	{
+	.a-dnav__vert[role=menu] {
+		left:auto;
+		width: 176px;
+		background: #ccc;
+	}
+	.a-dnav__vert[role=menu] li {
+		float: none;
+	}
+
+	*[aria-checked="true"]	{
 		background: yellow;
 	}
 
@@ -93,49 +103,107 @@
 
 				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" id="carsbtn" aria-owns="cars">CARS</button>
 
-				<div id="a-dnav__cars" role="group" aria-hidden="true" class="menu-parent a-dnav__cars">
+				<div id="a-dnav__cars" role="group" aria-hidden="true" class="a-dnav__cars">
 					
-					<dl role="menu" class="upcoming">
+					<dl role="menu" class="a-dnav__upcoming">
 						<dt role="presentation" id="a-dnav__cars--up-title">Upcoming vehicles</dt>
 						<dd role="presentation" aria-label="Upcoming vehicles"><a role="menuitem" href="#">2014 Camaro</a></dd>
 						<dd role="presentation" aria-describedby="a-dnav__cars--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
 						<dd role="presentation" aria-describedby="a-dnav__cars--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
 					</dl>
 
-					<ul role="menu">
+					<ul role="menu" class="a-dnav__models">
 
-						<li role="presentation">
+						<li role="presentation" id="a-dnav__cars--mdl01">
 
 							<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="veh01_car_trims">Spark</button>
 
-							<dl role="menu" id="veh01_car_trims" aria-hidden="true">
+							<dl role="menu" id="veh01_car_trims" aria-hidden="true" class="a-dnav__trims">
 								<dt role="presentation" id="car_trims_desc_01">Select a Model</dt>
 								<dd role="presentation" aria-describedby="car_trims_desc_01">
-									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="car_trim_01_content">Trim 1</button>
+									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="a-dnav__mdl01_t01--content">Trim 1</button>
 
-									<div id="car_trim_01_content" aria-hidden="true" class="a-dnav__content">
+									<div id="a-dnav__mdl01_t01--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+										<div class="trim_2014_chev_trax">
+
+										<div class="vehicleNameContainer">2014 Trax </div>
 										
-										<p>something</p>
-										<input type="text" />
-										<button type="button">choose</button>
+											<div class="learnMore">
+												<div class="lm">
+													<a href="/gm/english/vehicles/chevrolet/trax/overview">Learn More</a>
+												</div>
+											</div>
 										
+											<div class="msrp">MSRP From $18,695 <sup>Ω</sup></div>
+										
+											<p class="pc">Enter your postal code to see local offers: 
+												<span class="basePC">POSTAL CODE</span> (<a class="changePC" href="#">Change</a>)
+											</p>
+											<form>
+												<p class="pcSubmit">Enter your postal code to see local offers: 
+													<input type="text" name="flyout-pc" class="flyout-pc" maxlength="7"> 
+													(<a href="#" class="submitPC">Submit</a>)
+												</p>
+											</form>						
+																								
+											<p class="infoTxt">Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+																
+											<div class="hockeyCard">
+												<a href="/gm/english/vehicles/chevrolet/trax/overview"><img src="/images/divisional/chevrolet/vehicles/chev_trax_hockey_card.jpg" alt="" title=""></a>
+											</div>																	
+														
+											<!-- specs  start-->
+											<div class="specsBoxes">
+												<div class="specBox">
+													<div class="specBox-fuel-efficiency">
+														<div class="title">Fuel Efficiency</div>
+														<div class="fuel-efficiency"></div>
+														<div class="amt">5.7
+															<div class="feature">L/100km hwy<sup>1</sup></div>
+														</div>
+													</div>
+												</div>
+												<div class="specBox">
+													<div class="specBox-interior-volume">
+														<div class="title">Cargo Volume</div>
+														<div class="interior-volume"></div>
+														<div class="amt">1,371
+															<div class="feature">L (48.4 cu. ft.)</div>
+														</div>
+													</div>
+												</div>
+												<div class="specBox">
+													<div class="specBox-turbo-engine">
+														<div class="title">Standard</div>
+														<div class="turbo-engine"></div>
+														<div class="amt">Turbo
+															<div class="feature">engine</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- specs  end-->
+
 									</div>
+
+								</div>									
 								</dd>
 								<dd role="presentation" aria-describedby="car_trims_desc_01">
-									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="car_trim_02_content">Trim 2</button>
+									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="a-dnav__mdl01_t02--content">Trim 2</button>
 
-									<div id="car_trim_02_content" aria-hidden="true" class="a-dnav__content">
-										<p>something</p>
+									<div id="a-dnav__mdl01_t02--content" aria-hidden="true" class="a-dnav__content">
+										<p>Trim2 Content</p>
 										<input type="text" />
 										<button type="button">choose</button>
 									</div>
 
 								</dd>
 								<dd role="presentation" aria-describedby="car_trims_desc_01">
-									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="car_trim_03_content">Trim 3</button>
+									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="a-dnav__mdl01_t03--content">Trim 3</button>
 
-									<div id="car_trim_03_content" aria-hidden="true" class="a-dnav__content">
-										<p>something</p>
+									<div id="a-dnav__mdl01_t03--content" aria-hidden="true" class="a-dnav__content">
+										<p>Trim3 Content</p>
 										<input type="text" />
 										<button type="button">choose</button>
 									</div>
@@ -144,10 +212,9 @@
 							</dl>
 						</li>
 
-						<li role="presentation" id="mdl_02">
+						<li role="presentation" id="a-dnav__cars--mdl02">
 							<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" id="sonicBtn" aria-owns="veh02_content">Sonic</button>
-
-							<div id="veh02_content" aria-hidden="true" class="a-dnav__content">
+							<div id="a-dnav__mdl02--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
 
 								<p>something</p>
 								<input type="text" />
@@ -166,9 +233,9 @@
 
 				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" id="trucksbtn" aria-owns="a-dnav__trucks" aria-controls="a-dnav__trucks">Trucks</button>
 
-				<div id="a-dnav__trucks" role="group" aria-hidden="true" class="menu-parent a-dnav__trucks">
+				<div id="a-dnav__trucks" role="group" aria-hidden="true" class="a-dnav__trucks">
 
-					<dl role="menu" class="upcoming">
+					<dl role="menu" class="a-dnav__upcoming">
 						<dt role="presentation" id="a-dnav__trucks--up-title">Upcoming vehicles</dt>
 						<dd role="presentation" aria-label="Upcoming vehicles"><a role="menuitem" href="#">2014 Truck1</a></dd>
 						<dd role="presentation" aria-describedby="a-dnav__trucks--up-title"><a role="menuitem" href="#">2014 Truck2</a></dd>
@@ -178,6 +245,25 @@
 	
 				</div>
 
+
+			</li>
+
+			<!-- Vertical Menus -->
+			<li role="presentation">
+
+				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="a-dnav__vert01">Highlights</button>
+
+				<ul role="menu" id="a-dnav__vert01" aria-hidden="true" class="a-dnav__vert">
+					<li class="menu-item">
+						<a href="#" role="menuitem">lorem</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" role="menuitem">lorem</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" role="menuitem">lorem</a>
+					</li>
+				</ul>
 
 			</li>
 		</ul>
@@ -226,17 +312,20 @@
 		this.bindHandlers();
 	}
 
+	/**
+	* Setup initial bindings
+	*/
 	Menubar.prototype.bindHandlers = function() {
 
 		var that = this;
 
-		this.$items.click(function(event){
-			if (event.target.tagName=="BUTTON") {
+		this.$items.click(function(event) {
+			if (event.target.tagName==="BUTTON") {
 				return	that.handleClick($(this),event);
 			}
 		});
 
-		this.$items.keydown(function(event){
+		this.$items.keydown(function(event) {
 			// if key is one of this.keys
 			for (var key in that.keys) {
 				if (that.keys[key] == event.which) {
@@ -245,107 +334,185 @@
 			}
 		});
 
+		$(document).click(function(event) {
+			return that.handleDocumentClick(event);
+		});
+
 	};
 
-	Menubar.prototype.handleClick = function(elem,event){
+
+	/**
+	* Handle clicks to document to close menu
+	* 
+	* @param event {object} associated event
+	* @return {boolean} returns true
+	*/
+	Menubar.prototype.handleDocumentClick = function(event) {
+		if (!$(event.target).closest(this.$id).length) {
+			this.hideOthers(this.$items);
+		}
+		return true;
+	};
+
+
+	/**
+	* Click handler
+	* 
+	* @param elem {object} jQuery object firing event
+	* @param event {object} associated event object
+	*/
+	Menubar.prototype.handleClick = function(elem,event) {
+
 		event.stopPropagation();
-		return this.toggleState(elem);
+		return this.showOwns(elem);
 	};
 
-	Menubar.prototype.handleKeyDown = function(elem,event){
+
+	/**
+	* KeyDown handler
+	* - for various keyboard interaction
+	* 
+	* @param elem {object} jQuery object firing event
+	* @param event {object} associated event object
+	* @return {object} return curernt jQuery element (to focus) 
+	*/
+	Menubar.prototype.handleKeyDown = function(elem,event) {
+
+		var el = $(elem);
+		var closestMenu = el.closest('[role=menu]');
+
 		switch(event.keyCode) {
 			case this.keys.TAB:
 				// goto next
-				return;
+				return true;
+			case this.keys.ENTER:
+			case this.keys.SPACE:
+				if (closestMenu.hasClass('a-dnav__upcoming')) {	return true; }
+				this.$activeItem = this.moveDown(elem,event);
+				break;
 			case this.keys.DOWN:
-				return this.moveDown(elem,event);
+				if (closestMenu.hasClass('a-dnav__vert')) {
+					this.$activeItem = this.moveRight(elem,event);
+				} else {
+					this.$activeItem = this.moveDown(elem,event);
+				}
+				break;
 			case this.keys.UP:
-				return this.moveUp(elem,event);
+				this.$activeItem = this.moveUp(elem,event);
+				break;
 			case this.keys.RIGHT:
-				return this.moveRight(elem,event);
+				this.$activeItem = this.moveRight(elem,event);
+				break;
 			case this.keys.LEFT:
-				return this.moveLeft(elem,event);
+				this.$activeItem = this.moveLeft(elem,event);
+				break;
+			case this.keys.ESC:
+				this.$activeItem = this.moveEscape(elem,event);
+				break;
 		}
+
+		this.$activeItem.focus();
 	};
 
 	Menubar.prototype.moveDown = function (elem,event) {
-		var 
-			el = $(elem),
-			closestMenu = el.closest('[role=menu]');
 
-		// drilling down the DOM, except for Upcoming level
-		if (closestMenu.hasClass('upcoming')){
+		var el = $(elem);
+		var closestMenu = el.closest('[role=menu]');
+
+		if (closestMenu.hasClass('a-dnav__upcoming')){
 			el = closestMenu.next();
 		}
+		else if (closestMenu.hasClass('a-dnav__trims')){
+			el = el.next();
+			this.showOwns(elem);
+			return el;
+		}
 		else {
-			this.toggleState(elem);
+			this.showOwns(elem);
 			el = el.next();
 		}
 
-		el.find('[role=menuitem]').first().focus();
+		return el.find('[role=menuitem]').first();
 	};
 
 	Menubar.prototype.moveUp = function (elem,event) {
+
+		var el = $(elem);
+		var	closestMenu = el.closest('[role=menu]');
+
+		if (closestMenu.hasClass('a-dnav__upcoming')) {
+			el = closestMenu.parent().prev();
+		}
+		else if (closestMenu.hasClass('a-dnav__models')) {
+			el = closestMenu.prev().find('[role=menuitem]').first();
+		}
+		else {
+			el = closestMenu.prev();
+		}
+		return el;
 	};
 
 
 	Menubar.prototype.moveRight = function (elem,event) {
-		var 
-			el = $(elem).parent().next().find('[role=menuitem]').first();
-			selectedItem = this.toggleState(el);
 
-		selectedItem.focus();
+		var el = $(elem).parent().next().find('[role=menuitem]').first();
+		var selectedItem = this.showOwns(el);
 
-		// visibleItems = this.$items.filter(':visible');
-		// myIndex = visibleItems.index(elem);
-		// visibleItems.eq(myIndex+1).focus();
+		return selectedItem;
 	};
 
 	Menubar.prototype.moveLeft = function (elem,event) {
-		var 
-			el = $(elem).parent().prev().find('[role=menuitem]').first();
-			selectedItem = this.toggleState(el);
+
+		var el = $(elem).parent().prev().find('[role=menuitem]').first();
+		var	selectedItem = this.showOwns(el);
 			
-		selectedItem.focus();
-		
+		return selectedItem;
 	};
 
-	// Sets the element aria attributes
-	Menubar.prototype.toggleState = function(elem){
+	Menubar.prototype.moveEscape = function (elem,event) {
+		
+		this.hideOthers(elem);
+		return this.moveUp(elem,event);
+	};
 
-		var 
-			el = $(elem),
-			owns = el.siblings();
 
-		if (owns.is(':visible')) {
-			// el.attr({
-			// 	'aria-expanded': false,
-			// 	'aria-checked' : false
-			// });
-			// owns.attr('aria-hidden',true);
-		} else {
-			el = el.attr({
+	/**
+	* Shows children that associated buttons aria-owns
+	* - sets aria attributes
+	* - also hides other siblings of current button
+	* 
+	* @param elem {jQuery} jQuery object
+	* @return {object} returns jQuery object
+	*/
+	Menubar.prototype.showOwns = function(elem) {
+
+		var el = $(elem);
+		var	owns = el.siblings();
+
+		if (!owns.is(':visible') && !el.is('a')) {
+			el.attr({
 				'aria-expanded': true,
 				'aria-checked' : true
 			});
 			owns.attr('aria-hidden',false);
-			
-		}
 
+		}
 		// hide others
-		this.hideOthers($(elem).parent().siblings().find('[role=menuitem]'));
+		this.hideOthers( el.parent().siblings().find('[role=menuitem]') );
 
 		return el;
 	};
 
-	Menubar.prototype.hideOthers = function(elems){
-		$(elems).each(function(){
+	Menubar.prototype.hideOthers = function(elems) {
+
+		$(elems).each(function() {
 			$(this).attr({
 				'aria-expanded': false,
 				'aria-checked' : false
 			}).siblings()
 				.attr('aria-hidden',true);
 		});
+
 	};
 
 
