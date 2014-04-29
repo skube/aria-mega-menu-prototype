@@ -38,9 +38,12 @@
 	 	left: 0;
 	 }
 
+	 .a-dnav__models {
+	 	top: 2em;
+	 }
+
 	.a-dnav [role=menu] {
 		position: absolute;
-		top:2em;
 		left: 0;
 		width: 990px;
 		margin: 0;
@@ -116,7 +119,11 @@
 
 						<li role="presentation" id="a-dnav__cars--mdl01">
 
-							<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="veh01_car_trims">Spark</button>
+							<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="veh01_car_trims">
+								<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_spar_on.jpg" alt="">
+								<h4>Spark</h4>
+								<p>from $29,000</p>
+							</button>
 
 							<dl role="menu" id="veh01_car_trims" aria-hidden="true" class="a-dnav__trims">
 								<dt role="presentation" id="car_trims_desc_01">Select a Model</dt>
@@ -213,7 +220,12 @@
 						</li>
 
 						<li role="presentation" id="a-dnav__cars--mdl02">
-							<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" id="sonicBtn" aria-owns="veh02_content">Sonic</button>
+							<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" id="sonicBtn" aria-owns="veh02_content">
+								<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_soni_on.jpg" alt="">
+								<h4>Sonic</h4>
+								<p>from $29,000</p>
+							</button>
+
 							<div id="a-dnav__mdl02--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
 
 								<p>something</p>
@@ -320,9 +332,7 @@
 		var that = this;
 
 		this.$items.click(function(event) {
-			if (event.target.tagName==="BUTTON") {
 				return	that.handleClick($(this),event);
-			}
 		});
 
 		this.$items.keydown(function(event) {
@@ -478,8 +488,13 @@
 
 	Menubar.prototype.moveEscape = function (elem,event) {
 		
-		this.hideOthers(elem);
+		var el = $(elem);
 
+		if (el.hasClass('a-dnav__content')) {
+			el.attr('aria-hidden',true);
+		} else {
+			this.hideOthers(elem);
+		}
 		return this.moveUp(elem,event);
 	};
 
