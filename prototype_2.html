@@ -192,7 +192,7 @@
 								<dd role="presentation" aria-describedby="car_trims_desc_01">
 									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="a-dnav__mdl01_t02--content">Trim 2</button>
 
-									<div id="a-dnav__mdl01_t02--content" aria-hidden="true" class="a-dnav__content">
+									<div id="a-dnav__mdl01_t02--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
 										<p>Trim2 Content</p>
 										<input type="text" />
 										<button type="button">choose</button>
@@ -202,7 +202,7 @@
 								<dd role="presentation" aria-describedby="car_trims_desc_01">
 									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="a-dnav__mdl01_t03--content">Trim 3</button>
 
-									<div id="a-dnav__mdl01_t03--content" aria-hidden="true" class="a-dnav__content">
+									<div id="a-dnav__mdl01_t03--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
 										<p>Trim3 Content</p>
 										<input type="text" />
 										<button type="button">choose</button>
@@ -292,7 +292,7 @@
 
 		this.$rootItems = this.$id.children('li'); // root-level menu items
 
-		this.$items = this.$id.find('[role=menuitem]');  // menu items (buttons or anchors)
+		this.$items = this.$id.find('[role=menuitem]').add('.a-dnav__content');  // menu items (buttons or anchors)
 		this.$parents = this.$id.find('[role=menu]');    // container (dl or ul)
 		this.$allItems = this.$parents.add(this.$items); // 
 		this.$activeItem = null; // jQuery object of the menu item with focus
@@ -422,9 +422,10 @@
 		if (closestMenu.hasClass('a-dnav__upcoming')){
 			el = closestMenu.next();
 		}
-		else if (closestMenu.hasClass('a-dnav__trims')){
-			el = el.next();
+		// TODO why can't I refactor?
+		else if (closestMenu.hasClass('a-dnav__trims') || el.next().hasClass('a-dnav__content')){
 			this.showOwns(elem);
+			el = el.next();
 			return el;
 		}
 		else {
@@ -432,7 +433,9 @@
 			el = el.next();
 		}
 
-		return el.find('[role=menuitem]').first();
+		el = el.find('[role=menuitem]').first();
+
+		return el;
 	};
 
 	Menubar.prototype.moveUp = function (elem,event) {
@@ -446,9 +449,13 @@
 		else if (closestMenu.hasClass('a-dnav__models')) {
 			el = closestMenu.prev().find('[role=menuitem]').first();
 		}
+		else if ( el.hasClass('a-dnav__content') ) {
+			el = el.prev();
+		}		
 		else {
 			el = closestMenu.prev();
 		}
+
 		return el;
 	};
 
@@ -472,6 +479,7 @@
 	Menubar.prototype.moveEscape = function (elem,event) {
 		
 		this.hideOthers(elem);
+
 		return this.moveUp(elem,event);
 	};
 
