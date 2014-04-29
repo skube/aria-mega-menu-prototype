@@ -359,7 +359,7 @@
 	*/
 	Menubar.prototype.handleDocumentClick = function(event) {
 		if (!$(event.target).closest(this.$id).length) {
-			this.hideOthers(this.$items);
+			this.hideOthers(this.$id.find('[aria-checked=true]'));
 		}
 		return true;
 	};
@@ -468,7 +468,6 @@
 
 		return el;
 	};
-
 
 	Menubar.prototype.moveRight = function (elem,event) {
 
