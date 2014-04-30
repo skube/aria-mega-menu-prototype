@@ -17,6 +17,8 @@
 		color:red;
 	}
 
+	/* Namespace entire Accessible Div Nav menu and elements  */
+
 	*[role=navigation] .a-dnav [aria-hidden=true] {display: none}
 
 	.a-dnav {
@@ -38,6 +40,7 @@
 		list-style: none;
 	}
 	.a-dnav > li:after {content: "\2f"; color:red;}
+	.a-dnav > li:last-child:after {content: none}
 
 	.a-dnav [role=menu] {
 		position: absolute;
@@ -103,6 +106,7 @@
 - aria-labelledby: reads label before (label describes the essence of an object)
 - aria-label: reads label before
 - aria-owns: Defines an object as a parent of another document element, when the child does not appear directly in the subtree of the owner
+- aria-controls : Seems synonymous with owns except seems to be used more for menubars/buttons
 - aria-flowto="trucksbtn" (try it?)
 - TODO: create nomenclature to handle unique IDs
 -->
@@ -111,9 +115,10 @@
 	<div role="navigation">
 		
 		<ul role="menubar" id="accessible-div-nav" class="a-dnav clearfix">
+			
+			<!-- Group 01 -->
 			<li role="presentation">
-
-				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="a-dnav__grp01" aria-controls="a-dnav__grp01">CARS</button>
+				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp01">CARS</button>
 
 				<div id="a-dnav__grp01" role="group" aria-hidden="true" class="a-dnav__vehs">
 					
@@ -128,7 +133,7 @@
 
 						<li role="presentation" id="a-dnav__grp01--mdl01">
 
-							<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="a-dnav__grp01--mdl01--trm01">
+							<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp01--mdl01--trm01">
 								<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_spar_on.jpg" alt="">
 								<h4>Spark</h4>
 								<p>from $29,000</p>
@@ -137,7 +142,7 @@
 							<dl role="menu" id="a-dnav__grp01--mdl01--trm01" aria-hidden="true" class="a-dnav__trims">
 								<dt role="presentation" id="a-dnav__grp01--mdl01--title">Select a Model</dt>
 								<dd role="presentation" aria-describedby="a-dnav__grp01--mdl01--title">
-									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="a-dnav__grp01--mdl01--trm01--content">Trim 1</button>
+									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp01--mdl01--trm01--content">Trim 1</button>
 
 									<div id="a-dnav__grp01--mdl01--trm01--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
 
@@ -206,7 +211,7 @@
 									</div>									
 								</dd>
 								<dd role="presentation" aria-describedby="a-dnav__grp01--mdl01--title">
-									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="a-dnav__grp01--mdl01--trm02--content">Trim 2</button>
+									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp01--mdl01--trm02--content">Trim 2</button>
 
 									<div id="a-dnav__grp01--mdl01--trm02--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
 										<p>Trim2 Content</p>
@@ -216,7 +221,7 @@
 
 								</dd>
 								<dd role="presentation" aria-describedby="a-dnav__grp01--mdl01--title">
-									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="a-dnav__grp01--mdl01--trm03--content">Trim 3</button>
+									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp01--mdl01--trm03--content">Trim 3</button>
 
 									<div id="a-dnav__grp01--mdl01--trm03--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
 										<p>Trim3 Content</p>
@@ -230,7 +235,7 @@
 
 						<li role="presentation" id="a-dnav__grp01--mdl02">
 
-							<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" id="sonicBtn" aria-owns="a-dnav__grp01--mdl02--notrm--content">
+							<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" id="sonicBtn" aria-controls="a-dnav__grp01--mdl02--notrm--content">
 								<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_soni_on.jpg" alt="">
 								<h4>Sonic</h4>
 								<p>from $29,000</p>
@@ -249,7 +254,146 @@
 					</ul>
 
 				</div>
+			</li>
 
+			<!-- Group 02 -->
+			<li role="presentation">
+				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp02" aria-controls="a-dnav__grp02">CROSSOVERS / SUVS</button>
+
+				<div id="a-dnav__grp02" role="group" aria-hidden="true" class="a-dnav__vehs">
+					
+					<dl role="menu" class="a-dnav__upcoming">
+						<dt role="presentation" id="a-dnav__grp02--up-title">Upcoming vehicles</dt>
+						<dd role="presentation" aria-label="Upcoming vehicles"><a role="menuitem" href="#">2014 Camaro</a></dd>
+						<dd role="presentation" aria-describedby="a-dnav__grp02--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
+						<dd role="presentation" aria-describedby="a-dnav__grp02--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
+					</dl>
+
+					<ul role="menu" class="a-dnav__models">
+
+						<li role="presentation" id="a-dnav__grp02--mdl01">
+
+							<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp02--mdl01--trm01">
+								<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_trax_on.jpg" alt="">
+								<h4>Spark</h4>
+								<p>from $29,000</p>
+							</button>
+
+							<dl role="menu" id="a-dnav__grp02--mdl01--trm01" aria-hidden="true" class="a-dnav__trims">
+								<dt role="presentation" id="a-dnav__grp02--mdl01--title">Select a Model</dt>
+								<dd role="presentation" aria-describedby="a-dnav__grp02--mdl01--title">
+									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp02--mdl01--trm01--content">Trim 1</button>
+
+									<div id="a-dnav__grp02--mdl01--trm01--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+										<div class="trim_2014_chev_trax">
+
+											<div class="vehicleNameContainer">2014 Trax </div>
+											
+												<div class="learnMore">
+													<div class="lm">
+														<a href="/gm/english/vehicles/chevrolet/trax/overview">Learn More</a>
+													</div>
+												</div>
+											
+												<div class="msrp">MSRP From $18,695 <sup>Ω</sup></div>
+											
+												<p class="pc">Enter your postal code to see local offers: 
+													<span class="basePC">POSTAL CODE</span> (<a class="changePC" href="#">Change</a>)
+												</p>
+												<form>
+													<p class="pcSubmit">Enter your postal code to see local offers: 
+														<input type="text" name="flyout-pc" class="flyout-pc" maxlength="7"> 
+														(<a href="#" class="submitPC">Submit</a>)
+													</p>
+												</form>						
+																									
+												<p class="infoTxt">Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+																	
+												<div class="hockeyCard">
+													<a href="/gm/english/vehicles/chevrolet/trax/overview"><img src="/images/divisional/chevrolet/vehicles/chev_trax_hockey_card.jpg" alt="" title=""></a>
+												</div>																	
+															
+												<!-- specs  start-->
+												<div class="specsBoxes">
+													<div class="specBox">
+														<div class="specBox-fuel-efficiency">
+															<div class="title">Fuel Efficiency</div>
+															<div class="fuel-efficiency"></div>
+															<div class="amt">5.7
+																<div class="feature">L/100km hwy<sup>1</sup></div>
+															</div>
+														</div>
+													</div>
+													<div class="specBox">
+														<div class="specBox-interior-volume">
+															<div class="title">Cargo Volume</div>
+															<div class="interior-volume"></div>
+															<div class="amt">1,371
+																<div class="feature">L (48.4 cu. ft.)</div>
+															</div>
+														</div>
+													</div>
+													<div class="specBox">
+														<div class="specBox-turbo-engine">
+															<div class="title">Standard</div>
+															<div class="turbo-engine"></div>
+															<div class="amt">Turbo
+																<div class="feature">engine</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- specs  end-->
+
+										</div>
+
+									</div>									
+								</dd>
+								<dd role="presentation" aria-describedby="a-dnav__grp02--mdl01--title">
+									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp02--mdl01--trm02--content">Trim 2</button>
+
+									<div id="a-dnav__grp02--mdl01--trm02--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
+										<p>Trim2 Content</p>
+										<label for=""><input type="text" /></label>
+										<button type="button">choose</button>
+									</div>
+
+								</dd>
+								<dd role="presentation" aria-describedby="a-dnav__grp02--mdl01--title">
+									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp02--mdl01--trm03--content">Trim 3</button>
+
+									<div id="a-dnav__grp02--mdl01--trm03--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
+										<p>Trim3 Content</p>
+										<label for=""><input type="text" /></label>
+										<button type="button">choose</button>
+									</div>
+
+								</dd>
+							</dl>
+						</li>
+
+						<li role="presentation" id="a-dnav__grp02--mdl02">
+
+							<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" id="sonicBtn" aria-controls="a-dnav__grp02--mdl02--notrm--content">
+								<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_orla_on.jpg" alt="">
+								<h4>Sonic</h4>
+								<p>from $29,000</p>
+							</button>
+
+							<div id="a-dnav__grp02--mdl02--notrm--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+								<p>something</p>
+								<label for=""><input type="text" /></label>
+								<button type="button">choose</button>
+
+							</div>
+
+						</li>
+
+					</ul>
+
+				</div>
 			</li>
 
 
@@ -257,8 +401,8 @@
 			<!-- Vertical Menus -->
 			<li role="presentation">
 
-				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="a-dnav__grp03">Highlights</button>
-				<ul role="menu" id="a-dnav__grp03" aria-hidden="true" class="a-dnav__vertical">
+				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp04">Highlights</button>
+				<ul role="menu" id="a-dnav__grp04" aria-hidden="true" class="a-dnav__vertical">
 					<li>
 						<a href="#" role="menuitem">lorem</a>
 					</li>
@@ -273,9 +417,9 @@
 			</li>
 			<li role="presentation">
 
-				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-owns="a-dnav__grp04">Highlights</button>
+				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp05">Highlights</button>
 
-				<ul role="menu" id="a-dnav__grp04" aria-hidden="true" class="a-dnav__vertical">
+				<ul role="menu" id="a-dnav__grp05" aria-hidden="true" class="a-dnav__vertical">
 					<li>
 						<a href="#" role="menuitem">lorem</a>
 					</li>
@@ -443,15 +587,13 @@
 		if (closestMenu.hasClass('a-dnav__upcoming')){
 			el = closestMenu.next();
 		}
-		// TODO why can't I refactor?
-		else if (closestMenu.hasClass('a-dnav__trims') || el.next().hasClass('a-dnav__content')){
-			this.showOwns(elem);
-			el = el.next();
-			return el;
-		}
 		else {
 			this.showOwns(elem);
 			el = el.next();
+		}
+
+		if (closestMenu.hasClass('a-dnav__trims') || el.next().hasClass('a-dnav__content')){
+			return el;
 		}
 
 		el = el.find('[role=menuitem]').first();
@@ -536,16 +678,25 @@
 		return el;
 	};
 
+
+	/**
+	* Hides other menus by changing aria attributes
+	* - only acts on aria-checked (i.e. showing) and not anchors
+	* 
+	* @param elems {object} jQuery object
+	*/
 	Menubar.prototype.hideOthers = function(elems) {
-
-		$(elems).each(function() {
-			$(this).attr({
-				'aria-expanded': false,
-				'aria-checked' : false
-			}).siblings()
-				.attr('aria-hidden',true);
-		});
-
+		var el = null;
+		for (var i = 0; i < elems.length; i++) {
+			el = $(elems[i]);
+			if (el.is('[aria-checked=true]') && !el.is('a')) { 
+					el.attr({
+						'aria-expanded': false,
+						'aria-checked' : false
+					}).siblings()
+						.attr('aria-hidden',true);
+			}
+		}
 	};
 
 
