@@ -112,8 +112,8 @@
 </head>
 <body>
 <!-- 
-- aria-describedby: reads description after (description provides more information that the user might need)
-- aria-labelledby: reads label before (label describes the essence of an object)
+- aria-labelledby: reads label before (If the label text is visible on screen, authors SHOULD use aria-labelledby and SHOULD NOT use aria-label)
+- aria-describedby: reads description after ( whereas a label should be concise, a description is intended to provide more verbose information.)
 - aria-label: reads label before
 - aria-owns: Defines an object as a parent of another document element, when the child does not appear directly in the subtree of the owner
 - aria-controls : Seems synonymous with owns except seems to be used more for menubars/buttons
@@ -151,7 +151,7 @@
 
 							<dl role="menu" id="a-dnav__grp01--mdl01--trm01" aria-hidden="true" class="a-dnav__trims">
 								<dt role="presentation" id="a-dnav__grp01--mdl01--title">Select a Model</dt>
-								<dd role="presentation" aria-describedby="a-dnav__grp01--mdl01--title">
+								<dd role="presentation" aria-labelledby="a-dnav__grp01--mdl01--title">
 
 									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01--mdl01--trm01--content">Trim 1</button>
 
@@ -221,7 +221,7 @@
 
 									</div>									
 								</dd>
-								<dd role="presentation" aria-describedby="a-dnav__grp01--mdl01--title">
+								<dd role="presentation" aria-labelledby="a-dnav__grp01--mdl01--title">
 									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01--mdl01--trm02--content">Trim 2</button>
 
 									<div id="a-dnav__grp01--mdl01--trm02--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
@@ -231,7 +231,7 @@
 									</div>
 
 								</dd>
-								<dd role="presentation" aria-describedby="a-dnav__grp01--mdl01--title">
+								<dd role="presentation" aria-labelledby="a-dnav__grp01--mdl01--title">
 									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01--mdl01--trm03--content">Trim 3</button>
 
 									<div id="a-dnav__grp01--mdl01--trm03--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
@@ -294,8 +294,8 @@
 					<dl role="menu" class="a-dnav__upcoming">
 						<dt role="presentation" id="a-dnav__grp02--up-title">Upcoming vehicles</dt>
 						<dd role="presentation" aria-label="Upcoming vehicles"><a role="menuitem" href="#">2014 Camaro</a></dd>
-						<dd role="presentation" aria-describedby="a-dnav__grp02--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
-						<dd role="presentation" aria-describedby="a-dnav__grp02--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
+						<dd role="presentation" aria-labelledby="a-dnav__grp02--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
+						<dd role="presentation" aria-labelledby="a-dnav__grp02--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
 					</dl>
 
 					<ul role="menu" class="a-dnav__models">
@@ -310,7 +310,7 @@
 
 							<dl role="menu" id="a-dnav__grp02--mdl01--trm01" aria-hidden="true" class="a-dnav__trims">
 								<dt role="presentation" id="a-dnav__grp02--mdl01--title">Select a Model</dt>
-								<dd role="presentation" aria-describedby="a-dnav__grp02--mdl01--title">
+								<dd role="presentation" aria-labelledby="a-dnav__grp02--mdl01--title">
 									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp02--mdl01--trm01--content">Trim 1</button>
 
 									<div id="a-dnav__grp02--mdl01--trm01--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
@@ -379,7 +379,7 @@
 
 									</div>									
 								</dd>
-								<dd role="presentation" aria-describedby="a-dnav__grp02--mdl01--title">
+								<dd role="presentation" aria-labelledby="a-dnav__grp02--mdl01--title">
 									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp02--mdl01--trm02--content">Trim 2</button>
 
 									<div id="a-dnav__grp02--mdl01--trm02--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
@@ -389,7 +389,7 @@
 									</div>
 
 								</dd>
-								<dd role="presentation" aria-describedby="a-dnav__grp02--mdl01--title">
+								<dd role="presentation" aria-labelledby="a-dnav__grp02--mdl01--title">
 									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp02--mdl01--trm03--content">Trim 3</button>
 
 									<div id="a-dnav__grp02--mdl01--trm03--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
