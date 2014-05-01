@@ -131,12 +131,12 @@
 				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01">CARS</button>
 
 				<div id="a-dnav__grp01" role="group" aria-hidden="true" class="a-dnav__vehs">
-					
+						
 					<dl role="menu" class="a-dnav__upcoming">
 						<dt role="presentation" id="a-dnav__grp01--up-title">Upcoming vehicles</dt>
-						<dd role="presentation" aria-label="Upcoming vehicles"><a role="menuitem" href="#">2014 Camaro</a></dd>
-						<dd role="presentation" aria-describedby="a-dnav__grp01--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
-						<dd role="presentation" aria-describedby="a-dnav__grp01--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
+						<dd role="presentation" aria-labelledby="a-dnav__grp01--up-title"><a role="menuitem" href="#">2014 Camaro</a></dd>
+						<dd role="presentation" aria-labelledby="a-dnav__grp01--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
+						<dd role="presentation" aria-labelledby="a-dnav__grp01--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
 					</dl>
 
 					<ul role="menu" class="a-dnav__models">
@@ -152,6 +152,7 @@
 							<dl role="menu" id="a-dnav__grp01--mdl01--trm01" aria-hidden="true" class="a-dnav__trims">
 								<dt role="presentation" id="a-dnav__grp01--mdl01--title">Select a Model</dt>
 								<dd role="presentation" aria-describedby="a-dnav__grp01--mdl01--title">
+
 									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01--mdl01--trm01--content">Trim 1</button>
 
 									<div id="a-dnav__grp01--mdl01--trm01--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
@@ -723,9 +724,11 @@
 				this.handleDimming(elem);
 			}
 			if (!owns.is(':visible')) {
+				console.log(el.attr('aria-controls'));
 				el.attr({
 					'aria-expanded': true,
-					'aria-checked' : true
+					'aria-checked' : true,
+					'aria-activedescendant': el.attr('aria-controls')
 				});
 				owns.attr('aria-hidden',false);
 			}
@@ -734,15 +737,6 @@
 		this.hideOthers( parent.siblings().find('[role=menuitem]') );
 
 		return el;
-	};
-
-	Menubar.prototype.handleDimming = function(elem) {
-		if (elem) { // dim all models except for elem
-			$('.a-dnav__models:visible > li > button').removeClass('a-dnav__models--dimmed').not(elem).addClass('a-dnav__models--dimmed');
-		}
-		else { // un-dim all
-			$('.a-dnav__models:visible > li > button').removeClass('a-dnav__models--dimmed');
-		}
 	};
 
 	/**
@@ -755,15 +749,24 @@
 		var el = null;
 		for (var i = 0; i < elems.length; i++) {
 			el = $(elems[i]);
-			// TODO dimmed
 			if (el.is('[aria-expanded=true]') && !el.is('a')) { 
 					el.attr({
 						'aria-expanded': false,
-						'aria-checked' : false
+						'aria-checked' : false,
+						'aria-activedescendant' : null
 					})
 					.siblings()
 						.attr('aria-hidden',true);
 			}
+		}
+	};
+
+	Menubar.prototype.handleDimming = function(elem) {
+		if (elem) { // dim all models except for elem
+			$('.a-dnav__models:visible > li > button').removeClass('a-dnav__models--dimmed').not(elem).addClass('a-dnav__models--dimmed');
+		}
+		else { // un-dim all
+			$('.a-dnav__models:visible > li > button').removeClass('a-dnav__models--dimmed');
 		}
 	};
 
