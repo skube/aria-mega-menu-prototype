@@ -10,7 +10,7 @@
 
 	body { font-family: 'Lato', sans-serif; margin: 0;padding: 0;}
 	a {display: inline-block;}
-	button {cursor: pointer;}
+	button {cursor: pointer; border: none;}
 
 	.wrap {width: 990px; margin: 0 auto;}
 
@@ -36,7 +36,10 @@
 		float: left;
 		margin: 0;
 		padding: .25em .35em;
+
 	}
+	.menubar > li:after {content: "\2f"; color:red;}
+
 	.cat-thumbs {
 		position: absolute;
 		top:4em;
@@ -160,7 +163,7 @@
 		<ul id="accessible-div-nav" class="root-level menubar clearfix" role="menubar">
 
 			<li class="menu-parent" role="menuitem" aria-haspopup="true" tabindex="0" aria-expanded="false">
-				<button>CARS</button>
+				<span>CARS</span>
 			   <dl class="menu upcoming" role="menu" aria-hidden="true">
 					<dt id="adn_cars_upcoming_desc">upcoming vehicles</dt>
 					<dd class="menu-item" role="menuitem" tabindex="-1" aria-label="Upcoming Vehicles - future"><a href="http://google.ca">future</a></dd>
@@ -302,7 +305,7 @@
 				</ul>
 			</li>
 			<!-- Vertical Menus -->
-			<li class="menu-parent" role="menuitem" aria-haspopup="true" tabindex="-1">
+			<li class="menu-parent" role="menuitem" aria-haspopup="true" tabindex="-1" aria-expanded="false">
 				<button>HIGHLIGHTS</button>
 				<ul class="menu vert-menu"  role="menu" aria-hidden="true">
 					<li class="menu-item" role="menuitem"  tabindex="-1">
@@ -360,9 +363,9 @@
 
 		this.$rootItems = this.$id.children('li'); // jQuerry array of all root-level menu items
 
-		this.$items = this.$id.find('.menu-item').not('.separator'); // jQuery array of menu items
-		this.$parents = this.$id.find('.menu-parent'); // jQuery array of menu items
-		this.$allItems = this.$parents.add(this.$items); // jQuery array of all menu items
+		this.$items = this.$id.find('.menu-item').not('.separator'); //
+		this.$parents = this.$id.find('.menu-parent'); // 
+		this.$allItems = this.$parents.add(this.$items); // 
 		this.$activeItem = null; // jQuery object of the menu item with focus
 
 		this.$upcoming = this.$id.find('.upcoming'); // TODO update to $item's upcoming instead
@@ -977,7 +980,7 @@
 		if ( $parent.is('.root-level') ) {
 			$('.adn-mask').show();
 		// - if exists, jump to (first) upcoming, otherwise (first) child of vert-menu
-			$newItemUL = $item.children('ul').first();
+			$newItemUL = $item.children('.menu').first();
 			// if ($newItemUL.is('.vert-menu')) {alert('.vert-menu');}
 			$checkedItem = $newItemUL.children().filter('[aria-checked=true]');
 			$newItem = ($checkedItem.length) ? $checkedItem : $newItemUL.children().filter('[tabindex]').first();
