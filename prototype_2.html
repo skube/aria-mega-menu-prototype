@@ -63,6 +63,16 @@
 	.a-dnav__models {
 	 	top: 2em;
 	}
+
+	.a-dnav__models--dimmed {
+		opacity: 0.2;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)"; /* IE 8 */
+	}
+	.a-dnav__models--dimmed:focus,
+	.a-dnav__models--dimmed:hover {
+		opacity: 1;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; /* IE 8 */
+	}
 	
 	.a-dnav__content {
 		position: absolute;
@@ -81,7 +91,7 @@
 		float: none;
 	}
 
-	.a-dnav button[aria-checked="true"]	{
+	.a-dnav button[aria-expanded="true"]	{
 		background: yellow;
 	}
 
@@ -118,7 +128,7 @@
 			
 			<!-- Group 01 -->
 			<li role="presentation">
-				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp01">CARS</button>
+				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01">CARS</button>
 
 				<div id="a-dnav__grp01" role="group" aria-hidden="true" class="a-dnav__vehs">
 					
@@ -133,7 +143,7 @@
 
 						<li role="presentation" id="a-dnav__grp01--mdl01">
 
-							<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp01--mdl01--trm01">
+							<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01--mdl01--trm01">
 								<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_spar_on.jpg" alt="">
 								<h4>Spark</h4>
 								<p>from $29,000</p>
@@ -142,7 +152,7 @@
 							<dl role="menu" id="a-dnav__grp01--mdl01--trm01" aria-hidden="true" class="a-dnav__trims">
 								<dt role="presentation" id="a-dnav__grp01--mdl01--title">Select a Model</dt>
 								<dd role="presentation" aria-describedby="a-dnav__grp01--mdl01--title">
-									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp01--mdl01--trm01--content">Trim 1</button>
+									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01--mdl01--trm01--content">Trim 1</button>
 
 									<div id="a-dnav__grp01--mdl01--trm01--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
 
@@ -211,7 +221,7 @@
 									</div>									
 								</dd>
 								<dd role="presentation" aria-describedby="a-dnav__grp01--mdl01--title">
-									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp01--mdl01--trm02--content">Trim 2</button>
+									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01--mdl01--trm02--content">Trim 2</button>
 
 									<div id="a-dnav__grp01--mdl01--trm02--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
 										<p>Trim2 Content</p>
@@ -221,7 +231,7 @@
 
 								</dd>
 								<dd role="presentation" aria-describedby="a-dnav__grp01--mdl01--title">
-									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp01--mdl01--trm03--content">Trim 3</button>
+									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01--mdl01--trm03--content">Trim 3</button>
 
 									<div id="a-dnav__grp01--mdl01--trm03--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
 										<p>Trim3 Content</p>
@@ -235,13 +245,31 @@
 
 						<li role="presentation" id="a-dnav__grp01--mdl02">
 
-							<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" id="sonicBtn" aria-controls="a-dnav__grp01--mdl02--notrm--content">
+							<button role="menuitem" aria-haspopup="true" aria-expanded="false" id="sonicBtn" aria-controls="a-dnav__grp01--mdl02--notrm--content">
 								<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_soni_on.jpg" alt="">
 								<h4>Sonic</h4>
 								<p>from $29,000</p>
 							</button>
 
 							<div id="a-dnav__grp01--mdl02--notrm--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+								<p>something</p>
+								<label for=""><input type="text" /></label>
+								<button type="button">choose</button>
+
+							</div>
+
+						</li>
+
+						<li role="presentation" id="a-dnav__grp01--mdl03">
+
+							<button role="menuitem" aria-haspopup="true" aria-expanded="false" id="sonicBtn" aria-controls="a-dnav__grp01--mdl03--notrm--content">
+								<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_cruz_on.jpg" alt="">
+								<h4>Cruze</h4>
+								<p>from $29,000</p>
+							</button>
+
+							<div id="a-dnav__grp01--mdl03--notrm--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
 
 								<p>something</p>
 								<label for=""><input type="text" /></label>
@@ -258,7 +286,7 @@
 
 			<!-- Group 02 -->
 			<li role="presentation">
-				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp02" aria-controls="a-dnav__grp02">CROSSOVERS / SUVS</button>
+				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp02" aria-controls="a-dnav__grp02">CROSSOVERS / SUVS</button>
 
 				<div id="a-dnav__grp02" role="group" aria-hidden="true" class="a-dnav__vehs">
 					
@@ -273,7 +301,7 @@
 
 						<li role="presentation" id="a-dnav__grp02--mdl01">
 
-							<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp02--mdl01--trm01">
+							<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp02--mdl01--trm01">
 								<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_trax_on.jpg" alt="">
 								<h4>Spark</h4>
 								<p>from $29,000</p>
@@ -282,7 +310,7 @@
 							<dl role="menu" id="a-dnav__grp02--mdl01--trm01" aria-hidden="true" class="a-dnav__trims">
 								<dt role="presentation" id="a-dnav__grp02--mdl01--title">Select a Model</dt>
 								<dd role="presentation" aria-describedby="a-dnav__grp02--mdl01--title">
-									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp02--mdl01--trm01--content">Trim 1</button>
+									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp02--mdl01--trm01--content">Trim 1</button>
 
 									<div id="a-dnav__grp02--mdl01--trm01--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
 
@@ -351,7 +379,7 @@
 									</div>									
 								</dd>
 								<dd role="presentation" aria-describedby="a-dnav__grp02--mdl01--title">
-									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp02--mdl01--trm02--content">Trim 2</button>
+									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp02--mdl01--trm02--content">Trim 2</button>
 
 									<div id="a-dnav__grp02--mdl01--trm02--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
 										<p>Trim2 Content</p>
@@ -361,7 +389,7 @@
 
 								</dd>
 								<dd role="presentation" aria-describedby="a-dnav__grp02--mdl01--title">
-									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp02--mdl01--trm03--content">Trim 3</button>
+									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp02--mdl01--trm03--content">Trim 3</button>
 
 									<div id="a-dnav__grp02--mdl01--trm03--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
 										<p>Trim3 Content</p>
@@ -375,7 +403,7 @@
 
 						<li role="presentation" id="a-dnav__grp02--mdl02">
 
-							<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" id="sonicBtn" aria-controls="a-dnav__grp02--mdl02--notrm--content">
+							<button role="menuitem" aria-haspopup="true" aria-expanded="false" id="sonicBtn" aria-controls="a-dnav__grp02--mdl02--notrm--content">
 								<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_orla_on.jpg" alt="">
 								<h4>Sonic</h4>
 								<p>from $29,000</p>
@@ -401,7 +429,7 @@
 			<!-- Vertical Menus -->
 			<li role="presentation">
 
-				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp04">Highlights</button>
+				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp04">Highlights</button>
 				<ul role="menu" id="a-dnav__grp04" aria-hidden="true" class="a-dnav__vertical">
 					<li>
 						<a href="#" role="menuitem">lorem</a>
@@ -417,7 +445,7 @@
 			</li>
 			<li role="presentation">
 
-				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-checked="false" aria-controls="a-dnav__grp05">Highlights</button>
+				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp05">Highlights</button>
 
 				<ul role="menu" id="a-dnav__grp05" aria-hidden="true" class="a-dnav__vertical">
 					<li>
@@ -507,14 +535,15 @@
 
 
 	/**
-	* Handle clicks to document to close menu
+	* Handle document clicks (not originating from menu) to close menu
 	* 
 	* @param event {object} associated event
 	* @return {boolean} returns true
 	*/
 	Menubar.prototype.handleDocumentClick = function(event) {
 		if (!$(event.target).closest(this.$id).length) {
-			this.hideOthers(this.$id.find('[aria-checked=true]'));
+			this.handleDimming();
+			this.hideOthers(this.$id.find('[aria-expanded=true]'));
 		}
 		return true;
 	};
@@ -557,7 +586,7 @@
 				break;
 			case this.keys.DOWN:
 				if (closestMenu.hasClass('a-dnav__vertical')) {
-					this.$activeItem = this.moveRight(elem,event);
+					this.$activeItem = this.moveRight(elem,event,'dn');
 				} else {
 					this.$activeItem = this.moveDown(elem,event);
 				}
@@ -587,13 +616,17 @@
 		if (closestMenu.hasClass('a-dnav__upcoming')){
 			el = closestMenu.next();
 		}
+		else if (closestMenu.hasClass('a-dnav__trims') || el.next().hasClass('a-dnav__content')){
+			this.showOwns(elem);
+			el = el.next();
+			return el;
+		}
+		else if (el.hasClass('a-dnav__content')) {
+			return el;
+		}
 		else {
 			this.showOwns(elem);
 			el = el.next();
-		}
-
-		if (closestMenu.hasClass('a-dnav__trims') || el.next().hasClass('a-dnav__content')){
-			return el;
 		}
 
 		el = el.find('[role=menuitem]').first();
@@ -609,12 +642,12 @@
 		if (closestMenu.hasClass('a-dnav__upcoming')) {
 			el = closestMenu.parent().prev();
 		}
-		else if (closestMenu.hasClass('a-dnav__models')) {
-			el = closestMenu.prev().find('[role=menuitem]').first();
-		}
 		else if ( el.hasClass('a-dnav__content') ) {
 			el = el.prev();
 		}		
+		else if (closestMenu.hasClass('a-dnav__models')) {
+			el = closestMenu.prev().find('[role=menuitem]').first();
+		}
 		else {
 			el = closestMenu.prev();
 		}
@@ -624,16 +657,35 @@
 
 	Menubar.prototype.moveRight = function (elem,event) {
 
-		var el = $(elem).parent().next().find('[role=menuitem]').first();
-		var selectedItem = this.showOwns(el);
+		var el = $(elem);
+		var closestMenu = el.closest('[role=menu]');
+		var selectedItem = null;
+
+		if (closestMenu.hasClass('a-dnav__vertical')) {
+			if (event.which === 39) { // right arrow
+				selectedItem = this.showOwns(closestMenu.parent().next().children('button'));
+				return selectedItem;
+			}
+		}
+		selectedItem = this.showOwns(el.parent().next().find('[role=menuitem]').first());
 
 		return selectedItem;
 	};
 
 	Menubar.prototype.moveLeft = function (elem,event) {
 
-		var el = $(elem).parent().prev().find('[role=menuitem]').first();
-		var	selectedItem = this.showOwns(el);
+		var el = $(elem);
+		var closestMenu = el.closest('[role=menu]');
+		var selectedItem = null;
+
+		if (closestMenu.hasClass('a-dnav__vertical')) {
+			if (event.which === 37) { // left arrow
+				selectedItem = this.showOwns(closestMenu.parent().prev().children('button'));
+				return selectedItem;
+			}
+		}
+		
+		selectedItem = this.showOwns(el.parent().prev().find('[role=menuitem]').first());
 			
 		return selectedItem;
 	};
@@ -645,6 +697,7 @@
 		if (el.hasClass('a-dnav__content')) {
 			el.attr('aria-hidden',true);
 		} else {
+			this.handleDimming();
 			this.hideOthers(elem);
 		}
 		return this.moveUp(elem,event);
@@ -652,8 +705,8 @@
 
 
 	/**
-	* Shows children that associated buttons aria-owns
-	* - sets aria attributes
+	* Shows children that associated buttons aria-owns/controls
+	* - sets aria attributes on current button
 	* - also hides other siblings of current button
 	* 
 	* @param elem {jQuery} jQuery object
@@ -663,37 +716,52 @@
 
 		var el = $(elem);
 		var	owns = el.siblings();
+		var parent = el.parent();
 
-		if (!owns.is(':visible') && !el.is('a')) {
-			el.attr({
-				'aria-expanded': true,
-				'aria-checked' : true
-			});
-			owns.attr('aria-hidden',false);
-
+		if (!el.is('a')) {
+			if (parent.parent().hasClass('a-dnav__models')) {
+				this.handleDimming(elem);
+			}
+			if (!owns.is(':visible')) {
+				el.attr({
+					'aria-expanded': true,
+					'aria-checked' : true
+				});
+				owns.attr('aria-hidden',false);
+			}
 		}
 		// hide others
-		this.hideOthers( el.parent().siblings().find('[role=menuitem]') );
+		this.hideOthers( parent.siblings().find('[role=menuitem]') );
 
 		return el;
 	};
 
+	Menubar.prototype.handleDimming = function(elem) {
+		if (elem) { // dim all models except for elem
+			$('.a-dnav__models:visible > li > button').removeClass('a-dnav__models--dimmed').not(elem).addClass('a-dnav__models--dimmed');
+		}
+		else { // un-dim all
+			$('.a-dnav__models:visible > li > button').removeClass('a-dnav__models--dimmed');
+		}
+	};
 
 	/**
 	* Hides other menus by changing aria attributes
-	* - only acts on aria-checked (i.e. showing) and not anchors
+	* - only acts on aria-expanded (i.e. showing) and not anchors
 	* 
 	* @param elems {object} jQuery object
-	*/
+	// */
 	Menubar.prototype.hideOthers = function(elems) {
 		var el = null;
 		for (var i = 0; i < elems.length; i++) {
 			el = $(elems[i]);
-			if (el.is('[aria-checked=true]') && !el.is('a')) { 
+			// TODO dimmed
+			if (el.is('[aria-expanded=true]') && !el.is('a')) { 
 					el.attr({
 						'aria-expanded': false,
 						'aria-checked' : false
-					}).siblings()
+					})
+					.siblings()
 						.attr('aria-hidden',true);
 			}
 		}
