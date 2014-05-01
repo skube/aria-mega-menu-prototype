@@ -4,11 +4,15 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title>Prototype II</title>
 	<base href="http://gm.ca">
-<style>
+<style type="text/css">
 
 	button {cursor: pointer;}
 	.wrap {width: 990px; margin: 0 auto;}
-	a:link, a:visited {}
+	a:link,
+	a:visited
+	{
+		color: #000;
+	}
 	
 	a:hover, 
 	a:active,
@@ -52,8 +56,8 @@
 	}
 
 	.a-dnav__vehs {
-	 	position: absolute;
-	 	left: 0;
+		position: absolute;
+		left: 0;
 	 }
 
 	.a-dnav__upcoming {
@@ -61,7 +65,7 @@
 	}
 
 	.a-dnav__models {
-	 	top: 2em;
+		top: 2em;
 	}
 
 	.a-dnav__models--dimmed {
@@ -95,6 +99,12 @@
 		background: yellow;
 	}
 
+/* Media Object */
+.media {margin:10px;}
+.media, .media__bd {overflow:hidden; _overflow:visible; zoom:1;}
+.media__img {float:left; margin-right: 10px;}
+.media__img--rev {float:right; margin-left: 10px;}
+.media__img img {display:block;}
 	
 	.clearfix:before,
 	.clearfix:after
@@ -145,7 +155,7 @@
 
 							<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01--mdl01--trm01">
 								<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_spar_on.jpg" alt="">
-								<h4>Spark</h4>
+								<h3>Spark</h3>
 								<p>from $29,000</p>
 							</button>
 
@@ -157,7 +167,22 @@
 
 									<div id="a-dnav__grp01--mdl01--trm01--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
 
-										<div class="trim_2014_chev_trax">
+										<div class="media">
+												<a class="media__img--rev" href="/gm/english/vehicles/chevrolet/spark/overview">
+													<img src="/images/divisional/chevrolet/vehicles/chev_spar_hockey_card.jpg" alt="">
+												</a>
+												<div class="media__bd">
+													<h4>Spark 2014</h4> <a href="#" class="a-dnav__cta">Learn More</a>
+													<h5>MSRP From $18,695 <sup>Ω</sup></h5>
+													<p>Enter your postal code <button class="a-dnav__btn">Change</button></p>
+													<p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+													<img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_FR.png" alt="">
+												</div>
+										</div>
+										
+										
+
+										<div class="trim_2014_chev_trax" style="display:none">
 
 											<div class="vehicleNameContainer">2014 Trax </div>
 											
@@ -166,8 +191,6 @@
 														<a href="/gm/english/vehicles/chevrolet/trax/overview">Learn More</a>
 													</div>
 												</div>
-											
-												<div class="msrp">MSRP From $18,695 <sup>Ω</sup></div>
 											
 												<p class="pc">Enter your postal code to see local offers: 
 													<span class="basePC">POSTAL CODE</span> (<a class="changePC" href="#">Change</a>)
@@ -179,7 +202,7 @@
 													</p>
 												</form>						
 																									
-												<p class="infoTxt">Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+												<p class="infoTxt"></p>
 																	
 												<div class="hockeyCard">
 													<a href="/gm/english/vehicles/chevrolet/trax/overview"><img src="/images/divisional/chevrolet/vehicles/chev_trax_hockey_card.jpg" alt="" title=""></a>
@@ -225,9 +248,21 @@
 									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01--mdl01--trm02--content">Trim 2</button>
 
 									<div id="a-dnav__grp01--mdl01--trm02--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
-										<p>Trim2 Content</p>
-										<label for=""><input type="text" /></label>
-										<button type="button">choose</button>
+
+										<div class="media">
+											<a class="media__img--rev" href="/gm/english/vehicles/chevrolet/sonic/overview">
+												<img src="/images/divisional/chevrolet/vehicles/chev_soni_hockey_card.jpg" alt="">
+											</a>
+											<div class="media__bd">
+												<h4>Sonic 2014</h4>
+												<a href="#" class="a-dnav__cta">Learn More</a>
+												<h5>MSRP From $18,695 <sup>Ω</sup></h5>
+												<p>Enter your postal code <button class="a-dnav__btn">Change</button></p>
+												<p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+												<img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_FR.png" alt="">
+											</div>
+										</div>
+
 									</div>
 
 								</dd>
@@ -248,15 +283,25 @@
 
 							<button role="menuitem" aria-haspopup="true" aria-expanded="false" id="sonicBtn" aria-controls="a-dnav__grp01--mdl02--notrm--content">
 								<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_soni_on.jpg" alt="">
-								<h4>Sonic</h4>
+								<h3>Sonic</h3>
 								<p>from $29,000</p>
 							</button>
 
 							<div id="a-dnav__grp01--mdl02--notrm--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
 
-								<p>something</p>
-								<label for=""><input type="text" /></label>
-								<button type="button">choose</button>
+										<div class="media">
+											<a class="media__img--rev" href="/gm/english/vehicles/chevrolet/sonic/overview">
+												<img src="/images/divisional/chevrolet/vehicles/chev_soni_hockey_card.jpg" alt="">
+											</a>
+											<div class="media__bd">
+												<h4>Sonic 2014</h4>
+												<a href="#" class="a-dnav__cta">Learn More</a>
+												<h5>MSRP From $18,695 <sup>Ω</sup></h5>
+												<p>Enter your postal code <button class="a-dnav__btn">Change</button></p>
+												<p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+												<img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_FR.png" alt="">
+											</div>
+										</div>
 
 							</div>
 
@@ -266,15 +311,25 @@
 
 							<button role="menuitem" aria-haspopup="true" aria-expanded="false" id="sonicBtn" aria-controls="a-dnav__grp01--mdl03--notrm--content">
 								<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_cruz_on.jpg" alt="">
-								<h4>Cruze</h4>
+								<h3>Cruze</h3>
 								<p>from $29,000</p>
 							</button>
 
 							<div id="a-dnav__grp01--mdl03--notrm--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
 
-								<p>something</p>
-								<label for=""><input type="text" /></label>
-								<button type="button">choose</button>
+										<div class="media">
+											<a class="media__img--rev" href="/gm/english/vehicles/chevrolet/sonic/overview">
+												<img src="/images/divisional/chevrolet/vehicles/chev_cruz_hockey_card.jpg" alt="">
+											</a>
+											<div class="media__bd">
+												<h4>Sonic 2014</h4>
+												<a href="#" class="a-dnav__cta">Learn More</a>
+												<h5>MSRP From $18,695 <sup>Ω</sup></h5>
+												<p>Enter your postal code <button class="a-dnav__btn">Change</button></p>
+												<p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+												<img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_FR.png" alt="">
+											</div>
+										</div>
 
 							</div>
 
@@ -304,7 +359,7 @@
 
 							<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp02--mdl01--trm01">
 								<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_trax_on.jpg" alt="">
-								<h4>Spark</h4>
+								<h3>Spark</h3>
 								<p>from $29,000</p>
 							</button>
 
@@ -406,7 +461,7 @@
 
 							<button role="menuitem" aria-haspopup="true" aria-expanded="false" id="sonicBtn" aria-controls="a-dnav__grp02--mdl02--notrm--content">
 								<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_orla_on.jpg" alt="">
-								<h4>Sonic</h4>
+								<h3>Sonic</h3>
 								<p>from $29,000</p>
 							</button>
 
@@ -516,7 +571,7 @@
 		var that = this;
 
 		this.$items.click(function(event) {
-				return	that.handleClick($(this),event);
+				return that.handleClick($(this),event);
 		});
 
 		this.$items.keydown(function(event) {
@@ -578,8 +633,7 @@
 
 		switch(event.keyCode) {
 			case this.keys.TAB:
-				// goto next
-				return true;
+				return true; // normal tabbing
 			case this.keys.ENTER:
 			case this.keys.SPACE:
 				if (closestMenu.hasClass('a-dnav__upcoming')) {	return true; }
