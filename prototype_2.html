@@ -600,7 +600,7 @@
     Menubar.prototype.handleDocumentClick = function (event) {
         if (!$(event.target).closest(this.$id).length) {
             this.handleDimming();
-            this.hideOthers(this.$id.find('[aria-expanded=true]'));
+            this.hideOtherMenus(this.$id.find('[aria-expanded=true]'));
         }
         return true;
     };
@@ -753,7 +753,7 @@
             el.attr('aria-hidden', true);
         } else {
             this.handleDimming();
-            this.hideOthers(elem);
+            this.hideOtherMenus(elem);
         }
         return this.moveUp(elem, event);
     };
@@ -787,8 +787,8 @@
                 owns.attr('aria-hidden', false);
             }
         }
-        // hide others
-        this.hideOthers(parent.siblings().find('[role=menuitem]'));
+        // hide other menus
+        this.hideOtherMenus(parent.siblings().children('button'));
 
         return el;
     };
@@ -799,7 +799,7 @@
     * 
     * @param elems {object} jQuery object
     // */
-    Menubar.prototype.hideOthers = function (elems) {
+    Menubar.prototype.hideOtherMenus = function (elems) {
         var el = null, i;
         for (i = 0; i < elems.length; i += 1) {
             el = $(elems[i]);
@@ -816,11 +816,13 @@
     };
 
     Menubar.prototype.handleDimming = function (elem) {
+        var modelBtns = $('.a-dnav__models:visible > li > button');
+        var modelDimClass = 'a-dnav__models--dimmed';
         if (elem) { // dim all models except for elem
-            $('.a-dnav__models:visible > li > button').removeClass('a-dnav__models--dimmed').not(elem).addClass('a-dnav__models--dimmed');
+            modelBtns.removeClass(modelDimClass).not(elem).addClass(modelDimClass);
         } 
         else { // un-dim all
-            $('.a-dnav__models:visible > li > button').removeClass('a-dnav__models--dimmed');
+            modelBtns.removeClass(modelDimClass);
         }
     };
 
