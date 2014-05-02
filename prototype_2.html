@@ -99,12 +99,12 @@
         background: yellow;
     }
 
-/* Media Object */
-.media {margin:10px;}
-.media, .media__bd {overflow:hidden; _overflow:visible; zoom:1;}
-.media__img {float:left; margin-right: 10px;}
-.media__img--rev {float:right; margin-left: 10px;}
-.media__img img {display:block;}
+    /* Media Object */
+    .media {margin:10px;}
+    .media, .media__bd {overflow:hidden; _overflow:visible; zoom:1;}
+    .media__img {float:left; margin-right: 10px;}
+    .media__img--rev {float:right; margin-left: 10px;}
+    .media__img img {display:block;}
     
     .clearfix:before,
     .clearfix:after
@@ -532,9 +532,6 @@
 <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        var menu1 = new Menubar('accessible-div-nav');
-    }); // end ready()
 
     function Menubar(id) {
 
@@ -778,7 +775,7 @@
                 this.handleDimming(elem);
             }
             if (!owns.is(':visible')) {
-                console.log(el.attr('aria-controls'));
+                // console.log(el.attr('aria-controls'));
                 el.attr({
                     'aria-expanded': true,
                     'aria-checked' : true,
@@ -798,7 +795,7 @@
     * - only acts on aria-expanded (i.e. showing) and not anchors
     * 
     * @param elems {object} jQuery object
-    // */
+    */
     Menubar.prototype.hideOtherMenus = function (elems) {
         var el = null, i;
         for (i = 0; i < elems.length; i += 1) {
@@ -815,6 +812,11 @@
         }
     };
 
+     /**
+     * Dim/un-dim other models
+     * 
+     * @param elem {object} jQuery object
+     */ 
     Menubar.prototype.handleDimming = function (elem) {
         var modelBtns = $('.a-dnav__models:visible > li > button');
         var modelDimClass = 'a-dnav__models--dimmed';
@@ -826,6 +828,9 @@
         }
     };
 
+    $(document).ready(function () {
+        var menu1 = new Menubar('accessible-div-nav');
+    }); // end ready()
 
 </script>       
 </body>
