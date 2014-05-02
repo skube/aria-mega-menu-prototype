@@ -1,103 +1,103 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>Prototype II</title>
-	<base href="http://gm.ca">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Prototype II</title>
+    <base href="http://gm.ca">
 <style type="text/css">
 
-	button {cursor: pointer;}
-	.wrap {width: 990px; margin: 0 auto;}
-	a:link,
-	a:visited
-	{
-		color: #000;
-	}
-	
-	a:hover, 
-	a:active,
-	button:hover 
-	{
-		color:red;
-	}
+    button {cursor: pointer;}
+    .wrap {width: 990px; margin: 0 auto;}
+    a:link,
+    a:visited
+    {
+        color: #000;
+    }
+    
+    a:hover, 
+    a:active,
+    button:hover 
+    {
+        color:red;
+    }
 
-	/* Namespace entire Accessible Div Nav menu and elements  */
+    /* Namespace entire Accessible Div Nav menu and elements  */
 
-	*[role=navigation] .a-dnav [aria-hidden=true] {display: none}
+    *[role=navigation] .a-dnav [aria-hidden=true] {display: none}
 
-	.a-dnav {
-		position: relative;
-		margin: 0;
-		padding: 0;
-		list-style: none;
-		border: 1px solid black;
-		background: white;
-	}
-	.a-dnav > li,
-	.a-dnav [role=menu] > li,
-	.a-dnav [role=menu] > dt,
-	.a-dnav [role=menu] > dd 
-	{
-		float: left;
-		margin: 0;
-		padding: .25em .35em;
-		list-style: none;
-	}
-	.a-dnav > li:after {content: "\2f"; color:red;}
-	.a-dnav > li:last-child:after {content: none}
+    .a-dnav {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border: 1px solid black;
+        background: white;
+    }
+    .a-dnav > li,
+    .a-dnav [role=menu] > li,
+    .a-dnav [role=menu] > dt,
+    .a-dnav [role=menu] > dd 
+    {
+        float: left;
+        margin: 0;
+        padding: .25em .35em;
+        list-style: none;
+    }
+    .a-dnav > li:after {content: "\2f"; color:red;}
+    .a-dnav > li:last-child:after {content: none}
 
-	.a-dnav [role=menu] {
-		position: absolute;
-		left: 0;
-		width: 990px;
-		margin: 0;
-		padding: 0;
-		background: #8EBBB4;
-	}
+    .a-dnav [role=menu] {
+        position: absolute;
+        left: 0;
+        width: 990px;
+        margin: 0;
+        padding: 0;
+        background: #8EBBB4;
+    }
 
-	.a-dnav__vehs {
-		position: absolute;
-		left: 0;
-	 }
+    .a-dnav__vehs {
+        position: absolute;
+        left: 0;
+     }
 
-	.a-dnav__upcoming {
-		top:0.25em;
-	}
+    .a-dnav__upcoming {
+        top:0.25em;
+    }
 
-	.a-dnav__models {
-		top: 2em;
-	}
+    .a-dnav__models {
+        top: 2em;
+    }
 
-	.a-dnav__models--dimmed {
-		opacity: 0.2;
-		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)"; /* IE 8 */
-	}
-	.a-dnav__models--dimmed:focus,
-	.a-dnav__models--dimmed:hover {
-		opacity: 1;
-		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; /* IE 8 */
-	}
-	
-	.a-dnav__content {
-		position: absolute;
-		left:0;
-		width: 990px;
-		background: #ccc;
-	}
+    .a-dnav__models--dimmed {
+        opacity: 0.2;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)"; /* IE 8 */
+    }
+    .a-dnav__models--dimmed:focus,
+    .a-dnav__models--dimmed:hover {
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; /* IE 8 */
+    }
+    
+    .a-dnav__content {
+        position: absolute;
+        left:0;
+        width: 990px;
+        background: #ccc;
+    }
 
-	/* specificity required */
-	.a-dnav .a-dnav__vertical {
-		left:auto;
-		width: 176px;
-		background: #ccc;
-	}
-	.a-dnav .a-dnav__vertical > li {
-		float: none;
-	}
+    /* specificity required */
+    .a-dnav .a-dnav__vertical {
+        left:auto;
+        width: 176px;
+        background: #ccc;
+    }
+    .a-dnav .a-dnav__vertical > li {
+        float: none;
+    }
 
-	.a-dnav button[aria-expanded="true"]	{
-		background: yellow;
-	}
+    .a-dnav button[aria-expanded="true"]    {
+        background: yellow;
+    }
 
 /* Media Object */
 .media {margin:10px;}
@@ -105,16 +105,16 @@
 .media__img {float:left; margin-right: 10px;}
 .media__img--rev {float:right; margin-left: 10px;}
 .media__img img {display:block;}
-	
-	.clearfix:before,
-	.clearfix:after
-	{
-		content: " ";
-		display: table;
-	}
-	.clearfix:after {
-		clear: both;
-	}
+    
+    .clearfix:before,
+    .clearfix:after
+    {
+        content: " ";
+        display: table;
+    }
+    .clearfix:after {
+        clear: both;
+    }
 
 
 </style>
@@ -132,699 +132,699 @@
 -->
 <div class="wrap">
 
-	<div role="navigation">
-		
-		<ul role="menubar" id="accessible-div-nav" class="a-dnav clearfix">
-			
-			<!-- Group 01 -->
-			<li role="presentation">
-				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01">CARS</button>
-
-				<div id="a-dnav__grp01" role="group" aria-hidden="true" class="a-dnav__vehs">
-						
-					<dl role="menu" class="a-dnav__upcoming">
-						<dt role="presentation" id="a-dnav__grp01--up-title">Upcoming vehicles</dt>
-						<dd role="presentation" aria-labelledby="a-dnav__grp01--up-title"><a role="menuitem" href="#">2014 Camaro</a></dd>
-						<dd role="presentation" aria-labelledby="a-dnav__grp01--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
-						<dd role="presentation" aria-labelledby="a-dnav__grp01--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
-					</dl>
-
-					<ul role="menu" class="a-dnav__models">
-
-						<li role="presentation" id="a-dnav__grp01--mdl01">
-
-							<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01--mdl01--trm01">
-								<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_spar_on.jpg" alt="">
-								<h3>Spark</h3>
-								<p>from $29,000</p>
-							</button>
-
-							<dl role="menu" id="a-dnav__grp01--mdl01--trm01" aria-hidden="true" class="a-dnav__trims">
-								<dt role="presentation" id="a-dnav__grp01--mdl01--title">Select a Model</dt>
-								<dd role="presentation" aria-labelledby="a-dnav__grp01--mdl01--title">
-
-									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01--mdl01--trm01--content">Trim 1</button>
-
-									<div id="a-dnav__grp01--mdl01--trm01--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
-
-										<div class="media">
-												<a class="media__img--rev" href="/gm/english/vehicles/chevrolet/spark/overview">
-													<img src="/images/divisional/chevrolet/vehicles/chev_spar_hockey_card.jpg" alt="">
-												</a>
-												<div class="media__bd">
-													<h4>Spark 2014</h4> <a href="#" class="a-dnav__cta">Learn More</a>
-													<h5>MSRP From $18,695 <sup>Ω</sup></h5>
-													<p>Enter your postal code <button class="a-dnav__btn">Change</button></p>
-													<p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
-													<img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_FR.png" alt="">
-												</div>
-										</div>
-										
-										
-
-										<div class="trim_2014_chev_trax" style="display:none">
-
-											<div class="vehicleNameContainer">2014 Trax </div>
-											
-												<div class="learnMore">
-													<div class="lm">
-														<a href="/gm/english/vehicles/chevrolet/trax/overview">Learn More</a>
-													</div>
-												</div>
-											
-												<p class="pc">Enter your postal code to see local offers: 
-													<span class="basePC">POSTAL CODE</span> (<a class="changePC" href="#">Change</a>)
-												</p>
-												<form>
-													<p class="pcSubmit">Enter your postal code to see local offers: 
-														<input type="text" name="flyout-pc" class="flyout-pc" maxlength="7"> 
-														(<a href="#" class="submitPC">Submit</a>)
-													</p>
-												</form>						
-																									
-												<p class="infoTxt"></p>
-																	
-												<div class="hockeyCard">
-													<a href="/gm/english/vehicles/chevrolet/trax/overview"><img src="/images/divisional/chevrolet/vehicles/chev_trax_hockey_card.jpg" alt="" title=""></a>
-												</div>																	
-															
-												<!-- specs  start-->
-												<div class="specsBoxes">
-													<div class="specBox">
-														<div class="specBox-fuel-efficiency">
-															<div class="title">Fuel Efficiency</div>
-															<div class="fuel-efficiency"></div>
-															<div class="amt">5.7
-																<div class="feature">L/100km hwy<sup>1</sup></div>
-															</div>
-														</div>
-													</div>
-													<div class="specBox">
-														<div class="specBox-interior-volume">
-															<div class="title">Cargo Volume</div>
-															<div class="interior-volume"></div>
-															<div class="amt">1,371
-																<div class="feature">L (48.4 cu. ft.)</div>
-															</div>
-														</div>
-													</div>
-													<div class="specBox">
-														<div class="specBox-turbo-engine">
-															<div class="title">Standard</div>
-															<div class="turbo-engine"></div>
-															<div class="amt">Turbo
-																<div class="feature">engine</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!-- specs  end-->
-
-										</div>
-
-									</div>									
-								</dd>
-								<dd role="presentation" aria-labelledby="a-dnav__grp01--mdl01--title">
-									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01--mdl01--trm02--content">Trim 2</button>
-
-									<div id="a-dnav__grp01--mdl01--trm02--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
-
-										<div class="media">
-											<a class="media__img--rev" href="/gm/english/vehicles/chevrolet/sonic/overview">
-												<img src="/images/divisional/chevrolet/vehicles/chev_soni_hockey_card.jpg" alt="">
-											</a>
-											<div class="media__bd">
-												<h4>Sonic 2014</h4>
-												<a href="#" class="a-dnav__cta">Learn More</a>
-												<h5>MSRP From $18,695 <sup>Ω</sup></h5>
-												<p>Enter your postal code <button class="a-dnav__btn">Change</button></p>
-												<p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
-												<img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_FR.png" alt="">
-											</div>
-										</div>
-
-									</div>
-
-								</dd>
-								<dd role="presentation" aria-labelledby="a-dnav__grp01--mdl01--title">
-									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01--mdl01--trm03--content">Trim 3</button>
-
-									<div id="a-dnav__grp01--mdl01--trm03--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
-										<p>Trim3 Content</p>
-										<label for=""><input type="text" /></label>
-										<button type="button">choose</button>
-									</div>
-
-								</dd>
-							</dl>
-						</li>
-
-						<li role="presentation" id="a-dnav__grp01--mdl02">
-
-							<button role="menuitem" aria-haspopup="true" aria-expanded="false" id="sonicBtn" aria-controls="a-dnav__grp01--mdl02--notrm--content">
-								<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_soni_on.jpg" alt="">
-								<h3>Sonic</h3>
-								<p>from $29,000</p>
-							</button>
-
-							<div id="a-dnav__grp01--mdl02--notrm--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
-
-										<div class="media">
-											<a class="media__img--rev" href="/gm/english/vehicles/chevrolet/sonic/overview">
-												<img src="/images/divisional/chevrolet/vehicles/chev_soni_hockey_card.jpg" alt="">
-											</a>
-											<div class="media__bd">
-												<h4>Sonic 2014</h4>
-												<a href="#" class="a-dnav__cta">Learn More</a>
-												<h5>MSRP From $18,695 <sup>Ω</sup></h5>
-												<p>Enter your postal code <button class="a-dnav__btn">Change</button></p>
-												<p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
-												<img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_FR.png" alt="">
-											</div>
-										</div>
-
-							</div>
-
-						</li>
-
-						<li role="presentation" id="a-dnav__grp01--mdl03">
-
-							<button role="menuitem" aria-haspopup="true" aria-expanded="false" id="sonicBtn" aria-controls="a-dnav__grp01--mdl03--notrm--content">
-								<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_cruz_on.jpg" alt="">
-								<h3>Cruze</h3>
-								<p>from $29,000</p>
-							</button>
-
-							<div id="a-dnav__grp01--mdl03--notrm--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
-
-										<div class="media">
-											<a class="media__img--rev" href="/gm/english/vehicles/chevrolet/sonic/overview">
-												<img src="/images/divisional/chevrolet/vehicles/chev_cruz_hockey_card.jpg" alt="">
-											</a>
-											<div class="media__bd">
-												<h4>Sonic 2014</h4>
-												<a href="#" class="a-dnav__cta">Learn More</a>
-												<h5>MSRP From $18,695 <sup>Ω</sup></h5>
-												<p>Enter your postal code <button class="a-dnav__btn">Change</button></p>
-												<p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
-												<img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_FR.png" alt="">
-											</div>
-										</div>
-
-							</div>
-
-						</li>
-
-					</ul>
-
-				</div>
-			</li>
-
-			<!-- Group 02 -->
-			<li role="presentation">
-				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp02" aria-controls="a-dnav__grp02">CROSSOVERS / SUVS</button>
-
-				<div id="a-dnav__grp02" role="group" aria-hidden="true" class="a-dnav__vehs">
-					
-					<dl role="menu" class="a-dnav__upcoming">
-						<dt role="presentation" id="a-dnav__grp02--up-title">Upcoming vehicles</dt>
-						<dd role="presentation" aria-label="Upcoming vehicles"><a role="menuitem" href="#">2014 Camaro</a></dd>
-						<dd role="presentation" aria-labelledby="a-dnav__grp02--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
-						<dd role="presentation" aria-labelledby="a-dnav__grp02--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
-					</dl>
-
-					<ul role="menu" class="a-dnav__models">
-
-						<li role="presentation" id="a-dnav__grp02--mdl01">
-
-							<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp02--mdl01--trm01">
-								<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_trax_on.jpg" alt="">
-								<h3>Spark</h3>
-								<p>from $29,000</p>
-							</button>
-
-							<dl role="menu" id="a-dnav__grp02--mdl01--trm01" aria-hidden="true" class="a-dnav__trims">
-								<dt role="presentation" id="a-dnav__grp02--mdl01--title">Select a Model</dt>
-								<dd role="presentation" aria-labelledby="a-dnav__grp02--mdl01--title">
-									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp02--mdl01--trm01--content">Trim 1</button>
-
-									<div id="a-dnav__grp02--mdl01--trm01--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
-
-										<div class="trim_2014_chev_trax">
-
-											<div class="vehicleNameContainer">2014 Trax </div>
-											
-												<div class="learnMore">
-													<div class="lm">
-														<a href="/gm/english/vehicles/chevrolet/trax/overview">Learn More</a>
-													</div>
-												</div>
-											
-												<div class="msrp">MSRP From $18,695 <sup>Ω</sup></div>
-											
-												<p class="pc">Enter your postal code to see local offers: 
-													<span class="basePC">POSTAL CODE</span> (<a class="changePC" href="#">Change</a>)
-												</p>
-												<form>
-													<p class="pcSubmit">Enter your postal code to see local offers: 
-														<input type="text" name="flyout-pc" class="flyout-pc" maxlength="7"> 
-														(<a href="#" class="submitPC">Submit</a>)
-													</p>
-												</form>						
-																									
-												<p class="infoTxt">Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
-																	
-												<div class="hockeyCard">
-													<a href="/gm/english/vehicles/chevrolet/trax/overview"><img src="/images/divisional/chevrolet/vehicles/chev_trax_hockey_card.jpg" alt="" title=""></a>
-												</div>																	
-															
-												<!-- specs  start-->
-												<div class="specsBoxes">
-													<div class="specBox">
-														<div class="specBox-fuel-efficiency">
-															<div class="title">Fuel Efficiency</div>
-															<div class="fuel-efficiency"></div>
-															<div class="amt">5.7
-																<div class="feature">L/100km hwy<sup>1</sup></div>
-															</div>
-														</div>
-													</div>
-													<div class="specBox">
-														<div class="specBox-interior-volume">
-															<div class="title">Cargo Volume</div>
-															<div class="interior-volume"></div>
-															<div class="amt">1,371
-																<div class="feature">L (48.4 cu. ft.)</div>
-															</div>
-														</div>
-													</div>
-													<div class="specBox">
-														<div class="specBox-turbo-engine">
-															<div class="title">Standard</div>
-															<div class="turbo-engine"></div>
-															<div class="amt">Turbo
-																<div class="feature">engine</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<!-- specs  end-->
-
-										</div>
-
-									</div>									
-								</dd>
-								<dd role="presentation" aria-labelledby="a-dnav__grp02--mdl01--title">
-									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp02--mdl01--trm02--content">Trim 2</button>
-
-									<div id="a-dnav__grp02--mdl01--trm02--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
-										<p>Trim2 Content</p>
-										<label for=""><input type="text" /></label>
-										<button type="button">choose</button>
-									</div>
-
-								</dd>
-								<dd role="presentation" aria-labelledby="a-dnav__grp02--mdl01--title">
-									<button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp02--mdl01--trm03--content">Trim 3</button>
-
-									<div id="a-dnav__grp02--mdl01--trm03--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
-										<p>Trim3 Content</p>
-										<label for=""><input type="text" /></label>
-										<button type="button">choose</button>
-									</div>
-
-								</dd>
-							</dl>
-						</li>
-
-						<li role="presentation" id="a-dnav__grp02--mdl02">
-
-							<button role="menuitem" aria-haspopup="true" aria-expanded="false" id="sonicBtn" aria-controls="a-dnav__grp02--mdl02--notrm--content">
-								<img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_orla_on.jpg" alt="">
-								<h3>Sonic</h3>
-								<p>from $29,000</p>
-							</button>
-
-							<div id="a-dnav__grp02--mdl02--notrm--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
-
-								<p>something</p>
-								<label for=""><input type="text" /></label>
-								<button type="button">choose</button>
-
-							</div>
-
-						</li>
-
-					</ul>
-
-				</div>
-			</li>
-
-
-
-			<!-- Vertical Menus -->
-			<li role="presentation">
-
-				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp04">Highlights</button>
-				<ul role="menu" id="a-dnav__grp04" aria-hidden="true" class="a-dnav__vertical">
-					<li>
-						<a href="#" role="menuitem">lorem</a>
-					</li>
-					<li>
-						<a href="#" role="menuitem">lorem</a>
-					</li>
-					<li>
-						<a href="#" role="menuitem">lorem</a>
-					</li>
-				</ul>
-
-			</li>
-			<li role="presentation">
-
-				<button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp05">Highlights</button>
-
-				<ul role="menu" id="a-dnav__grp05" aria-hidden="true" class="a-dnav__vertical">
-					<li>
-						<a href="#" role="menuitem">lorem</a>
-					</li>
-					<li>
-						<a href="#" role="menuitem">lorem</a>
-					</li>
-					<li>
-						<a href="#" role="menuitem">lorem</a>
-					</li>
-				</ul>
-
-			</li>
-		</ul>
-
-	</div>
-
-	<div role="main">
-		<h1>header</h1>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo, repellat, officia natus id cupiditate molestiae laborum ab in aperiam voluptate necessitatibus eaque minus. Ducimus, voluptates autem ullam reprehenderit assumenda cum!</p>
-		<label for="myinput">label <input id="myinput" type="text"></label>
-		<p>something</p>
-	</div>
+    <div role="navigation">
+        
+        <ul role="menubar" id="accessible-div-nav" class="a-dnav clearfix">
+            
+            <!-- Group 01 -->
+            <li role="presentation">
+                <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01">CARS</button>
+
+                <div id="a-dnav__grp01" role="group" aria-hidden="true" class="a-dnav__vehs">
+                        
+                    <dl role="menu" class="a-dnav__upcoming">
+                        <dt role="presentation" id="a-dnav__grp01--up-title">Upcoming vehicles</dt>
+                        <dd role="presentation" aria-labelledby="a-dnav__grp01--up-title"><a role="menuitem" href="#">2014 Camaro</a></dd>
+                        <dd role="presentation" aria-labelledby="a-dnav__grp01--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
+                        <dd role="presentation" aria-labelledby="a-dnav__grp01--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
+                    </dl>
+
+                    <ul role="menu" class="a-dnav__models">
+
+                        <li role="presentation" id="a-dnav__grp01--mdl01">
+
+                            <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01--mdl01--trm01">
+                                <img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_spar_on.jpg" alt="">
+                                <h3>Spark</h3>
+                                <p>from $29,000</p>
+                            </button>
+
+                            <dl role="menu" id="a-dnav__grp01--mdl01--trm01" aria-hidden="true" class="a-dnav__trims">
+                                <dt role="presentation" id="a-dnav__grp01--mdl01--title">Select a Model</dt>
+                                <dd role="presentation" aria-labelledby="a-dnav__grp01--mdl01--title">
+
+                                    <button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01--mdl01--trm01--content">Trim 1</button>
+
+                                    <div id="a-dnav__grp01--mdl01--trm01--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+                                        <div class="media">
+                                                <a class="media__img--rev" href="/gm/english/vehicles/chevrolet/spark/overview">
+                                                    <img src="/images/divisional/chevrolet/vehicles/chev_spar_hockey_card.jpg" alt="">
+                                                </a>
+                                                <div class="media__bd">
+                                                    <h4>Spark 2014</h4> <a href="#" class="a-dnav__cta">Learn More</a>
+                                                    <h5>MSRP From $18,695 <sup>Ω</sup></h5>
+                                                    <p>Enter your postal code <button class="a-dnav__btn">Change</button></p>
+                                                    <p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+                                                    <img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_FR.png" alt="">
+                                                </div>
+                                        </div>
+                                        
+                                        
+
+                                        <div class="trim_2014_chev_trax" style="display:none">
+
+                                            <div class="vehicleNameContainer">2014 Trax </div>
+                                            
+                                                <div class="learnMore">
+                                                    <div class="lm">
+                                                        <a href="/gm/english/vehicles/chevrolet/trax/overview">Learn More</a>
+                                                    </div>
+                                                </div>
+                                            
+                                                <p class="pc">Enter your postal code to see local offers: 
+                                                    <span class="basePC">POSTAL CODE</span> (<a class="changePC" href="#">Change</a>)
+                                                </p>
+                                                <form>
+                                                    <p class="pcSubmit">Enter your postal code to see local offers: 
+                                                        <input type="text" name="flyout-pc" class="flyout-pc" maxlength="7"> 
+                                                        (<a href="#" class="submitPC">Submit</a>)
+                                                    </p>
+                                                </form>                     
+                                                                                                    
+                                                <p class="infoTxt"></p>
+                                                                    
+                                                <div class="hockeyCard">
+                                                    <a href="/gm/english/vehicles/chevrolet/trax/overview"><img src="/images/divisional/chevrolet/vehicles/chev_trax_hockey_card.jpg" alt="" title=""></a>
+                                                </div>                                                                  
+                                                            
+                                                <!-- specs  start-->
+                                                <div class="specsBoxes">
+                                                    <div class="specBox">
+                                                        <div class="specBox-fuel-efficiency">
+                                                            <div class="title">Fuel Efficiency</div>
+                                                            <div class="fuel-efficiency"></div>
+                                                            <div class="amt">5.7
+                                                                <div class="feature">L/100km hwy<sup>1</sup></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="specBox">
+                                                        <div class="specBox-interior-volume">
+                                                            <div class="title">Cargo Volume</div>
+                                                            <div class="interior-volume"></div>
+                                                            <div class="amt">1,371
+                                                                <div class="feature">L (48.4 cu. ft.)</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="specBox">
+                                                        <div class="specBox-turbo-engine">
+                                                            <div class="title">Standard</div>
+                                                            <div class="turbo-engine"></div>
+                                                            <div class="amt">Turbo
+                                                                <div class="feature">engine</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- specs  end-->
+
+                                        </div>
+
+                                    </div>                                  
+                                </dd>
+                                <dd role="presentation" aria-labelledby="a-dnav__grp01--mdl01--title">
+                                    <button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01--mdl01--trm02--content">Trim 2</button>
+
+                                    <div id="a-dnav__grp01--mdl01--trm02--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
+
+                                        <div class="media">
+                                            <a class="media__img--rev" href="/gm/english/vehicles/chevrolet/sonic/overview">
+                                                <img src="/images/divisional/chevrolet/vehicles/chev_soni_hockey_card.jpg" alt="">
+                                            </a>
+                                            <div class="media__bd">
+                                                <h4>Sonic 2014</h4>
+                                                <a href="#" class="a-dnav__cta">Learn More</a>
+                                                <h5>MSRP From $18,695 <sup>Ω</sup></h5>
+                                                <p>Enter your postal code <button class="a-dnav__btn">Change</button></p>
+                                                <p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+                                                <img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_FR.png" alt="">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </dd>
+                                <dd role="presentation" aria-labelledby="a-dnav__grp01--mdl01--title">
+                                    <button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01--mdl01--trm03--content">Trim 3</button>
+
+                                    <div id="a-dnav__grp01--mdl01--trm03--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
+                                        <p>Trim3 Content</p>
+                                        <label for=""><input type="text" /></label>
+                                        <button type="button">choose</button>
+                                    </div>
+
+                                </dd>
+                            </dl>
+                        </li>
+
+                        <li role="presentation" id="a-dnav__grp01--mdl02">
+
+                            <button role="menuitem" aria-haspopup="true" aria-expanded="false" id="sonicBtn" aria-controls="a-dnav__grp01--mdl02--notrm--content">
+                                <img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_soni_on.jpg" alt="">
+                                <h3>Sonic</h3>
+                                <p>from $29,000</p>
+                            </button>
+
+                            <div id="a-dnav__grp01--mdl02--notrm--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+                                        <div class="media">
+                                            <a class="media__img--rev" href="/gm/english/vehicles/chevrolet/sonic/overview">
+                                                <img src="/images/divisional/chevrolet/vehicles/chev_soni_hockey_card.jpg" alt="">
+                                            </a>
+                                            <div class="media__bd">
+                                                <h4>Sonic 2014</h4>
+                                                <a href="#" class="a-dnav__cta">Learn More</a>
+                                                <h5>MSRP From $18,695 <sup>Ω</sup></h5>
+                                                <p>Enter your postal code <button class="a-dnav__btn">Change</button></p>
+                                                <p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+                                                <img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_FR.png" alt="">
+                                            </div>
+                                        </div>
+
+                            </div>
+
+                        </li>
+
+                        <li role="presentation" id="a-dnav__grp01--mdl03">
+
+                            <button role="menuitem" aria-haspopup="true" aria-expanded="false" id="sonicBtn" aria-controls="a-dnav__grp01--mdl03--notrm--content">
+                                <img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_cruz_on.jpg" alt="">
+                                <h3>Cruze</h3>
+                                <p>from $29,000</p>
+                            </button>
+
+                            <div id="a-dnav__grp01--mdl03--notrm--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+                                        <div class="media">
+                                            <a class="media__img--rev" href="/gm/english/vehicles/chevrolet/sonic/overview">
+                                                <img src="/images/divisional/chevrolet/vehicles/chev_cruz_hockey_card.jpg" alt="">
+                                            </a>
+                                            <div class="media__bd">
+                                                <h4>Sonic 2014</h4>
+                                                <a href="#" class="a-dnav__cta">Learn More</a>
+                                                <h5>MSRP From $18,695 <sup>Ω</sup></h5>
+                                                <p>Enter your postal code <button class="a-dnav__btn">Change</button></p>
+                                                <p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+                                                <img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_FR.png" alt="">
+                                            </div>
+                                        </div>
+
+                            </div>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+            </li>
+
+            <!-- Group 02 -->
+            <li role="presentation">
+                <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp02" aria-controls="a-dnav__grp02">CROSSOVERS / SUVS</button>
+
+                <div id="a-dnav__grp02" role="group" aria-hidden="true" class="a-dnav__vehs">
+                    
+                    <dl role="menu" class="a-dnav__upcoming">
+                        <dt role="presentation" id="a-dnav__grp02--up-title">Upcoming vehicles</dt>
+                        <dd role="presentation" aria-label="Upcoming vehicles"><a role="menuitem" href="#">2014 Camaro</a></dd>
+                        <dd role="presentation" aria-labelledby="a-dnav__grp02--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
+                        <dd role="presentation" aria-labelledby="a-dnav__grp02--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
+                    </dl>
+
+                    <ul role="menu" class="a-dnav__models">
+
+                        <li role="presentation" id="a-dnav__grp02--mdl01">
+
+                            <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp02--mdl01--trm01">
+                                <img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_trax_on.jpg" alt="">
+                                <h3>Spark</h3>
+                                <p>from $29,000</p>
+                            </button>
+
+                            <dl role="menu" id="a-dnav__grp02--mdl01--trm01" aria-hidden="true" class="a-dnav__trims">
+                                <dt role="presentation" id="a-dnav__grp02--mdl01--title">Select a Model</dt>
+                                <dd role="presentation" aria-labelledby="a-dnav__grp02--mdl01--title">
+                                    <button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp02--mdl01--trm01--content">Trim 1</button>
+
+                                    <div id="a-dnav__grp02--mdl01--trm01--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+                                        <div class="trim_2014_chev_trax">
+
+                                            <div class="vehicleNameContainer">2014 Trax </div>
+                                            
+                                                <div class="learnMore">
+                                                    <div class="lm">
+                                                        <a href="/gm/english/vehicles/chevrolet/trax/overview">Learn More</a>
+                                                    </div>
+                                                </div>
+                                            
+                                                <div class="msrp">MSRP From $18,695 <sup>Ω</sup></div>
+                                            
+                                                <p class="pc">Enter your postal code to see local offers: 
+                                                    <span class="basePC">POSTAL CODE</span> (<a class="changePC" href="#">Change</a>)
+                                                </p>
+                                                <form>
+                                                    <p class="pcSubmit">Enter your postal code to see local offers: 
+                                                        <input type="text" name="flyout-pc" class="flyout-pc" maxlength="7"> 
+                                                        (<a href="#" class="submitPC">Submit</a>)
+                                                    </p>
+                                                </form>                     
+                                                                                                    
+                                                <p class="infoTxt">Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+                                                                    
+                                                <div class="hockeyCard">
+                                                    <a href="/gm/english/vehicles/chevrolet/trax/overview"><img src="/images/divisional/chevrolet/vehicles/chev_trax_hockey_card.jpg" alt="" title=""></a>
+                                                </div>                                                                  
+                                                            
+                                                <!-- specs  start-->
+                                                <div class="specsBoxes">
+                                                    <div class="specBox">
+                                                        <div class="specBox-fuel-efficiency">
+                                                            <div class="title">Fuel Efficiency</div>
+                                                            <div class="fuel-efficiency"></div>
+                                                            <div class="amt">5.7
+                                                                <div class="feature">L/100km hwy<sup>1</sup></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="specBox">
+                                                        <div class="specBox-interior-volume">
+                                                            <div class="title">Cargo Volume</div>
+                                                            <div class="interior-volume"></div>
+                                                            <div class="amt">1,371
+                                                                <div class="feature">L (48.4 cu. ft.)</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="specBox">
+                                                        <div class="specBox-turbo-engine">
+                                                            <div class="title">Standard</div>
+                                                            <div class="turbo-engine"></div>
+                                                            <div class="amt">Turbo
+                                                                <div class="feature">engine</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- specs  end-->
+
+                                        </div>
+
+                                    </div>                                  
+                                </dd>
+                                <dd role="presentation" aria-labelledby="a-dnav__grp02--mdl01--title">
+                                    <button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp02--mdl01--trm02--content">Trim 2</button>
+
+                                    <div id="a-dnav__grp02--mdl01--trm02--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
+                                        <p>Trim2 Content</p>
+                                        <label for=""><input type="text" /></label>
+                                        <button type="button">choose</button>
+                                    </div>
+
+                                </dd>
+                                <dd role="presentation" aria-labelledby="a-dnav__grp02--mdl01--title">
+                                    <button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp02--mdl01--trm03--content">Trim 3</button>
+
+                                    <div id="a-dnav__grp02--mdl01--trm03--content" aria-hidden="true" class="a-dnav__content" tabindex="-1">
+                                        <p>Trim3 Content</p>
+                                        <label for=""><input type="text" /></label>
+                                        <button type="button">choose</button>
+                                    </div>
+
+                                </dd>
+                            </dl>
+                        </li>
+
+                        <li role="presentation" id="a-dnav__grp02--mdl02">
+
+                            <button role="menuitem" aria-haspopup="true" aria-expanded="false" id="sonicBtn" aria-controls="a-dnav__grp02--mdl02--notrm--content">
+                                <img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_orla_on.jpg" alt="">
+                                <h3>Sonic</h3>
+                                <p>from $29,000</p>
+                            </button>
+
+                            <div id="a-dnav__grp02--mdl02--notrm--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+                                <p>something</p>
+                                <label for=""><input type="text" /></label>
+                                <button type="button">choose</button>
+
+                            </div>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+            </li>
+
+
+
+            <!-- Vertical Menus -->
+            <li role="presentation">
+
+                <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp04">Highlights</button>
+                <ul role="menu" id="a-dnav__grp04" aria-hidden="true" class="a-dnav__vertical">
+                    <li>
+                        <a href="#" role="menuitem">lorem</a>
+                    </li>
+                    <li>
+                        <a href="#" role="menuitem">lorem</a>
+                    </li>
+                    <li>
+                        <a href="#" role="menuitem">lorem</a>
+                    </li>
+                </ul>
+
+            </li>
+            <li role="presentation">
+
+                <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp05">Highlights</button>
+
+                <ul role="menu" id="a-dnav__grp05" aria-hidden="true" class="a-dnav__vertical">
+                    <li>
+                        <a href="#" role="menuitem">lorem</a>
+                    </li>
+                    <li>
+                        <a href="#" role="menuitem">lorem</a>
+                    </li>
+                    <li>
+                        <a href="#" role="menuitem">lorem</a>
+                    </li>
+                </ul>
+
+            </li>
+        </ul>
+
+    </div>
+
+    <div role="main">
+        <h1>header</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo, repellat, officia natus id cupiditate molestiae laborum ab in aperiam voluptate necessitatibus eaque minus. Ducimus, voluptates autem ullam reprehenderit assumenda cum!</p>
+        <label for="myinput">label <input id="myinput" type="text"></label>
+        <p>something</p>
+    </div>
 
 </div>
 
 <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		var menu1 = new Menubar('accessible-div-nav');
-	}); // end ready()
+    $(document).ready(function () {
+        var menu1 = new Menubar('accessible-div-nav');
+    }); // end ready()
 
-	function Menubar (id) {
+    function Menubar(id) {
 
-		// define widget properties
-		this.$id = $('#' + id);
+        // define widget properties
+        this.$id = $('#' + id);
 
-		this.$rootItems = this.$id.children('li'); // root-level menu items
+        this.$rootItems = this.$id.children('li'); // root-level menu items
 
-		this.$items = this.$id.find('[role=menuitem]').add('.a-dnav__content');  // menu items (buttons or anchors)
-		this.$parents = this.$id.find('[role=menu]');    // container (dl or ul)
-		this.$allItems = this.$parents.add(this.$items); // 
-		this.$activeItem = null; // jQuery object of the menu item with focus
+        this.$items = this.$id.find('[role=menuitem]').add('.a-dnav__content');  // menu items (buttons or anchors)
+        this.$parents = this.$id.find('[role=menu]');    // container (dl or ul)
+        this.$allItems = this.$parents.add(this.$items); // 
+        this.$activeItem = null; // jQuery object of the menu item with focus
 
-		this.keys = {
-			TAB:    9,
-			ENTER:  13,
-			ESC:    27,
-			SPACE:  32,
-			LEFT:   37,
-			UP:     38,
-			RIGHT:  39,
-			DOWN:   40
-		};
+        this.keys = {
+            TAB:    9,
+            ENTER:  13,
+            ESC:    27,
+            SPACE:  32,
+            LEFT:   37,
+            UP:     38,
+            RIGHT:  39,
+            DOWN:   40
+        };
 
-		// bind event handlers
-		this.bindHandlers();
-	}
+        // bind event handlers
+        this.bindHandlers();
+    }
 
-	/**
-	* Setup initial bindings
-	*/
-	Menubar.prototype.bindHandlers = function() {
+    /**
+    * Setup initial bindings
+    */
+    Menubar.prototype.bindHandlers = function () {
 
-		var that = this;
+        var that = this;
 
-		this.$items.click(function(event) {
-				return that.handleClick($(this),event);
-		});
+        this.$items.click(function (event) {
+            return that.handleClick($(this), event);
+        });
 
-		this.$items.keydown(function(event) {
-			// if key is one of this.keys
-			for (var key in that.keys) {
-				if (that.keys[key] == event.which) {
-					return that.handleKeyDown($(this),event);
-				}
-			}
-		});
+        this.$items.keydown(function (event) {
+            var key;
+            // if key is one of this.keys
+            for (key in that.keys) {
+                if (that.keys[key] === event.which) {
+                    return that.handleKeyDown($(this), event);
+                }
+            }
+        });
 
-		$(document).click(function(event) {
-			return that.handleDocumentClick(event);
-		});
+        $(document).click(function (event) {
+            return that.handleDocumentClick(event);
+        });
 
-	};
-
-
-	/**
-	* Handle document clicks (not originating from menu) to close menu
-	* 
-	* @param event {object} associated event
-	* @return {boolean} returns true
-	*/
-	Menubar.prototype.handleDocumentClick = function(event) {
-		if (!$(event.target).closest(this.$id).length) {
-			this.handleDimming();
-			this.hideOthers(this.$id.find('[aria-expanded=true]'));
-		}
-		return true;
-	};
+    };
 
 
-	/**
-	* Click handler
-	* 
-	* @param elem {object} jQuery object firing event
-	* @param event {object} associated event object
-	*/
-	Menubar.prototype.handleClick = function(elem,event) {
-
-		event.stopPropagation();
-		return this.showOwns(elem);
-	};
-
-
-	/**
-	* KeyDown handler
-	* - for various keyboard interaction
-	* 
-	* @param elem {object} jQuery object firing event
-	* @param event {object} associated event object
-	* @return {object} return curernt jQuery element (to focus) 
-	*/
-	Menubar.prototype.handleKeyDown = function(elem,event) {
-
-		var el = $(elem);
-		var closestMenu = el.closest('[role=menu]');
-
-		switch(event.keyCode) {
-			case this.keys.TAB:
-				return true; // normal tabbing
-			case this.keys.ENTER:
-			case this.keys.SPACE:
-				if (closestMenu.hasClass('a-dnav__upcoming')) {	return true; }
-				this.$activeItem = this.moveDown(elem,event);
-				break;
-			case this.keys.DOWN:
-				if (closestMenu.hasClass('a-dnav__vertical')) {
-					this.$activeItem = this.moveRight(elem,event,'dn');
-				} else {
-					this.$activeItem = this.moveDown(elem,event);
-				}
-				break;
-			case this.keys.UP:
-				this.$activeItem = this.moveUp(elem,event);
-				break;
-			case this.keys.RIGHT:
-				this.$activeItem = this.moveRight(elem,event);
-				break;
-			case this.keys.LEFT:
-				this.$activeItem = this.moveLeft(elem,event);
-				break;
-			case this.keys.ESC:
-				this.$activeItem = this.moveEscape(elem,event);
-				break;
-		}
-
-		this.$activeItem.focus();
-	};
-
-	Menubar.prototype.moveDown = function (elem,event) {
-
-		var el = $(elem);
-		var closestMenu = el.closest('[role=menu]');
-
-		if (closestMenu.hasClass('a-dnav__upcoming')){
-			el = closestMenu.next();
-		}
-		else if (closestMenu.hasClass('a-dnav__trims') || el.next().hasClass('a-dnav__content')){
-			this.showOwns(elem);
-			el = el.next();
-			return el;
-		}
-		else if (el.hasClass('a-dnav__content')) {
-			return el;
-		}
-		else {
-			this.showOwns(elem);
-			el = el.next();
-		}
-
-		el = el.find('[role=menuitem]').first();
-
-		return el;
-	};
-
-	Menubar.prototype.moveUp = function (elem,event) {
-
-		var el = $(elem);
-		var	closestMenu = el.closest('[role=menu]');
-
-		if (closestMenu.hasClass('a-dnav__upcoming')) {
-			el = closestMenu.parent().prev();
-		}
-		else if ( el.hasClass('a-dnav__content') ) {
-			el = el.prev();
-		}		
-		else if (closestMenu.hasClass('a-dnav__models')) {
-			el = closestMenu.prev().find('[role=menuitem]').first();
-		}
-		else {
-			el = closestMenu.prev();
-		}
-
-		return el;
-	};
-
-	Menubar.prototype.moveRight = function (elem,event) {
-
-		var el = $(elem);
-		var closestMenu = el.closest('[role=menu]');
-		var selectedItem = null;
-
-		if (closestMenu.hasClass('a-dnav__vertical')) {
-			if (event.which === 39) { // right arrow
-				selectedItem = this.showOwns(closestMenu.parent().next().children('button'));
-				return selectedItem;
-			}
-		}
-		selectedItem = this.showOwns(el.parent().next().find('[role=menuitem]').first());
-
-		return selectedItem;
-	};
-
-	Menubar.prototype.moveLeft = function (elem,event) {
-
-		var el = $(elem);
-		var closestMenu = el.closest('[role=menu]');
-		var selectedItem = null;
-
-		if (closestMenu.hasClass('a-dnav__vertical')) {
-			if (event.which === 37) { // left arrow
-				selectedItem = this.showOwns(closestMenu.parent().prev().children('button'));
-				return selectedItem;
-			}
-		}
-		
-		selectedItem = this.showOwns(el.parent().prev().find('[role=menuitem]').first());
-			
-		return selectedItem;
-	};
-
-	Menubar.prototype.moveEscape = function (elem,event) {
-		
-		var el = $(elem);
-
-		if (el.hasClass('a-dnav__content')) {
-			el.attr('aria-hidden',true);
-		} else {
-			this.handleDimming();
-			this.hideOthers(elem);
-		}
-		return this.moveUp(elem,event);
-	};
+    /**
+    * Handle document clicks (not originating from menu) to close menu
+    * 
+    * @param event {object} associated event
+    * @return {boolean} returns true
+    */
+    Menubar.prototype.handleDocumentClick = function (event) {
+        if (!$(event.target).closest(this.$id).length) {
+            this.handleDimming();
+            this.hideOthers(this.$id.find('[aria-expanded=true]'));
+        }
+        return true;
+    };
 
 
-	/**
-	* Shows children that associated buttons aria-owns/controls
-	* - sets aria attributes on current button
-	* - also hides other siblings of current button
-	* 
-	* @param elem {jQuery} jQuery object
-	* @return {object} returns jQuery object
-	*/
-	Menubar.prototype.showOwns = function(elem) {
+    /**
+    * Click handler
+    * 
+    * @param elem {object} jQuery object firing event
+    * @param event {object} associated event object
+    */
+    Menubar.prototype.handleClick = function (elem, event) {
 
-		var el = $(elem);
-		var	owns = el.siblings();
-		var parent = el.parent();
-
-		if (!el.is('a')) {
-			if (parent.parent().hasClass('a-dnav__models')) {
-				this.handleDimming(elem);
-			}
-			if (!owns.is(':visible')) {
-				console.log(el.attr('aria-controls'));
-				el.attr({
-					'aria-expanded': true,
-					'aria-checked' : true,
-					'aria-activedescendant': el.attr('aria-controls')
-				});
-				owns.attr('aria-hidden',false);
-			}
-		}
-		// hide others
-		this.hideOthers( parent.siblings().find('[role=menuitem]') );
-
-		return el;
-	};
-
-	/**
-	* Hides other menus by changing aria attributes
-	* - only acts on aria-expanded (i.e. showing) and not anchors
-	* 
-	* @param elems {object} jQuery object
-	// */
-	Menubar.prototype.hideOthers = function(elems) {
-		var el = null;
-		for (var i = 0; i < elems.length; i++) {
-			el = $(elems[i]);
-			if (el.is('[aria-expanded=true]') && !el.is('a')) { 
-					el.attr({
-						'aria-expanded': false,
-						'aria-checked' : false,
-						'aria-activedescendant' : null
-					})
-					.siblings()
-						.attr('aria-hidden',true);
-			}
-		}
-	};
-
-	Menubar.prototype.handleDimming = function(elem) {
-		if (elem) { // dim all models except for elem
-			$('.a-dnav__models:visible > li > button').removeClass('a-dnav__models--dimmed').not(elem).addClass('a-dnav__models--dimmed');
-		}
-		else { // un-dim all
-			$('.a-dnav__models:visible > li > button').removeClass('a-dnav__models--dimmed');
-		}
-	};
+        event.stopPropagation();
+        return this.showOwns(elem);
+    };
 
 
-</script>		
+    /**
+    * KeyDown handler
+    * - for various keyboard interaction
+    * 
+    * @param elem {object} jQuery object firing event
+    * @param event {object} associated event object
+    * @return {object} return curernt jQuery element (to focus) 
+    */
+    Menubar.prototype.handleKeyDown = function (elem, event) {
+
+        var el = $(elem);
+        var closestMenu = el.closest('[role=menu]');
+
+        switch (event.keyCode) {
+        case this.keys.TAB:
+            return true; // normal tabbing
+        case this.keys.ENTER:
+        case this.keys.SPACE:
+            if (closestMenu.hasClass('a-dnav__upcoming')) { return true; }
+            this.$activeItem = this.moveDown(elem, event);
+            break;
+        case this.keys.DOWN:
+            if (closestMenu.hasClass('a-dnav__vertical')) {
+                this.$activeItem = this.moveRight(elem, event);
+            } else {
+                this.$activeItem = this.moveDown(elem);
+            }
+            break;
+        case this.keys.UP:
+            this.$activeItem = this.moveUp(elem);
+            break;
+        case this.keys.RIGHT:
+            this.$activeItem = this.moveRight(elem, event);
+            break;
+        case this.keys.LEFT:
+            this.$activeItem = this.moveLeft(elem, event);
+            break;
+        case this.keys.ESC:
+            this.$activeItem = this.moveEscape(elem, event);
+            break;
+        }
+
+        this.$activeItem.focus();
+    };
+
+    Menubar.prototype.moveDown = function (elem) {
+
+        var el = $(elem);
+        var closestMenu = el.closest('[role=menu]');
+
+        if (closestMenu.hasClass('a-dnav__trims') || el.next().hasClass('a-dnav__content')) {
+            this.showOwns(elem);
+            el = el.next();
+            return el;
+        }
+        if (el.hasClass('a-dnav__content')) {
+            return el;
+        }
+        if (closestMenu.hasClass('a-dnav__upcoming')) {
+            el = closestMenu.next();
+        } else {
+            this.showOwns(elem);
+            el = el.next();
+        }
+
+        el = el.find('[role=menuitem]').first();
+
+        return el;
+    };
+
+    Menubar.prototype.moveUp = function (elem) {
+
+        var el = $(elem);
+        var closestMenu = el.closest('[role=menu]');
+
+        if (closestMenu.hasClass('a-dnav__upcoming')) {
+            el = closestMenu.parent().prev();
+        }
+        else if (el.hasClass('a-dnav__content')) {
+            el = el.prev();
+        }
+        else if (closestMenu.hasClass('a-dnav__models')) {
+            el = closestMenu.prev().find('[role=menuitem]').first();
+        }
+        else {
+            el = closestMenu.prev();
+        }
+
+        return el;
+    };
+
+    Menubar.prototype.moveRight = function (elem, event) {
+
+        var el = $(elem);
+        var closestMenu = el.closest('[role=menu]');
+        var selectedItem = null;
+
+        if (closestMenu.hasClass('a-dnav__vertical')) {
+            if (event.which === 39) { // right arrow
+                selectedItem = this.showOwns(closestMenu.parent().next().children('button'));
+                return selectedItem;
+            }
+        }
+        selectedItem = this.showOwns(el.parent().next().find('[role=menuitem]').first());
+
+        return selectedItem;
+    };
+
+    Menubar.prototype.moveLeft = function (elem, event) {
+
+        var el = $(elem);
+        var closestMenu = el.closest('[role=menu]');
+        var selectedItem = null;
+
+        if (closestMenu.hasClass('a-dnav__vertical')) {
+            if (event.which === 37) { // left arrow
+                selectedItem = this.showOwns(closestMenu.parent().prev().children('button'));
+                return selectedItem;
+            }
+        }
+
+        selectedItem = this.showOwns(el.parent().prev().find('[role=menuitem]').first());
+
+        return selectedItem;
+    };
+
+    Menubar.prototype.moveEscape = function (elem, event) {
+
+        var el = $(elem);
+
+        if (el.hasClass('a-dnav__content')) {
+            el.attr('aria-hidden', true);
+        } else {
+            this.handleDimming();
+            this.hideOthers(elem);
+        }
+        return this.moveUp(elem, event);
+    };
+
+
+    /**
+    * Shows children that associated buttons aria-owns/controls
+    * - sets aria attributes on current button
+    * - also hides other siblings of current button
+    * 
+    * @param elem {jQuery} jQuery object
+    * @return {object} returns jQuery object
+    */
+    Menubar.prototype.showOwns = function (elem) {
+
+        var el = $(elem);
+        var owns = el.siblings();
+        var parent = el.parent();
+
+        if (!el.is('a')) {
+            if (parent.parent().hasClass('a-dnav__models')) {
+                this.handleDimming(elem);
+            }
+            if (!owns.is(':visible')) {
+                console.log(el.attr('aria-controls'));
+                el.attr({
+                    'aria-expanded': true,
+                    'aria-checked' : true,
+                    'aria-activedescendant': el.attr('aria-controls')
+                });
+                owns.attr('aria-hidden', false);
+            }
+        }
+        // hide others
+        this.hideOthers(parent.siblings().find('[role=menuitem]'));
+
+        return el;
+    };
+
+    /**
+    * Hides other menus by changing aria attributes
+    * - only acts on aria-expanded (i.e. showing) and not anchors
+    * 
+    * @param elems {object} jQuery object
+    // */
+    Menubar.prototype.hideOthers = function (elems) {
+        var el = null, i;
+        for (i = 0; i < elems.length; i += 1) {
+            el = $(elems[i]);
+            if (el.is('[aria-expanded=true]') && !el.is('a')) {
+                el.attr({
+                    'aria-expanded': false,
+                    'aria-checked' : false,
+                    'aria-activedescendant' : null
+                })
+                    .siblings()
+                    .attr('aria-hidden', true);
+            }
+        }
+    };
+
+    Menubar.prototype.handleDimming = function (elem) {
+        if (elem) { // dim all models except for elem
+            $('.a-dnav__models:visible > li > button').removeClass('a-dnav__models--dimmed').not(elem).addClass('a-dnav__models--dimmed');
+        } 
+        else { // un-dim all
+            $('.a-dnav__models:visible > li > button').removeClass('a-dnav__models--dimmed');
+        }
+    };
+
+
+</script>       
 </body>
 </html>
