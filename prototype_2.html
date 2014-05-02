@@ -533,37 +533,39 @@
 
 <script type="text/javascript">
 
-    function Menubar(id) {
+function AccessibleDivNavConstructor(id) {
 
-        // define widget properties
-        this.$id = $('#' + id);
+    // define widget properties
+    this.$id = $('#' + id);
 
-        this.$rootItems = this.$id.children('li'); // root-level menu items
+    this.$rootItems = this.$id.children('li'); // root-level menu items
 
-        this.$items = this.$id.find('[role=menuitem]').add('.a-dnav__content');  // menu items (buttons or anchors)
-        this.$parents = this.$id.find('[role=menu]');    // container (dl or ul)
-        this.$allItems = this.$parents.add(this.$items); // 
-        this.$activeItem = null; // jQuery object of the menu item with focus
+    this.$items = this.$id.find('[role=menuitem]').add('.a-dnav__content');  // menu items (buttons or anchors)
+    this.$parents = this.$id.find('[role=menu]');    // container (dl or ul)
+    this.$allItems = this.$parents.add(this.$items); // 
+    this.$activeItem = null; // jQuery object of the menu item with focus
 
-        this.keys = {
-            TAB:    9,
-            ENTER:  13,
-            ESC:    27,
-            SPACE:  32,
-            LEFT:   37,
-            UP:     38,
-            RIGHT:  39,
-            DOWN:   40
-        };
+    this.keys = {
+        TAB:    9,
+        ENTER:  13,
+        ESC:    27,
+        SPACE:  32,
+        LEFT:   37,
+        UP:     38,
+        RIGHT:  39,
+        DOWN:   40
+    };
 
-        // bind event handlers
-        this.bindHandlers();
-    }
+    // bind event handlers
+    this.bindHandlers();
+}
+
+AccessibleDivNavConstructor.prototype = {
 
     /**
     * Setup initial bindings
     */
-    Menubar.prototype.bindHandlers = function () {
+    bindHandlers : function () {
 
         var that = this;
 
@@ -585,46 +587,46 @@
             return that.handleDocumentClick(event);
         });
 
-    };
+    },
 
 
     /**
     * Handle document clicks (not originating from menu) to close menu
     * 
-    * @param event {object} associated event
-    * @return {boolean} returns true
+    * @param {object} event - Associated event
+    * @returns {boolean} - Returns true
     */
-    Menubar.prototype.handleDocumentClick = function (event) {
+    handleDocumentClick : function (event) {
         if (!$(event.target).closest(this.$id).length) {
             this.handleDimming();
             this.hideOtherMenus(this.$id.find('[aria-expanded=true]'));
         }
         return true;
-    };
+    },
 
 
     /**
     * Click handler
     * 
-    * @param elem {object} jQuery object firing event
-    * @param event {object} associated event object
+    * @param {object} elem - jQuery object firing event
+    * @param {object} event - Associated event object
     */
-    Menubar.prototype.handleClick = function (elem, event) {
+    handleClick : function (elem, event) {
 
         event.stopPropagation();
         return this.showOwns(elem);
-    };
+    },
 
 
     /**
     * KeyDown handler
     * - for various keyboard interaction
     * 
-    * @param elem {object} jQuery object firing event
-    * @param event {object} associated event object
-    * @return {object} return curernt jQuery element (to focus) 
+    * @param {object} elem - jQuery object firing event
+    * @param {object} event - Associated event object
+    * @returns {object} - Return current jQuery element (to focus) 
     */
-    Menubar.prototype.handleKeyDown = function (elem, event) {
+    handleKeyDown : function (elem, event) {
 
         var el = $(elem);
         var closestMenu = el.closest('[role=menu]');
@@ -659,9 +661,10 @@
         }
 
         this.$activeItem.focus();
-    };
+    },
 
-    Menubar.prototype.moveDown = function (elem) {
+
+    moveDown : function (elem) {
 
         var el = $(elem);
         var closestMenu = el.closest('[role=menu]');
@@ -684,9 +687,10 @@
         el = el.find('[role=menuitem]').first();
 
         return el;
-    };
+    },
 
-    Menubar.prototype.moveUp = function (elem) {
+
+    moveUp : function (elem) {
 
         var el = $(elem);
         var closestMenu = el.closest('[role=menu]');
@@ -705,9 +709,10 @@
         }
 
         return el;
-    };
+    },
 
-    Menubar.prototype.moveRight = function (elem, event) {
+
+    moveRight : function (elem, event) {
 
         var el = $(elem);
         var closestMenu = el.closest('[role=menu]');
@@ -722,9 +727,10 @@
         selectedItem = this.showOwns(el.parent().next().find('[role=menuitem]').first());
 
         return selectedItem;
-    };
+    },
 
-    Menubar.prototype.moveLeft = function (elem, event) {
+
+    moveLeft : function (elem, event) {
 
         var el = $(elem);
         var closestMenu = el.closest('[role=menu]');
@@ -740,9 +746,10 @@
         selectedItem = this.showOwns(el.parent().prev().find('[role=menuitem]').first());
 
         return selectedItem;
-    };
+    },
 
-    Menubar.prototype.moveEscape = function (elem, event) {
+
+    moveEscape : function (elem, event) {
 
         var el = $(elem);
 
@@ -753,7 +760,7 @@
             this.hideOtherMenus(elem);
         }
         return this.moveUp(elem, event);
-    };
+    },
 
 
     /**
@@ -761,10 +768,10 @@
     * - sets aria attributes on current button
     * - also hides other siblings of current button
     * 
-    * @param elem {jQuery} jQuery object
-    * @return {object} returns jQuery object
+    * @param {jQuery} elem - jQuery object
+    * @returns {object} returns - jQuery object
     */
-    Menubar.prototype.showOwns = function (elem) {
+    showOwns : function (elem) {
 
         var el = $(elem);
         var owns = el.siblings();
@@ -788,15 +795,15 @@
         this.hideOtherMenus(parent.siblings().children('button'));
 
         return el;
-    };
+    },
 
     /**
     * Hides other menus by changing aria attributes
     * - only acts on aria-expanded (i.e. showing) and not anchors
     * 
-    * @param elems {object} jQuery object
+    * @param {object} elems - jQuery object
     */
-    Menubar.prototype.hideOtherMenus = function (elems) {
+    hideOtherMenus : function (elems) {
         var el = null, i;
         for (i = 0; i < elems.length; i += 1) {
             el = $(elems[i]);
@@ -810,14 +817,14 @@
                     .attr('aria-hidden', true);
             }
         }
-    };
+    },
 
-     /**
-     * Dim/un-dim other models
-     * 
-     * @param elem {object} jQuery object
-     */ 
-    Menubar.prototype.handleDimming = function (elem) {
+    /**
+    * Dim/un-dim other models
+    * 
+    * @param {object} elem - jQuery object
+    */ 
+    handleDimming : function (elem) {
         var modelBtns = $('.a-dnav__models:visible > li > button');
         var modelDimClass = 'a-dnav__models--dimmed';
         if (elem) { // dim all models except for elem
@@ -826,11 +833,14 @@
         else { // un-dim all
             modelBtns.removeClass(modelDimClass);
         }
-    };
+    }
 
-    $(document).ready(function () {
-        var menu1 = new Menubar('accessible-div-nav');
-    }); // end ready()
+
+}; // end prototype
+
+$(document).ready(function () {
+    var menu1 = new AccessibleDivNavConstructor('accessible-div-nav');
+}); // end ready()
 
 </script>       
 </body>
