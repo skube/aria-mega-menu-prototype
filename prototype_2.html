@@ -5,33 +5,21 @@
     <title>Prototype II</title>
     <base href="http://gm.ca">
 <style type="text/css">
+    body {  margin: 0;padding: 0; background: salmon;}
 
     button {cursor: pointer;}
     .wrap {width: 990px; margin: 0 auto;}
-    a:link,
-    a:visited
-    {
-        color: #000;
-    }
-    
-    a:hover, 
-    a:active,
-    button:hover 
-    {
-        color:red;
-    }
 
     /* Namespace entire Accessible Div Nav menu and elements  */
 
-    *[role=navigation] .a-dnav [aria-hidden=true] {display: none}
+    *[role=navigation] .a-dnav [aria-hidden=true] {display: none;}
 
     .a-dnav {
         position: relative;
         margin: 0;
         padding: 0;
         list-style: none;
-        border: 1px solid black;
-        background: white;
+        font-family: Arial, sans-serif; font-size:12px;
     }
     .a-dnav > li,
     .a-dnav [role=menu] > li,
@@ -39,33 +27,45 @@
     .a-dnav [role=menu] > dd 
     {
         float: left;
-        margin: 0;
-        padding: .25em .35em;
         list-style: none;
+        margin: 0;
+        padding: 1em 0 1em 1em ;
     }
-    .a-dnav > li:after {content: "\2f"; color:red;}
+    .a-dnav > li:after {content: "\7c";}
     .a-dnav > li:last-child:after {content: none}
 
     .a-dnav [role=menu] {
         position: absolute;
-        left: 0;
         width: 990px;
+        left: 0;
         margin: 0;
         padding: 0;
-        background: #8EBBB4;
+    }
+
+    .a-dnav__upcoming > dd:after {content: ' \2022';}
+    .a-dnav__upcoming > dd:last-child:after {content: '';}
+    .a-dnav__upcoming[role=menu] dd {padding-left: 0.25em}
+    .a-dnav__upcoming > dd a {padding: 0 0.5em}
+
+    .a-dnav .a-dnav__trims[role=menu] dt {
+        padding:1em 12px 0 12px;
+    }
+    .a-dnav  .a-dnav__trims button {
+        height: 3em;
     }
 
     .a-dnav__vehs {
         position: absolute;
         left: 0;
      }
-
-    .a-dnav__upcoming {
-        top:0.25em;
-    }
-
     .a-dnav__models {
-        top: 2em;
+        top: 3em;
+    }
+    .a-dnav__models button h3,
+    .a-dnav__models button p
+    {
+        margin: 0;
+        padding: 0;
     }
 
     .a-dnav__models--dimmed {
@@ -77,26 +77,40 @@
         opacity: 1;
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; /* IE 8 */
     }
-    
+
     .a-dnav__content {
         position: absolute;
         left:0;
         width: 990px;
-        background: #ccc;
+    }
+
+    .a-dnav__content h4 {
+        display: inline-block;
+        margin: 0;
+    }
+    .a-dnav__content h5 {
+        display: block;
+        margin: 0;
+    }
+    .a-dnav__cta {
+        display: inline-block;
+        padding: 0 1em;
+        margin: 0 1em;
+        vertical-align: 0.35em
     }
 
     /* specificity required */
     .a-dnav .a-dnav__vertical {
         left:auto;
         width: 176px;
-        background: #ccc;
     }
     .a-dnav .a-dnav__vertical > li {
         float: none;
     }
 
-    .a-dnav button[aria-expanded="true"]    {
-        background: yellow;
+    .a-dnav button    {
+        border: none;
+        background: none;
     }
 
     /* Media Object */
@@ -106,6 +120,27 @@
     .media__img--rev {float:right; margin-left: 10px;}
     .media__img img {display:block;}
     
+    .a-dnav__form--pc input {
+        width: 1px;
+        padding: 5px;
+        margin: 0 0 0 0.25em;
+        border:none;
+        border-left:1px solid #ccc;
+        transition: all 0.3s ease;
+    }
+    .a-dnav__form--pc input:focus {
+      width: 7em;
+    }
+    .a-dnav__form--pc .a-dnav__form--has-content {
+      width:6em; 
+    }
+    .a-dnav__form--pc .a-dnav__form--error {
+      outline: 1px solid red;
+    }
+    .a-dnav__form--pc label span {
+      border-bottom: 1px solid #ccc
+    }
+
     .clearfix:before,
     .clearfix:after
     {
@@ -115,6 +150,121 @@
     .clearfix:after {
         clear: both;
     }
+
+
+
+    /**
+    * Colours and fonts
+    */
+
+
+    /*CHEVROLET*/
+    .a-dnav,
+    .a-dnav__vehs,
+    .a-dnav__upcoming,
+    .a-dnav__models,
+    .a-dnav__trims,
+    .a-dnav__content,
+    .a-dnav__vertical
+    {
+        background: #fff;
+    }
+
+    a:link,
+    a:visited
+    {
+        color: #000;
+    }
+
+    a:hover, 
+    a:active,
+    button:hover,
+    .a-dnav button[aria-expanded="true"]
+    {
+        color: #f4bd02;
+    }
+
+    .a-dnav > li:after {content: "\2f"; color: #f4bd02;}
+    
+    .a-dnav__upcoming,
+    .a-dnav__models button,
+    .a-dnav__models button h3
+    {
+        font: italic 14px DurantItalic, 'Times New Roman', serif;
+        color: #8C8C8D;
+    }
+    .a-dnav__upcoming > dt {
+        font: italic 14px LouisBoldItalic, arial, helvetica, sans-serif;
+        color: #6B6B6B;
+    }
+
+    .a-dnav__models button p {
+        font: normal 11px Arial, Sans-serif;
+    }
+    .a-dnav__trims,
+    .a-dnav__models button
+    {
+        font: bold 11px Arial, Sans-serif;
+    }
+    .a-dnav__trims[role=menu] {
+        background: #ccc;
+    }
+    .a-dnav__trims [aria-checked=true] {
+        background: #fff;
+    }
+    
+    .a-dnav__upcoming dt,
+    .a-dnav__upcoming dd,
+    .a-dnav__trims[role=menu] dt,
+    .a-dnav__trims[role=menu] dd
+    {
+        padding: 0;
+    }
+    
+    .a-dnav__content h4 {
+        font: italic 26px LouisBoldItalic, arial, helvetica, sans-serif;
+        text-transform: uppercase;
+        color: #414042;
+    }
+    .a-dnav__content .a-dnav__cta {
+        height: 22px;
+        background: url(/images/divisional/chevrolet/chevrolet_learnMore_bg.png);
+        border: 1px solid #BFBFBF;
+        font: bold 12px/2 Arial, Sans-serif;
+        color: #FFF;
+        text-shadow: 1px 1px 2px #000;
+        text-decoration: none;
+    }
+    .a-dnav__content h5 {
+        font: italic 18px DurantItalic, Durant, 'Times New Roman', serif;
+        color: #414042;
+    }
+
+    
+    @font-face{font-family:'LouisBoldItalic';
+        src:url('/webfonts/louis/LouisBoldItalic.eot');
+        src:url('/webfonts/louis/LouisBoldItalic.eot?#iefix') format('embedded-opentype'), 
+            url('/webfonts/louis/LouisBoldItalic.woff') format('woff'), 
+            url('/webfonts/louis/LouisBoldItalic.ttf') format('truetype'), 
+            url('/webfonts/louis/LouisBoldItalic.svg#LouisBoldItalic') format('svg');
+        font-weight:bold;font-style:italic}
+
+    @font-face{
+        font-family:'DurantItalic';
+        src:url('/webfonts/durant/DurantItalic.eot');
+        src:url('/webfonts/durant/DurantItalic.eot?#iefix') format('embedded-opentype'), 
+            url('/webfonts/durant/DurantItalic.woff') format('woff'), 
+            url('/webfonts/durant/DurantItalic.ttf') format('truetype'), 
+            url('/webfonts/durant/DurantItalic.svg#DurantItalic') format('svg');
+        font-weight:normal;font-style:italic}
+
+    @font-face{font-family:'louisRegular';
+        src:url('/webfonts/louis/LouisRegular.eot');
+        src:url('/webfonts/louis/LouisRegular.eot?#iefix') format('embedded-opentype'), 
+            url('/webfonts/louis/LouisRegular.woff') format('woff'), 
+            url('/webfonts/louis/LouisRegular.ttf') format('truetype'), 
+            url('/webfonts/louis/LouisRegular.svg#LouisRegular') format('svg');
+        font-weight:normal;font-style:normal}
 
 
 </style>
@@ -156,7 +306,7 @@
                             <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__grp01--mdl01--trm01">
                                 <img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_spar_on.jpg" alt="">
                                 <h3>Spark</h3>
-                                <p>from $29,000</p>
+                                <p>from $29,000<sup>Ω</sup></p>
                             </button>
 
                             <dl role="menu" id="a-dnav__grp01--mdl01--trm01" aria-hidden="true" class="a-dnav__trims">
@@ -172,9 +322,17 @@
                                                     <img src="/images/divisional/chevrolet/vehicles/chev_spar_hockey_card.jpg" alt="">
                                                 </a>
                                                 <div class="media__bd">
-                                                    <h4>Spark 2014</h4> <a href="#" class="a-dnav__cta">Learn More</a>
+                                                    <h4>Spark 2014</h4> 
+                                                    <a href="#" class="a-dnav__cta">Learn More</a>
                                                     <h5>MSRP From $18,695 <sup>Ω</sup></h5>
-                                                    <p>Enter your postal code <button class="a-dnav__btn">Change</button></p>
+
+                                                    <form class="a-dnav__form--pc" action="">
+                                                        <label>
+                                                            <span>Enter your postal code to see local offers</span>
+                                                            <input type="text" class="" maxlength="7">
+                                                        </label>
+                                                    </form>
+
                                                     <p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
                                                     <img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_FR.png" alt="">
                                                 </div>
@@ -545,6 +703,8 @@ function AccessibleDivNavConstructor(id) {
     this.$allItems = this.$parents.add(this.$items); // 
     this.$activeItem = null; // jQuery object of the menu item with focus
 
+    this.$formPC = this.$id.find('.a-dnav__form--pc');
+
     this.keys = {
         TAB:    9,
         ENTER:  13,
@@ -585,6 +745,12 @@ AccessibleDivNavConstructor.prototype = {
 
         $(document).click(function (event) {
             return that.handleDocumentClick(event);
+        });
+
+        this.$formPC.submit(function (event) {
+            return that.verifyPostal($(this).find('input'));
+        }).find('input').blur(function () {
+            that.$formPC.submit();
         });
 
     },
@@ -790,6 +956,8 @@ AccessibleDivNavConstructor.prototype = {
                 });
                 owns.attr('aria-hidden', false);
             }
+            // Auto-select 1st trim as convenience 
+            parent.find('.a-dnav__trims button:eq(0)').click();
         }
         // hide other menus
         this.hideOtherMenus(parent.siblings().children('button'));
@@ -833,6 +1001,31 @@ AccessibleDivNavConstructor.prototype = {
         else { // un-dim all
             modelBtns.removeClass(modelDimClass);
         }
+    },
+
+    verifyPostal : function (elem) {
+        var val = elem.val();
+        if (val === '') {
+            elem.removeClass('a-dnav__form--error a-dnav__form--has-content');
+            return false;
+        }
+        else {
+            elem.addClass('a-dnav__form--has-content');
+            if ( this.isValidPostal(val) ) {
+                elem.removeClass('a-dnav__form--error');
+                this.$formPC.submit();
+                return true;
+            }
+            else {
+                elem.addClass('a-dnav__form--error');
+                return false;
+            }
+        }
+    },
+
+    isValidPostal : function (str) {
+        var regex = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
+        return regex.test(str);
     }
 
 
