@@ -905,6 +905,7 @@ function AccessibleDivNavConstructor(id) {
     this.$items = this.$id.find('[role=menuitem]').add('.a-dnav__content');  // menu items (buttons or anchors)
     this.$parents = this.$id.find('[role=menu]');    // container (dl or ul)
     this.$allItems = this.$parents.add(this.$items); // 
+    this.$verticalItems = this.$rootItems.children('.a-dnav__vertical').prev();
     this.$activeItem = null; // jQuery object of the menu item with focus
 
     this.$formPC = this.$id.find('.a-dnav__form--pc');
@@ -948,6 +949,10 @@ AccessibleDivNavConstructor.prototype = {
             }
         });
 
+        this.$verticalItems.mouseover(function (event) {
+            return that.handleMouseOverVerticals($(this), event);
+        });
+
         $(document).click(function (event) {
             return that.handleDocumentClick(event);
         });
@@ -963,6 +968,9 @@ AccessibleDivNavConstructor.prototype = {
 
     },
 
+    handleMouseOverVerticals : function (elem, event) {
+        return this.showOwns(elem);
+    },
 
     /**
     * Handle document clicks (not originating from menu) to close menu
