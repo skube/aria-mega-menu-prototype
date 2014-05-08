@@ -80,6 +80,9 @@
     .a-dnav__upcoming[role=menu] dd {padding-left: 0.25em}
     .a-dnav__upcoming > dd a {padding: 0 0.5em; text-decoration: none;}
 
+    .a-dnav .a-dnav__trims[role=menu] {
+        margin-top: 10px;
+    }
     .a-dnav .a-dnav__trims[role=menu] dt {
         padding:1em 12px 0 12px;
     }
@@ -95,11 +98,13 @@
         top: 3em;
     }
     .a-dnav__models button h3,
-    .a-dnav__models button p
+    .a-dnav__models button p,
+    .a-dnav__models > li > button
     {
         margin: 0;
         padding: 0;
     }
+    .a-dnav__models > li > button:first-child {margin-left: 5px;}
 
     .a-dnav--fade {opacity: 1; transition:all 0.25s ease;}
 
@@ -118,6 +123,10 @@
         position: absolute;
         left:0;
         width: 990px;
+        background-image: url(/images/divisional/chevrolet/vehInfoBox_bg_dotted.png);
+        background-position: 0 10px;
+        background-repeat: no-repeat;
+
     }
     .a-dnav__content .media {
         margin: 30px;
@@ -466,7 +475,8 @@
             <!-- Menu 01 -->
             <li role="presentation">
                 <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu01">CARS</button>
-
+                
+                <!-- Vehicles -->
                 <div id="a-dnav__mnu01" role="group" aria-hidden="true" class="a-dnav__vehs">
                         
                     <dl role="menu" class="a-dnav__upcoming">
@@ -476,6 +486,7 @@
                         <dd role="presentation" aria-labelledby="a-dnav__mnu01--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
                     </dl>
 
+                    <!-- Models -->
                     <ul role="menu" class="a-dnav__models">
 
                         <li role="presentation" id="a-dnav__mnu01--mdl01">
@@ -486,6 +497,7 @@
                                 <p>from $29,000<sup>&Omega;</sup></p>
                             </button>
 
+                            <!-- Trims (optional) -->
                             <dl role="menu" id="a-dnav__mnu01--mdl01--trm01" aria-hidden="true" class="a-dnav__trims">
                                 <dt role="presentation" id="a-dnav__mnu01--mdl01--title">Select a Model</dt>
                                 <dd role="presentation" aria-labelledby="a-dnav__mnu01--mdl01--title">
@@ -721,6 +733,7 @@
             <li role="presentation">
                 <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu02" aria-controls="a-dnav__mnu02">CROSSOVERS / <abbr title="SUV" aria-label="SUV">SUVS</abbr></button>
 
+                <!-- Vehicles -->
                 <div id="a-dnav__mnu02" role="group" aria-hidden="true" class="a-dnav__vehs">
                     
                     <dl role="menu" class="a-dnav__upcoming">
@@ -730,6 +743,7 @@
                         <dd role="presentation" aria-labelledby="a-dnav__mnu02--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
                     </dl>
 
+                    <!-- Models -->
                     <ul role="menu" class="a-dnav__models">
 
                         <li role="presentation" id="a-dnav__mnu02--mdl01">
