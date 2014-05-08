@@ -407,6 +407,15 @@
         background: transparent url(/images/divisional/chevrolet/chev_divnav_subnav_bg.png) no-repeat;
         margin-left: -3.5em;
     }
+    .a-dnav .a-dnav__vertical--marginOffset10 {margin-left: -10px;}
+    .a-dnav .a-dnav__vertical--marginOffset20 {margin-left: -20px;}
+    .a-dnav .a-dnav__vertical--marginOffset30 {margin-left: -2.25em;}
+    .a-dnav .a-dnav__vertical--marginOffset40 {margin-left: -40px;}
+    .a-dnav .a-dnav__vertical--marginOffset50 {margin-left: -3.75em;}
+    .a-dnav .a-dnav__vertical--marginOffset60 {margin-left: -4.25em;}
+    .a-dnav .a-dnav__vertical--marginOffset70 {margin-left: -70px;}
+    .a-dnav .a-dnav__vertical--marginOffset80 {margin-left: -80px;}
+
     .a-dnav .a-dnav__vertical li {
         background-color: #f5f5f5;
         border: 1px solid #cfcfd0;
@@ -475,7 +484,7 @@
             <!-- Menu 01 -->
             <li role="presentation">
                 <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu01">CARS</button>
-                
+
                 <!-- Vehicles -->
                 <div id="a-dnav__mnu01" role="group" aria-hidden="true" class="a-dnav__vehs">
                         
@@ -1002,7 +1011,33 @@ AccessibleDivNavConstructor.prototype = {
     },
 
     handleMouseOverVerticals : function (elem, event) {
+        this.toggleVerticalOffsetClass(elem);
         return this.showOwns(elem);
+    },
+
+    /**
+    * A general way to assign dynamic class names for the vertical menus
+    * 
+    * @param {object} elem - jQuery object (i.e. root label)
+    */
+    toggleVerticalOffsetClass : function (elem) {
+        var vertMenu = $('.a-dnav__vertical');
+        var dropDownWidth = vertMenu.width();
+        var labelWidth = elem.width();
+        var marginOffset = (dropDownWidth - labelWidth)/2;
+        var roughOffset = Math.round(marginOffset/10)*10;
+        var className;
+        // remove classes beginning with 'a-dnav__vertical--marginOffset'
+        vertMenu.removeClass(function (index, css) {
+            var re = /\ba-dnav__vertical--marginOffset\S+/g;
+            return (css.match(re) || []).join(' ');
+        });
+        if (roughOffset > 0  && roughOffset < 100) {
+            className = 'a-dnav__vertical--marginOffset' + roughOffset;
+        } else {
+            className = 'a-dnav__vertical--marginOffsetMinMax';
+        }
+        vertMenu.addClass(className);
     },
 
     /**
@@ -1142,8 +1177,13 @@ AccessibleDivNavConstructor.prototype = {
                 return selectedItem;
             }
         }
+        // Stay on input field
         selectedItem = (this.$activeItem && this.$activeItem.is('input')) ? this.$activeItem 
                                                       : this.showOwns(el.parent().next().find('[role=menuitem]').first());
+        
+        if (selectedItem.next().is('.a-dnav__vertical')) {
+            this.toggleVerticalOffsetClass(selectedItem);
+        }
 
         return selectedItem;
     },
@@ -1161,8 +1201,13 @@ AccessibleDivNavConstructor.prototype = {
                 return selectedItem;
             }
         }
+        // Stay on input field
         selectedItem = (this.$activeItem && this.$activeItem.is('input')) ? this.$activeItem 
                                                       : this.showOwns(el.parent().prev().find('[role=menuitem]').first());
+        
+        if (selectedItem.next().is('.a-dnav__vertical')) {
+            this.toggleVerticalOffsetClass(selectedItem);
+        }
 
         return selectedItem;
     },
