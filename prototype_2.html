@@ -6,7 +6,7 @@
     <base href="http://gm.ca">
 <style type="text/css">
     body {  margin: 0;padding: 0; background: lightgrey;}
-
+    /*:focus {outline:auto}*/
     button {cursor: pointer;}
     sup {font-size: 7px}
     .wrap {width: 990px; margin: 0 auto;}
@@ -337,7 +337,9 @@
     .a-dnav a:hover, 
     .a-dnav a:active,
     .a-dnav button:hover,
-    .a-dnav button[aria-expanded="true"]
+    .a-dnav button[aria-expanded="true"],
+    .a-dnav__upcoming a:focus,
+    .a-dnav__models button:focus
     {
         color: #f4bd02;
         transition: all 0.25s ease;
