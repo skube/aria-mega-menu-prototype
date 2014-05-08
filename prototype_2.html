@@ -23,7 +23,7 @@
         opacity: 0.5;
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";/* IE 8 */
         background: #000;
-        z-index: -1;
+        z-index: 500;
     }
 
     .a-dnav [aria-hidden=true] {display:none;}
@@ -40,7 +40,11 @@
                 animation: fadeIn 0.35s;
     }
 
-    .a-dnav__h1 {margin: 0;}
+    .a-dnav__h1 {
+        position: relative;
+        z-index: 1000;
+        margin: 0; 
+    }
 
     .a-dnav {
         position: relative;
@@ -48,6 +52,7 @@
         padding: 0;
         list-style: none;
         font-family: Arial, sans-serif; font-size:12px;
+        z-index: 1000;
     }
     .a-dnav > li,
     .a-dnav [role=menu] > li,
@@ -106,6 +111,7 @@
     }
     .a-dnav__models > li > button {margin-bottom: 6px;}
     .a-dnav__models > li > button:first-child {margin-left: 5px;}
+    .a-dnav__models > li > button p {margin-bottom: 0.5em;}
 
     .a-dnav--fade {opacity: 1; transition:all 0.25s ease;}
 
@@ -412,7 +418,7 @@
     }
     .a-dnav .a-dnav__vertical--marginOffset10 {margin-left: -10px;}
     .a-dnav .a-dnav__vertical--marginOffset20 {margin-left: -20px;}
-    .a-dnav .a-dnav__vertical--marginOffset30 {margin-left: -2.25em;}
+    .a-dnav .a-dnav__vertical--marginOffset30 {margin-left: -2em;}
     .a-dnav .a-dnav__vertical--marginOffset40 {margin-left: -40px;}
     .a-dnav .a-dnav__vertical--marginOffset50 {margin-left: -3.75em;}
     .a-dnav .a-dnav__vertical--marginOffset60 {margin-left: -4.25em;}
@@ -928,10 +934,18 @@
     </div>
 
     <div role="main">
+<div id="flashContent">
+<div class="broadcastImages" style="display: block;">
+<img src="/images/divisional/chevrolet/broadcast/chev_2014silv_div_en.jpg" alt="Chevrolet" style="border: none;" usemap="#silv">
+</div>
+</div>
         <h1>header</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo, repellat, officia natus id cupiditate molestiae laborum ab in aperiam voluptate necessitatibus eaque minus. Ducimus, voluptates autem ullam reprehenderit assumenda cum!</p>
         <label for="myinput">label <input id="myinput" type="text"></label>
-        <p>something</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, voluptates, tempore rem beatae porro quasi eaque deleniti culpa quos fuga. Inventore, minus accusantium recusandae quibusdam eius dicta quas veritatis ad nam incidunt libero praesentium reprehenderit amet facilis molestiae blanditiis dolore nihil sunt aliquid aperiam ut consectetur deserunt! Impedit, odit, similique beatae molestias commodi ipsam? Excepturi, nulla, libero ex perferendis minima sed saepe distinctio quidem quis culpa ipsam neque iusto pariatur laborum voluptate ullam voluptatibus totam illo facere dolorem voluptates tempore earum accusantium exercitationem fugit rem atque consectetur cupiditate dolorum accusamus sunt a veniam velit consequuntur esse reprehenderit nostrum magni. Suscipit!</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, voluptates, tempore rem beatae porro quasi eaque deleniti culpa quos fuga. Inventore, minus accusantium recusandae quibusdam eius dicta quas veritatis ad nam incidunt libero praesentium reprehenderit amet facilis molestiae blanditiis dolore nihil sunt aliquid aperiam ut consectetur deserunt! Impedit, odit, similique beatae molestias commodi ipsam? Excepturi, nulla, libero ex perferendis minima sed saepe distinctio quidem quis culpa ipsam neque iusto pariatur laborum voluptate ullam voluptatibus totam illo facere dolorem voluptates tempore earum accusantium exercitationem fugit rem atque consectetur cupiditate dolorum accusamus sunt a veniam velit consequuntur esse reprehenderit nostrum magni. Suscipit!</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, voluptates, tempore rem beatae porro quasi eaque deleniti culpa quos fuga. Inventore, minus accusantium recusandae quibusdam eius dicta quas veritatis ad nam incidunt libero praesentium reprehenderit amet facilis molestiae blanditiis dolore nihil sunt aliquid aperiam ut consectetur deserunt! Impedit, odit, similique beatae molestias commodi ipsam? Excepturi, nulla, libero ex perferendis minima sed saepe distinctio quidem quis culpa ipsam neque iusto pariatur laborum voluptate ullam voluptatibus totam illo facere dolorem voluptates tempore earum accusantium exercitationem fugit rem atque consectetur cupiditate dolorum accusamus sunt a veniam velit consequuntur esse reprehenderit nostrum magni. Suscipit!</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, voluptates, tempore rem beatae porro quasi eaque deleniti culpa quos fuga. Inventore, minus accusantium recusandae quibusdam eius dicta quas veritatis ad nam incidunt libero praesentium reprehenderit amet facilis molestiae blanditiis dolore nihil sunt aliquid aperiam ut consectetur deserunt! Impedit, odit, similique beatae molestias commodi ipsam? Excepturi, nulla, libero ex perferendis minima sed saepe distinctio quidem quis culpa ipsam neque iusto pariatur laborum voluptate ullam voluptatibus totam illo facere dolorem voluptates tempore earum accusantium exercitationem fugit rem atque consectetur cupiditate dolorum accusamus sunt a veniam velit consequuntur esse reprehenderit nostrum magni. Suscipit!</p>
     </div>
 
 </div>
@@ -989,6 +1003,10 @@ AccessibleDivNavConstructor.prototype = {
             // if key is one of this.keys
             for (key in that.keys) {
                 if (that.keys[key] === event.which) {
+                    // prevent normal scrolling
+                    if (event.which === 40 || event.which === 38) {
+                        event.preventDefault();
+                    }
                     return that.handleKeyDown($(this), event);
                 }
             }
