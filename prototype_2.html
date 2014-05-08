@@ -1201,16 +1201,17 @@ AccessibleDivNavConstructor.prototype = {
             // Auto-select 1st trim as convenience 
             parent.find('.a-dnav__trims button:eq(0)').click();
 
-            // display mask only for non vertical menus
-            if (!$('.a-dnav__vertical').is(':visible')) {
-                $('.a-dnav__mask').show();
-            }
-            else {
-                $('.a-dnav__mask').hide();
-            }
         }
         // hide other menus
         this.hideOtherMenus(parent.siblings().children('button'));
+
+        // display mask only for non vertical menus
+        if (!$('.a-dnav__vertical').is(':visible')) {
+            $('.a-dnav__mask').show();
+        }
+        else {
+            $('.a-dnav__mask').hide();
+        }
 
         return el;
     },
