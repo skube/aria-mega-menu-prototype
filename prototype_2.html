@@ -6,6 +6,7 @@
     <base href="http://gm.ca">
 <style type="text/css">
     body {  margin: 0;padding: 0; background: lightgrey;}
+    img, abbr {border: none;}
     /*:focus {outline:auto}*/
     button {cursor: pointer;}
     sup {font-size: 7px}
@@ -28,8 +29,8 @@
 
     .a-dnav [aria-hidden=true] {display:none;}
     .a-dnav [aria-hidden=false] {
-        -webkit-animation: fadeInDown 0.25s ease-out;
-                animation: fadeInDown 0.25s ease-out;
+        -webkit-animation: fadeInDown 0.35s ease-out;
+                animation: fadeInDown 0.35s ease-out;
     }
     .a-dnav .a-dnav__content[aria-hidden=false] {
         -webkit-animation: none;
@@ -340,6 +341,13 @@
         text-decoration: none;
     }
 
+    .a-dnav__upcoming a:link,
+    .a-dnav__upcoming a:visited
+    {
+        color: #8C8C8D
+    }
+
+
     .a-dnav a:hover, 
     .a-dnav a:active,
     .a-dnav button:hover,
@@ -478,7 +486,6 @@
 - aria-owns: Defines an object as a parent of another document element, when the child does not appear directly in the subtree of the owner
 - aria-controls : Seems synonymous with owns except seems to be used more for menubars/buttons
 - aria-flowto="trucksbtn" (try it?)
-- TODO: create nomenclature to handle unique IDs
 -->
 <div class="wrap">
 
@@ -498,10 +505,13 @@
                 <div id="a-dnav__mnu01" role="group" aria-hidden="true" class="a-dnav__vehs">
                         
                     <dl role="menu" class="a-dnav__upcoming">
-                        <dt role="presentation" id="a-dnav__mnu01--up-title">Upcoming vehicles</dt>
-                        <dd role="presentation" aria-labelledby="a-dnav__mnu01--up-title"><a role="menuitem" href="#">2014 Camaro</a></dd>
-                        <dd role="presentation" aria-labelledby="a-dnav__mnu01--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
-                        <dd role="presentation" aria-labelledby="a-dnav__mnu01--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
+                        <dt role="presentation" id="a-dnav__mnu03--up-title">Upcoming vehicles</dt>
+                        <dd role="presentation" aria-label="Upcoming vehicles"><a role="menuitem" href="#">2014 Camaro z28</a></dd>
+                        <dd role="presentation" aria-labelledby="a-dnav__mnu03--up-title"><a role="menuitem" href="#">2015 Colordo</a></dd>
+                        <dd role="presentation" aria-labelledby="a-dnav__mnu03--up-title"><a role="menuitem" href="#">2015 Corvette Z06</a></dd>
+                        <dd role="presentation" aria-labelledby="a-dnav__mnu03--up-title"><a role="menuitem" href="#">2014 Cruze</a></dd>
+                        <dd role="presentation" aria-labelledby="a-dnav__mnu03--up-title"><a role="menuitem" href="#">2015 Suburban</a></dd>
+                        <dd role="presentation" aria-labelledby="a-dnav__mnu03--up-title"><a role="menuitem" href="#">2015 Tahoe</a></dd>
                     </dl>
 
                     <!-- Models -->
@@ -755,10 +765,13 @@
                 <div id="a-dnav__mnu02" role="group" aria-hidden="true" class="a-dnav__vehs">
                     
                     <dl role="menu" class="a-dnav__upcoming">
-                        <dt role="presentation" id="a-dnav__mnu02--up-title">Upcoming vehicles</dt>
-                        <dd role="presentation" aria-label="Upcoming vehicles"><a role="menuitem" href="#">2014 Camaro</a></dd>
-                        <dd role="presentation" aria-labelledby="a-dnav__mnu02--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
-                        <dd role="presentation" aria-labelledby="a-dnav__mnu02--up-title"><a role="menuitem" href="#">2014 Colorado</a></dd>
+                        <dt role="presentation" id="a-dnav__mnu03--up-title">Upcoming vehicles</dt>
+                        <dd role="presentation" aria-label="Upcoming vehicles"><a role="menuitem" href="#">2014 Camaro z28</a></dd>
+                        <dd role="presentation" aria-labelledby="a-dnav__mnu03--up-title"><a role="menuitem" href="#">2015 Colordo</a></dd>
+                        <dd role="presentation" aria-labelledby="a-dnav__mnu03--up-title"><a role="menuitem" href="#">2015 Corvette Z06</a></dd>
+                        <dd role="presentation" aria-labelledby="a-dnav__mnu03--up-title"><a role="menuitem" href="#">2014 Cruze</a></dd>
+                        <dd role="presentation" aria-labelledby="a-dnav__mnu03--up-title"><a role="menuitem" href="#">2015 Suburban</a></dd>
+                        <dd role="presentation" aria-labelledby="a-dnav__mnu03--up-title"><a role="menuitem" href="#">2015 Tahoe</a></dd>
                     </dl>
 
                     <!-- Models -->
@@ -814,6 +827,165 @@
                                     </a>
                                     <div class="media__bd">
                                         <h4>Orlando 2014</h4> 
+                                        <a href="#" class="a-dnav__cta">Learn More</a>
+                                        <h5>MSRP From $18,695 <sup>&Omega;</sup></h5>
+
+                                        <form class="a-dnav__form--pc" action="">
+                                            <label>
+                                                <span>Enter your postal code to see local offers</span>
+                                                <input type="text" class="" maxlength="7">
+                                            </label>
+                                        </form>
+
+                                        <p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+                                        <img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_EN.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </li>
+
+
+                    </ul>
+
+                </div>
+            </li>
+
+            <!-- Menu 03 -->
+            <li role="presentation">
+                <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu03" aria-controls="a-dnav__mnu03">TRUCKS &amp; VANS</button>
+
+                <!-- Vehicles -->
+                <div id="a-dnav__mnu03" role="group" aria-hidden="true" class="a-dnav__vehs">
+                    
+                    <dl role="menu" class="a-dnav__upcoming">
+                        <dt role="presentation" id="a-dnav__mnu03--up-title">Upcoming vehicles</dt>
+                        <dd role="presentation" aria-label="Upcoming vehicles"><a role="menuitem" href="#">2014 Camaro z28</a></dd>
+                        <dd role="presentation" aria-labelledby="a-dnav__mnu03--up-title"><a role="menuitem" href="#">2015 Colordo</a></dd>
+                        <dd role="presentation" aria-labelledby="a-dnav__mnu03--up-title"><a role="menuitem" href="#">2015 Corvette Z06</a></dd>
+                        <dd role="presentation" aria-labelledby="a-dnav__mnu03--up-title"><a role="menuitem" href="#">2014 Cruze</a></dd>
+                        <dd role="presentation" aria-labelledby="a-dnav__mnu03--up-title"><a role="menuitem" href="#">2015 Suburban</a></dd>
+                        <dd role="presentation" aria-labelledby="a-dnav__mnu03--up-title"><a role="menuitem" href="#">2015 Tahoe</a></dd>
+                    </dl>
+
+                    <!-- Models -->
+                    <ul role="menu" class="a-dnav__models">
+
+                        <li role="presentation" id="a-dnav__mnu03--mdl01">
+
+                            <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu03--mdl01--notrm--content">
+                                <img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_silv_on.jpg" alt="">
+                                <h3>Silverado</h3>
+                                <p>from $29,000<sup>&Omega;</sup></p>
+                            </button>
+
+                            <!-- Trims (optional) -->
+                            <dl role="menu" id="a-dnav__mnu03--mdl01--trm01" aria-hidden="true" class="a-dnav__trims">
+                                <dt role="presentation" id="a-dnav__mnu03--mdl01--title">Select a Model</dt>
+                                <dd role="presentation" aria-labelledby="a-dnav__mnu03--mdl01--title">
+
+                                    <button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu03--mdl01--trm01--content">2014 Silverado 1500</button>
+
+                                    <div id="a-dnav__mnu03--mdl01--trm01--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+                                        <div class="media">
+                                            <a class="media__img--rev" href="/gm/english/vehicles/chevrolet/spark/overview">
+                                                <img src="/images/divisional/chevrolet/vehicles/chev_silv_silverado_hockey_card.jpg" alt="">
+                                            </a>
+                                            <div class="media__bd">
+                                                <h4>Silverado 1500</h4> 
+                                                <a href="#" class="a-dnav__cta">Learn More</a>
+                                                <h5>MSRP From $18,695 <sup>&Omega;</sup></h5>
+
+                                                <form class="a-dnav__form--pc" action="">
+                                                    <label>
+                                                        <span>Enter your postal code to see local offers</span>
+                                                        <input type="text" class="" maxlength="7">
+                                                    </label>
+                                                </form>
+
+                                                <p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+                                                <img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_EN.png" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </dd>
+                                <dd role="presentation" aria-labelledby="a-dnav__mnu03--mdl01--title">
+                                    <button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu03--mdl01--trm02--content">2014 2500HD</button>
+
+                                    <div id="a-dnav__mnu03--mdl01--trm02--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+                                        <div class="media">
+                                            <a class="media__img--rev" href="/gm/english/vehicles/chevrolet/silvk/overview">
+                                                <img src="/images/divisional/chevrolet/vehicles/chev_silv_2500_hockey_card.jpg" alt="">
+                                            </a>
+                                            <div class="media__bd">
+                                                <h4>Silverado 2500HD</h4> 
+                                                <a href="#" class="a-dnav__cta">Learn More</a>
+                                                <h5>MSRP From $18,695 <sup>&Omega;</sup></h5>
+
+                                                <form class="a-dnav__form--pc" action="">
+                                                    <label>
+                                                        <span>Enter your postal code to see local offers</span>
+                                                        <input type="text" class="" maxlength="7">
+                                                    </label>
+                                                </form>
+
+                                                <p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+                                                <img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_EN.png" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </dd>
+                                <dd role="presentation" aria-labelledby="a-dnav__mnu03--mdl01--title">
+                                    <button role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu03--mdl01--trm03--content">2014 Silverado 3500HD</button>
+
+                                    <div id="a-dnav__mnu03--mdl01--trm03--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+                                        <div class="media">
+                                            <a class="media__img--rev" href="/gm/english/vehicles/chevrolet/silvk/overview">
+                                                <img src="/images/divisional/chevrolet/vehicles/chev_silv_3500_hockey_card.jpg" alt="">
+                                            </a>
+                                            <div class="media__bd">
+                                                <h4>Silverado 2500HD</h4> 
+                                                <a href="#" class="a-dnav__cta">Learn More</a>
+                                                <h5>MSRP From $18,695 <sup>&Omega;</sup></h5>
+
+                                                <form class="a-dnav__form--pc" action="">
+                                                    <label>
+                                                        <span>Enter your postal code to see local offers</span>
+                                                        <input type="text" class="" maxlength="7">
+                                                    </label>
+                                                </form>
+
+                                                <p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+                                                <img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_EN.png" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </dd>
+                            </dl>
+                         </li>
+
+                        <li role="presentation" id="a-dnav__mnu03--mdl02">
+
+                            <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu03--mdl02--notrm--content">
+                                <img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_expr_on.jpg" alt="">
+                                <h3>Express</h3>
+                                <p>from $29,000<sup>&Omega;</sup></p>
+                            </button>
+
+                            <div id="a-dnav__mnu03--mdl02--notrm--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+                                <div class="media">
+                                    <a class="media__img--rev" href="/gm/english/vehicles/chevrolet/exprk/overview">
+                                        <img src="/images/divisional/chevrolet/vehicles/chev_expr_hockey_card.jpg" alt="">
+                                    </a>
+                                    <div class="media__bd">
+                                        <h4>Express 2014</h4> 
                                         <a href="#" class="a-dnav__cta">Learn More</a>
                                         <h5>MSRP From $18,695 <sup>&Omega;</sup></h5>
 
@@ -934,11 +1106,11 @@
     </div>
 
     <div role="main">
-<div id="flashContent">
-<div class="broadcastImages" style="display: block;">
-<img src="/images/divisional/chevrolet/broadcast/chev_2014silv_div_en.jpg" alt="Chevrolet" style="border: none;" usemap="#silv">
-</div>
-</div>
+        <div id="flashContent">
+            <div class="broadcastImages" style="display: block;">
+            <img src="/images/divisional/chevrolet/broadcast/chev_2014silv_div_en.jpg" alt="Chevrolet" style="border: none;" usemap="#silv">
+            </div>
+        </div>
         <h1>header</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo, repellat, officia natus id cupiditate molestiae laborum ab in aperiam voluptate necessitatibus eaque minus. Ducimus, voluptates autem ullam reprehenderit assumenda cum!</p>
         <label for="myinput">label <input id="myinput" type="text"></label>
@@ -1069,7 +1241,7 @@ AccessibleDivNavConstructor.prototype = {
     */
     handleDocumentClick : function (event) {
         if (!$(event.target).closest(this.$id).length) {
-            this.handleDimming();
+            this.toggleModelsFade();
             this.hideOtherMenus(this.$id.find('[aria-expanded=true]'));
             $('.a-dnav__mask').hide();
         }
@@ -1242,7 +1414,7 @@ AccessibleDivNavConstructor.prototype = {
             el.attr('aria-hidden', true);
         } else {
             if (el.parent().parent().hasClass('a-dnav')) {$('.a-dnav__mask').hide();}
-            this.handleDimming();
+            this.toggleModelsFade();
             this.hideOtherMenus(elem);
         }
         return this.moveUp(elem, event);
@@ -1265,7 +1437,7 @@ AccessibleDivNavConstructor.prototype = {
 
         if (!el.is('a')) {
             if (parent.parent().hasClass('a-dnav__models')) {
-                this.handleDimming(elem);
+                this.toggleModelsFade(elem);
             }
             if (!owns.is(':visible')) {
                 // console.log(el.attr('aria-controls'));
@@ -1323,7 +1495,7 @@ AccessibleDivNavConstructor.prototype = {
     * 
     * @param {object} elem - jQuery object
     */ 
-    handleDimming : function (elem) {
+    toggleModelsFade : function (elem) {
         var modelBtns = $('.a-dnav__models:visible > li > button');
         var modelDimClass = 'a-dnav__models--dimmed';
         if (elem) { // dim all models except for elem
@@ -1364,9 +1536,9 @@ AccessibleDivNavConstructor.prototype = {
 }; // end prototype
 
 $(document).ready(function () {
-    var menu1 = new AccessibleDivNavConstructor('accessible-div-nav');
+    var divMenu = new AccessibleDivNavConstructor('accessible-div-nav');
 }); // end ready()
 
 </script>       
 </body>
-</html>
+</html
