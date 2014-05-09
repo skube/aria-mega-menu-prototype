@@ -1349,13 +1349,12 @@ AccessibleDivNavConstructor.prototype = {
         if (el.hasClass('a-dnav__content')) {
             el.attr('aria-hidden', true);
         } else {
+            this.toggleModelsFade();
             if (el.parent().parent().hasClass('a-dnav')) {
                 $('.a-dnav__mask').hide();
-                this.toggleModelsFade();
                 this.hideOtherMenus(this.$id.find('[aria-expanded=true]'));
                 return;
             } else {
-                this.toggleModelsFade();
                 this.hideOtherMenus(elem);
             }
         }
