@@ -1177,8 +1177,7 @@ AccessibleDivNavConstructor.prototype = {
     */
     handleDocumentClick : function (event) {
         if (!$(event.target).closest(this.$id).length) {
-            this.toggleModelsFade();
-            this.hideOtherMenus(this.$id.find('[aria-expanded=true]'));
+            this.hideOtherMenus(this.$rootItems.children('[aria-expanded=true]'));
             $('.a-dnav__mask').hide();
         }
         return true;
@@ -1192,7 +1191,6 @@ AccessibleDivNavConstructor.prototype = {
     * @param {object} event - Associated event object
     */
     handleClick : function (elem, event) {
-
         event.stopPropagation();
         return this.showOwns(elem);
     },
@@ -1349,12 +1347,14 @@ AccessibleDivNavConstructor.prototype = {
         if (el.hasClass('a-dnav__content')) {
             el.attr('aria-hidden', true);
         } else {
-            this.toggleModelsFade();
             if (el.parent().parent().hasClass('a-dnav')) {
                 $('.a-dnav__mask').hide();
+                this.unDimModels('all');
                 this.hideOtherMenus(this.$id.find('[aria-expanded=true]'));
                 return;
             } else {
+                // TODO: bug when escaping from upcoming
+                this.unDimModels();
                 this.hideOtherMenus(elem);
             }
         }
@@ -1378,7 +1378,7 @@ AccessibleDivNavConstructor.prototype = {
 
         if (!el.is('a')) {
             if (parent.parent().hasClass('a-dnav__models')) {
-                this.toggleModelsFade(elem);
+                this.dimModelSiblings(elem);
             }
             if (!owns.is(':visible')) {
                 // console.log(el.attr('aria-controls'));
@@ -1436,16 +1436,18 @@ AccessibleDivNavConstructor.prototype = {
     * 
     * @param {object} elem - jQuery object
     */ 
-    toggleModelsFade : function (elem) {
+    dimModelSiblings : function (elem) {
         var modelBtns = $('.a-dnav__models:visible > li > button');
         var modelDimClass = 'a-dnav__models--dimmed';
         if (elem) { // dim all models except for elem
             if (elem.is('.a-dnav__content')) { elem = elem.prev(); }
             modelBtns.removeClass(modelDimClass).not(elem).addClass(modelDimClass);
         } 
-        else { // un-dim all
-            modelBtns.removeClass(modelDimClass);
-        }
+    },
+
+    unDimModels : function (which) {
+        var modelBtns =  (which === 'all')  ? $('.a-dnav__models > li > button') : $('.a-dnav__models:visible > li > button');
+        modelBtns.removeClass('a-dnav__models--dimmed');
     },
 
     verifyPostal : function (elem) {
