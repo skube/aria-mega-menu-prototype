@@ -385,7 +385,11 @@
     .a-dnav__trims[role=menu] {
         background: #ccc;
     }
-    .a-dnav__trims [aria-checked=true] {
+
+    .a-dnav__trims button:focus,
+    .a-dnav__trims button:hover,
+    .a-dnav__trims [aria-checked=true]
+    {
         background: #fff;
     }
     
@@ -1244,28 +1248,41 @@ AccessibleDivNavConstructor.prototype = {
     },
 
 
+    /**
+    * Main selection algo
+    * - each level behaves slightly differently
+    * - chooses either first or previously selected child
+    * 
+    * @param {object} elem - jQuery object
+    */
     moveDown : function (elem) {
 
         var el = $(elem);
         var closestMenu = el.closest('[role=menu]');
+        var elNext = el.next();
+        var closestMenuNext = null;
 
-        if (closestMenu.hasClass('a-dnav__trims') || el.next().hasClass('a-dnav__content')) {
+        if (el.parent().parent().hasClass('a-dnav')) {
             this.showOwns(elem);
-            el = el.next();
-            return el;
-        }
-        if (el.hasClass('a-dnav__content')) {
-            return el;
-        }
-        if (closestMenu.hasClass('a-dnav__upcoming')) {
-            el = closestMenu.next();
+            el =  elNext.find('[role=menuitem]').first();
         } else {
-            this.showOwns(elem);
-            el = el.next();
+            if (closestMenu.hasClass('a-dnav__upcoming')) {
+                closestMenuNext = closestMenu.next().find('[role=menuitem]');
+                el = (closestMenuNext.filter('[aria-expanded=true]').length) ? closestMenuNext.filter('[aria-expanded=true]') : closestMenuNext.first();
+            } else {
+                if (closestMenu.hasClass('a-dnav__trims') || elNext.hasClass('a-dnav__content')) {
+                    this.showOwns(elem);
+                    el = elNext;
+                } else {
+                    if (el.hasClass('a-dnav__content')) {
+                        return el;
+                    } // models (with a trim)
+                    this.showOwns(elem);
+                    elNext = elNext.find('[role=menuitem]');
+                    el = (elNext.filter('[aria-expanded=true]').length) ? elNext.filter('[aria-expanded=true]') : elNext.first();
+                }
+            }
         }
-
-        el = el.find('[role=menuitem]').first();
-
         return el;
     },
 
@@ -1392,7 +1409,7 @@ AccessibleDivNavConstructor.prototype = {
                 owns.attr('aria-hidden', false);
             }
             // Auto-select 1st trim as convenience 
-            parent.find('.a-dnav__trims button:eq(0)').click();
+            // parent.find('.a-dnav__trims button:eq(0)').click();
 
         }
         // hide other menus
