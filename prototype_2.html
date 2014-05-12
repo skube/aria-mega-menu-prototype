@@ -1260,29 +1260,33 @@ AccessibleDivNavConstructor.prototype = {
         var el = $(elem);
         var closestMenu = el.closest('[role=menu]');
         var elNext = el.next();
-        var closestMenuNext = null;
+        var model = null;
+        var modelExpanded = null;
+        var elExpanded = null;
 
-        if (el.parent().parent().hasClass('a-dnav')) {
-            this.showOwns(elem);
-            el =  elNext.find('[role=menuitem]').first();
+        if (el.hasClass('a-dnav__content')) {
+            return el;
         } else {
             if (closestMenu.hasClass('a-dnav__upcoming')) {
-                closestMenuNext = closestMenu.next().find('[role=menuitem]');
-                el = (closestMenuNext.filter('[aria-expanded=true]').length) ? closestMenuNext.filter('[aria-expanded=true]') : closestMenuNext.first();
-            } else {
+                model = closestMenu.next().find('[role=menuitem]');
+                modelExpanded = model.filter('[aria-expanded=true]');
+                el = (modelExpanded.length) ? modelExpanded : model.first();
+            } else { // has owns
+                this.showOwns(elem);
                 if (closestMenu.hasClass('a-dnav__trims') || elNext.hasClass('a-dnav__content')) {
-                    this.showOwns(elem);
                     el = elNext;
                 } else {
-                    if (el.hasClass('a-dnav__content')) {
-                        return el;
-                    } // models (with a trim)
-                    this.showOwns(elem);
-                    elNext = elNext.find('[role=menuitem]');
-                    el = (elNext.filter('[aria-expanded=true]').length) ? elNext.filter('[aria-expanded=true]') : elNext.first();
+                    if (el.parent().parent().hasClass('a-dnav')) {
+                        el =  elNext.find('[role=menuitem]').first();
+                    } else {
+                        elNext = elNext.find('[role=menuitem]');
+                        elExpanded = elNext.filter('[aria-expanded=true]');
+                        el = (elExpanded.length) ? elExpanded : elNext.first();
+                    }
                 }
             }
         }
+
         return el;
     },
 
