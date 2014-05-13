@@ -1116,7 +1116,7 @@ AccessibleDivNavConstructor.prototype = {
             for (key in that.keys) {
                 if (that.keys[key] === event.which) {
                     // prevent normal scrolling
-                    if (event.which === 40 || event.which === 38) {
+                    if (event.which === 40 || event.which === 38 || event.which === 32) {
                         event.preventDefault();
                     }
                     return that.handleKeyDown($(this), event);
@@ -1218,7 +1218,7 @@ AccessibleDivNavConstructor.prototype = {
             return true; // normal tabbing
         case this.keys.ENTER:
         case this.keys.SPACE:
-            if (closestMenu.hasClass('a-dnav__upcoming')) { return true; }
+            if (closestMenu.hasClass('a-dnav__upcoming') || el.hasClass('a-dnav__content')) { return true; }
             this.$activeItem = this.moveDown(elem, event);
             break;
         case this.keys.DOWN:
