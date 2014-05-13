@@ -1364,6 +1364,7 @@ AccessibleDivNavConstructor.prototype = {
     moveEscape : function (elem, event) {
 
         var el = $(elem);
+        var closestMenu = el.closest('[role=menu]');
 
         if (el.hasClass('a-dnav__content')) {
             el.attr('aria-hidden', true);
@@ -1374,9 +1375,12 @@ AccessibleDivNavConstructor.prototype = {
                 this.hideOtherMenus(this.$id.find('[aria-expanded=true]'));
                 return;
             } else {
-                // TODO: bug when escaping from upcoming
                 this.unDimModels();
-                this.hideOtherMenus(elem);
+                if (closestMenu.hasClass('a-dnav__upcoming')) {
+                    this.hideOtherMenus(closestMenu.next().find('[role=menuitem]:visible'));
+                } else {
+                    this.hideOtherMenus(elem);
+                }
             }
         }
         return this.moveUp(elem, event);
