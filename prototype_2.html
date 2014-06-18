@@ -69,7 +69,7 @@
     .a-dnav [role=group] > dt {
         text-transform: uppercase;
     }
-    .a-dnav > li:after {content: "\7c"; vertical-align: top;}
+    .a-dnav > li:after {content: "\7c"; vertical-align: baseline;}
     .a-dnav > li:last-child:after {content: none}
     .a-dnav > li:first-child {margin-left: 0.5em;}
 
@@ -364,7 +364,11 @@
         transition: all 0.25s ease;
     }
 
-    .a-dnav > li:after {content: "\2f"; color: #f4bd02; font-size: 18px; font-weight: 800}
+    .a-dnav > li:after {
+        content: "\2f";
+        color: #f4bd02;
+        font-weight: 800
+    }
     
     .a-dnav__upcoming,
     .a-dnav__models button,
