@@ -1280,7 +1280,7 @@ AccessibleDivNavConstructor.prototype = {
         var elExpanded = null;
 
         if (el.hasClass('a-dnav__content')) {
-            return el;
+            return;
         } else {
             if (closestMenu.hasClass('a-dnav__upcoming')) {
                 model = closestMenu.next().find('[type=button]');
