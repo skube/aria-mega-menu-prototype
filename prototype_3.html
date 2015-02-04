@@ -1,0 +1,1524 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Prototype III</title>
+    <base href="http://gm.ca">
+<style type="text/css">
+    body {  margin: 0;padding: 0; background: lightgrey;}
+    img, abbr {border: none;}
+    /*:focus {outline:auto}*/
+    button {cursor: pointer;}
+    sup {font-size: 7px; font-family: arial, sans-serif;}
+    .wrap {width: 990px; margin: 0 auto;}
+
+    /* Namespace entire Accessible Div Nav menu and elements  */
+
+    .a-dnav__mask {
+        display:none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0.5;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";/* IE 8 */
+        background: #000;
+        z-index: 500;
+    }
+
+    .a-dnav [aria-hidden=true] {display:none;}
+    .a-dnav [aria-hidden=false] {
+        -webkit-animation: fadeInDown 0.35s ease-out;
+                animation: fadeInDown 0.35s ease-out;
+    }
+    .a-dnav .a-dnav__content[aria-hidden=false] {
+        -webkit-animation: none;
+                animation: none;
+    }
+    .a-dnav .a-dnav__content[aria-hidden=false]  > * {
+        -webkit-animation: fadeIn 0.35s;
+                animation: fadeIn 0.35s;
+    }
+
+    .a-dnav__h1 {
+        position: relative;
+        z-index: 1000;
+        margin: 0; 
+    }
+
+    .a-dnav {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-family: Arial, sans-serif; font-size:12px;
+        z-index: 1000;
+    }
+    .a-dnav button    {
+        border: none;
+        background: none;
+        text-transform: uppercase;
+    }
+    .a-dnav > li,
+    .a-dnav [role=group] > li,
+    .a-dnav [role=group] > dt,
+    .a-dnav [role=group] > dd,
+    .a-dnav .a-dnav__vertical
+    {
+        float: left;
+        list-style: none;
+        margin: 0;
+        padding: 1em 0;
+    }
+    .a-dnav [role=group] > dt {
+        text-transform: uppercase;
+    }
+    .a-dnav > li:after {content: "\7c"; vertical-align: baseline;}
+    .a-dnav > li:last-child:after {content: none}
+    .a-dnav > li:first-child {margin-left: 0.5em;}
+
+    .a-dnav [role=group],
+    .a-dnav .a-dnav__vertical
+    {
+        position: absolute;
+        width: 990px;
+        left: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .a-dnav__upcoming[role=group] dt {padding-left: 1em;}
+    .a-dnav__upcoming > dd:after {content: ' \2022';}
+    .a-dnav__upcoming > dd:last-child:after {content: '';}
+    .a-dnav__upcoming[role=group] dd {padding-left: 0.25em}
+    .a-dnav__upcoming > dd a {padding: 0 0.5em; text-decoration: none;}
+
+    .a-dnav .a-dnav__trims[role=group] {
+        margin-top: 10px;
+    }
+    .a-dnav .a-dnav__trims[role=group] dt {
+        padding:1em 12px 0 12px;
+    }
+    .a-dnav .a-dnav__trims button {
+        height: 3em;
+    }
+
+    .a-dnav__vehs {
+        position: absolute;
+        left: 0;
+     }
+    .a-dnav__models {
+        top: 3em;
+    }
+    .a-dnav__models button h3,
+    .a-dnav__models button p,
+    .a-dnav__models > li > button
+    {
+        margin: 0;
+        padding: 0;
+    }
+    .a-dnav__models > li > button {margin-bottom: 6px;}
+    .a-dnav__models > li > button:first-child {margin-left: 5px;}
+    .a-dnav__models > li > button p {margin-bottom: 0.5em;}
+
+    .a-dnav--fade {opacity: 1; transition:all 0.25s ease;}
+
+    .a-dnav__models--dimmed {
+        opacity: 0.2;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)"; /* IE 8 */
+    }
+    .a-dnav__models--dimmed:focus,
+    .a-dnav__models--dimmed:hover {
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; /* IE 8 */
+        transition:all 0.5s ease;
+    }
+
+    .a-dnav__content {
+        position: absolute;
+        left:0;
+        width: 990px;
+        background-image: url(/images/divisional/chevrolet/vehInfoBox_bg_dotted.png);
+        background-position: 0 10px;
+        background-repeat: no-repeat;
+
+    }
+    .a-dnav__content .media {
+        margin: 30px;
+    }
+
+    .a-dnav__content h4 {
+        display: inline-block;
+        margin: 0;
+    }
+    .a-dnav__content h5 {
+        display: block;
+        margin: 0;
+    }
+    .a-dnav__cta {
+        display: inline-block;
+        padding: 0 1em;
+        margin: 0 1em;
+        vertical-align: 0.35em
+    }
+
+    /* specificity required */
+    .a-dnav .a-dnav__vertical {
+        left:auto;
+        width: 176px;
+    }
+    .a-dnav .a-dnav__vertical > li {
+        float: none;
+    }
+    .a-dnav .a-dnav__vertical a {
+        display: block;
+    }
+
+
+    /* Media Object */
+    .media {margin:10px;}
+    .media, .media__bd {overflow:hidden; _overflow:visible; zoom:1;}
+    .media__img {float:left; margin-right: 10px;}
+    .media__img--rev {float:right; margin-left: 10px;}
+    .media__img img {display:block;}
+    
+    .a-dnav__form--pc input {
+        width: 1px;
+        padding: 5px;
+        margin: 0 0 0 0.25em;
+        border:none;
+        border-left:1px solid #ccc;
+        transition: all 0.3s ease;
+    }
+    .a-dnav__form--pc input:focus {
+      width: 7em;
+    }
+    .a-dnav__form--pc .a-dnav__form--has-content {
+      width:6em; 
+    }
+    .a-dnav__form--pc .a-dnav__form--error {
+      outline: 1px solid red;
+    }
+    .a-dnav__form--pc label span {
+      border-bottom: 1px solid #ccc
+    }
+
+    .clearfix:before,
+    .clearfix:after
+    {
+        content: " ";
+        display: table;
+    }
+    .clearfix:after {
+        clear: both;
+    }
+
+
+    /**
+    * Animation Keyframes
+    */
+    @-webkit-keyframes fadeIn {
+        from { opacity: .5; }
+          to { opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: .5; }
+          to { opacity: 1; }
+    }
+
+    @-webkit-keyframes flipInX {
+        0% {
+            -webkit-transform: perspective(400px) rotateX(40deg);
+            transform: perspective(400px) rotateX(40deg);
+            opacity: 0;
+        }
+
+        40% {
+            -webkit-transform: perspective(400px) rotateX(-1deg);
+            transform: perspective(400px) rotateX(-1deg);
+        }
+
+        70% {
+            -webkit-transform: perspective(400px) rotateX(1deg);
+            transform: perspective(400px) rotateX(1deg);
+        }
+
+        100% {
+            -webkit-transform: perspective(400px) rotateX(0deg);
+            transform: perspective(400px) rotateX(0deg);
+            opacity: 1;
+        }
+    }
+
+    @keyframes flipInX {
+        0% {
+            -webkit-transform: perspective(400px) rotateX(90deg);
+            -ms-transform: perspective(400px) rotateX(90deg);
+            transform: perspective(400px) rotateX(90deg);
+            opacity: 0;
+        }
+
+        40% {
+            -webkit-transform: perspective(400px) rotateX(-10deg);
+            -ms-transform: perspective(400px) rotateX(-10deg);
+            transform: perspective(400px) rotateX(-10deg);
+        }
+
+        70% {
+            -webkit-transform: perspective(400px) rotateX(10deg);
+            -ms-transform: perspective(400px) rotateX(10deg);
+            transform: perspective(400px) rotateX(10deg);
+        }
+
+        100% {
+            -webkit-transform: perspective(400px) rotateX(0deg);
+            -ms-transform: perspective(400px) rotateX(0deg);
+            transform: perspective(400px) rotateX(0deg);
+            opacity: 1;
+        }
+    }
+
+    @-webkit-keyframes fadeInDown {
+        0% {
+            opacity: 0;
+            -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
+        }
+
+        100% {
+            opacity: 1;
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInDown {
+        0% {
+            opacity: 0;
+            -webkit-transform: translateY(-20px);
+            -ms-transform: translateY(-20px);
+            transform: translateY(-20px);
+        }
+
+        100% {
+            opacity: 1;
+            -webkit-transform: translateY(0);
+            -ms-transform: translateY(0);
+            transform: translateY(0);
+        }
+    }
+
+    /**
+    * Colours and fonts
+    */
+
+
+    /*CHEVROLET*/
+    .a-dnav__h1,
+    .a-dnav
+    {
+        background: #f5f5f5 url(/images/vehicles/common/chevrolet/ovp/divNav_2014.png) no-repeat;
+    }
+    .a-dnav {
+        background-position: 0 -50px;
+    }
+
+    .a-dnav,
+    .a-dnav__vehs,
+    .a-dnav__upcoming,
+    .a-dnav__models,
+    .a-dnav__trims,
+    .a-dnav__content,
+    .a-dnav__vertical
+    {
+        background-color: #fff;
+    }
+
+    .a-dnav__models {
+        border-top: 1px solid #f5f5f5;
+        list-style: none;
+    }
+
+    .a-dnav a:link,
+    .a-dnav a:visited
+    {
+        color: #000;
+        text-decoration: none;
+    }
+
+    .a-dnav__upcoming a:link,
+    .a-dnav__upcoming a:visited
+    {
+        color: #8C8C8D
+    }
+
+
+    .a-dnav a:hover, 
+    .a-dnav a:active,
+    .a-dnav button:hover,
+    .a-dnav button[aria-expanded="true"],
+    .a-dnav__upcoming a:focus,
+    .a-dnav__vertical a:focus,
+    .a-dnav__models button:focus
+    {
+        color: #f4bd02;
+        transition: all 0.25s ease;
+    }
+
+    .a-dnav > li:after {
+        content: "\2f";
+        color: #f4bd02;
+        font-weight: 800
+    }
+    
+    .a-dnav__upcoming,
+    .a-dnav__models button,
+    .a-dnav__models button h3
+    {
+        font: italic 14px DurantItalic, 'Times New Roman', serif;
+        color: #8C8C8D;
+        text-transform: none;
+    }
+    .a-dnav__upcoming > dt {
+        font: italic 14px LouisBoldItalic, arial, helvetica, sans-serif;
+        color: #6B6B6B;
+    }
+
+    .a-dnav__models button p {
+        font: normal 11px Arial, Sans-serif;
+    }
+    .a-dnav__trims,
+    .a-dnav__models button
+    {
+        font: bold 11px Arial, Sans-serif;
+    }
+    .a-dnav__trims[role=group] {
+        background: #ccc;
+    }
+
+    .a-dnav__trims button:focus,
+    .a-dnav__trims button:hover,
+    .a-dnav__trims [aria-checked=true]
+    {
+        background: #fff;
+    }
+    
+    .a-dnav__upcoming dt,
+    .a-dnav__upcoming dd,
+    .a-dnav__trims[role=group] dt,
+    .a-dnav__trims[role=group] dd
+    {
+        padding: 0;
+    }
+    
+    .a-dnav__content h4 {
+        font: italic 26px LouisBoldItalic, arial, helvetica, sans-serif;
+        text-transform: uppercase;
+        color: #414042;
+    }
+    .a-dnav .a-dnav__content .a-dnav__cta {
+        height: 22px;
+        background: orange url(/images/divisional/chevrolet/chevrolet_learnMore_bg.png);
+        border: 1px solid #BFBFBF;
+        font: bold 12px/2 Arial, Sans-serif;
+        color: #FFF;
+        text-shadow: 1px 1px 2px #000;
+        text-decoration: none;
+    }
+    .a-dnav .a-dnav__content .a-dnav__cta:hover {
+        transition: all 0.2s;
+    }
+    .a-dnav__content h5 {
+        font: italic 18px DurantItalic, Durant, 'Times New Roman', serif;
+        color: #414042;
+    }
+
+    /* specificity required */
+    .a-dnav .a-dnav__vertical {
+        background: transparent url(/images/divisional/chevrolet/chev_divnav_subnav_bg.png) no-repeat;
+        margin-left: -3.5em;
+    }
+    .a-dnav .a-dnav__vertical--marginOffset10 {margin-left: -10px;}
+    .a-dnav .a-dnav__vertical--marginOffset20 {margin-left: -20px;}
+    .a-dnav .a-dnav__vertical--marginOffset30 {margin-left: -2em;}
+    .a-dnav .a-dnav__vertical--marginOffset40 {margin-left: -40px;}
+    .a-dnav .a-dnav__vertical--marginOffset50 {margin-left: -3.75em;}
+    .a-dnav .a-dnav__vertical--marginOffset60 {margin-left: -4.25em;}
+    .a-dnav .a-dnav__vertical--marginOffset70 {margin-left: -70px;}
+    .a-dnav .a-dnav__vertical--marginOffset80 {margin-left: -80px;}
+
+    .a-dnav .a-dnav__vertical li {
+        background-color: #f5f5f5;
+        border: 1px solid #cfcfd0;
+        border-top:none;
+        border-bottom: none;
+        font-weight: bold;
+        padding: 0.5em 1em;
+    }
+    .a-dnav__vertical li:first-child {
+        margin-top: 1em
+    }
+    .a-dnav__vertical li:last-child {
+        border-bottom: 1px solid #cfcfd0;
+    }
+
+    
+    @font-face{font-family:'LouisBoldItalic';
+        src:url('/webfonts/louis/LouisBoldItalic.eot');
+        src:url('/webfonts/louis/LouisBoldItalic.eot?#iefix') format('embedded-opentype'), 
+            url('/webfonts/louis/LouisBoldItalic.woff') format('woff'), 
+            url('/webfonts/louis/LouisBoldItalic.ttf') format('truetype'), 
+            url('/webfonts/louis/LouisBoldItalic.svg#LouisBoldItalic') format('svg');
+        font-weight:bold;font-style:italic}
+
+    @font-face{
+        font-family:'DurantItalic';
+        src:url('/webfonts/durant/DurantItalic.eot');
+        src:url('/webfonts/durant/DurantItalic.eot?#iefix') format('embedded-opentype'), 
+            url('/webfonts/durant/DurantItalic.woff') format('woff'), 
+            url('/webfonts/durant/DurantItalic.ttf') format('truetype'), 
+            url('/webfonts/durant/DurantItalic.svg#DurantItalic') format('svg');
+        font-weight:normal;font-style:italic}
+
+    @font-face{font-family:'louisRegular';
+        src:url('/webfonts/louis/LouisRegular.eot');
+        src:url('/webfonts/louis/LouisRegular.eot?#iefix') format('embedded-opentype'), 
+            url('/webfonts/louis/LouisRegular.woff') format('woff'), 
+            url('/webfonts/louis/LouisRegular.ttf') format('truetype'), 
+            url('/webfonts/louis/LouisRegular.svg#LouisRegular') format('svg');
+        font-weight:normal;font-style:normal}
+
+
+</style>
+
+</head>
+<body>
+<!-- 
+- aria-labelledby: reads label before (If the label text is visible on screen, authors SHOULD use aria-labelledby and SHOULD NOT use aria-label)
+- aria-describedby: reads description after ( whereas a label should be concise, a description is intended to provide more verbose information.)
+- aria-label: reads label before
+- aria-owns: Defines an object as a parent of another document element, when the child does not appear directly in the subtree of the owner
+- aria-controls : Seems synonymous with owns except seems to be used more for menubars/buttons
+- aria-flowto="trucksbtn" (try it?)
+-->
+<div class="wrap">
+
+    <div role="navigation">
+
+        <div class="a-dnav__mask" aria-hidden="true"></div>
+
+        <h1 class="a-dnav__h1"><a href="#"><img src="/images/divisional/chevrolet/chevrolet_logo_background_2014.gif" alt="Chevrolet"></a></h1>
+        
+        <ul id="accessible-div-nav" class="a-dnav clearfix">
+            
+            <!-- Menu 01 -->
+            <li>
+                <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu01">CARS</button>
+
+                <!-- Vehicles -->
+                <div id="a-dnav__mnu01" aria-hidden="true" class="a-dnav__vehs">
+                        
+                    <dl class="a-dnav__upcoming" role="group">
+                        <dt>Upcoming vehicles</dt>
+                        <dd><a href="#">2014 Camaro z28</a></dd>
+                        <dd><a href="#">2015 Colordo</a></dd>
+                        <dd><a href="#">2015 Corvette Z06</a></dd>
+                        <dd><a href="#">2014 Cruze</a></dd>
+                        <dd><a href="#">2015 Suburban</a></dd>
+                        <dd><a href="#">2015 Tahoe</a></dd>
+                    </dl>
+
+                    <!-- Models -->
+                    <ul class="a-dnav__models" role="group">
+
+                        <li id="a-dnav__mnu01--mdl01">
+
+                            <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu01--mdl01--notrm--content">
+                                <img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_spar_on.jpg" alt="image description">
+                                <h3>Spark</h3>
+                                <p>from $29,000<sup>&Omega;</sup></p>
+                            </button>
+
+                            <div id="a-dnav__mnu01--mdl01--notrm--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+                                <div class="media">
+                                    <a class="media__img--rev" href="/gm/english/vehicles/chevrolet/spark/overview">
+                                        <img src="/images/divisional/chevrolet/vehicles/chev_spar_hockey_card.jpg" alt="image description">
+                                    </a>
+                                    <div class="media__bd">
+                                        <h4>Spark 2014</h4> 
+                                        <a href="#" class="a-dnav__cta">Learn More</a>
+                                        <h5>MSRP From $18,695 <sup>&Omega;</sup></h5>
+
+                                        <form class="a-dnav__form--pc" action="">
+                                            <label for="a-dnav__mnu01--mdl01--notrm--pc">
+                                                <span>Enter your postal code to see local offers</span>
+                                            </label>
+                                            <input type="text" maxlength="7" id="a-dnav__mnu01--mdl01--notrm--pc">
+                                        </form>
+
+                                        <p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+                                        <img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_EN.png" alt="image description">
+                                    </div>
+                                </div>
+                            </div>
+
+                       </li>
+
+                        <li id="a-dnav__mnu01--mdl02">
+
+                            <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu01--mdl02--notrm--content">
+                                <img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_soni_on.jpg" alt="image description">
+                                <h3>Sonic</h3>
+                                <p>from $29,000<sup>&Omega;</sup></p>
+                            </button>
+
+                            <div id="a-dnav__mnu01--mdl02--notrm--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+                                <div class="media">
+                                    <a class="media__img--rev" href="/gm/english/vehicles/chevrolet/spark/overview">
+                                        <img src="/images/divisional/chevrolet/vehicles/chev_soni_hockey_card.jpg" alt="image description">
+                                    </a>
+                                    <div class="media__bd">
+                                        <h4>Sonic 2014</h4> 
+                                        <a href="#" class="a-dnav__cta">Learn More</a>
+                                        <h5>MSRP From $18,695 <sup>&Omega;</sup></h5>
+
+                                        <form class="a-dnav__form--pc" action="">
+                                            <label for="a-dnav__mnu01--mdl02--notrm--pc">
+                                                <span>Enter your postal code to see local offers</span>
+                                            </label>
+                                            <input type="text" maxlength="7" id="a-dnav__mnu01--mdl02--notrm--pc">
+                                        </form>
+
+                                        <p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+                                        <img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_EN.png" alt="image description">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </li>
+
+                        <li id="a-dnav__mnu01--mdl03">
+
+                            <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu01--mdl03--notrm--content">
+                                <img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_cruz_on.jpg" alt="image description">
+                                <h3>Cruze</h3>
+                                <p>from $29,000<sup>&Omega;</sup></p>
+                            </button>
+
+                            <div id="a-dnav__mnu01--mdl03--notrm--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+                                <div class="media">
+                                    <a class="media__img--rev" href="/gm/english/vehicles/chevrolet/spark/overview">
+                                        <img src="/images/divisional/chevrolet/vehicles/chev_cruz_hockey_card.jpg" alt="image description">
+                                    </a>
+                                    <div class="media__bd">
+                                        <h4>Cruze 2014</h4> 
+                                        <a href="#" class="a-dnav__cta">Learn More</a>
+                                        <h5>MSRP From $18,695 <sup>&Omega;</sup></h5>
+
+                                        <form class="a-dnav__form--pc" action="">
+                                            <label for="a-dnav__mnu01--mdl03--notrm--pc">
+                                                <span>Enter your postal code to see local offers</span>
+                                            </label>
+                                            <input type="text" maxlength="7" id="a-dnav__mnu01--mdl03--notrm--pc">
+                                        </form>
+
+                                        <p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+                                        <img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_EN.png" alt="image description">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </li>
+
+                        <li id="a-dnav__mnu01--mdl04">
+
+                            <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu01--mdl04--notrm--content">
+                                <img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_mali_on.jpg" alt="image description">
+                                <h3>Malibu</h3>
+                                <p>from $29,000<sup>&Omega;</sup></p>
+                            </button>
+
+                            <div id="a-dnav__mnu01--mdl04--notrm--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+                                <div class="media">
+                                    <a class="media__img--rev" href="/gm/english/vehicles/chevrolet/spark/overview">
+                                        <img src="/images/divisional/chevrolet/vehicles/chev_mali_hockey_card.jpg" alt="image description">
+                                    </a>
+                                    <div class="media__bd">
+                                        <h4>Malibu 2014</h4> 
+                                        <a href="#" class="a-dnav__cta">Learn More</a>
+                                        <h5>MSRP From $18,695 <sup>&Omega;</sup></h5>
+
+                                        <form class="a-dnav__form--pc" action="">
+                                            <label for="a-dnav__mnu01--mdl04--notrm--pc">
+                                                <span>Enter your postal code to see local offers</span>
+                                            </label>
+                                            <input type="text" maxlength="7" id="a-dnav__mnu01--mdl04--notrm--pc">
+                                        </form>
+
+                                        <p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+                                        <img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_EN.png" alt="image description">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </li>
+
+                        <li id="a-dnav__mnu01--mdl05">
+
+                            <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu01--mdl05--notrm--content">
+                                <img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_impa_on.jpg" alt="image description">
+                                <h3>Impala</h3>
+                                <p>from $29,000<sup>&Omega;</sup></p>
+                            </button>
+
+                            <div id="a-dnav__mnu01--mdl05--notrm--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+                                <div class="media">
+                                    <a class="media__img--rev" href="/gm/english/vehicles/chevrolet/spark/overview">
+                                        <img src="/images/divisional/chevrolet/vehicles/chev_impa_hockey_card.jpg" alt="image description">
+                                    </a>
+                                    <div class="media__bd">
+                                        <h4>Impala 2014</h4> 
+                                        <a href="#" class="a-dnav__cta">Learn More</a>
+                                        <h5>MSRP From $18,695 <sup>&Omega;</sup></h5>
+
+                                        <form class="a-dnav__form--pc" action="">
+                                            <label for="a-dnav__mnu01--mdl05--notrm--pc">
+                                                <span>Enter your postal code to see local offers</span>
+                                            </label>
+                                            <input type="text" maxlength="7" id="a-dnav__mnu01--mdl05--notrm--pc">
+                                        </form>
+
+                                        <p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+                                        <img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_EN.png" alt="image description">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+            </li>
+
+            <!-- Menu 02 -->
+            <li>
+                <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu02">CROSSOVERS / <abbr title="SUV" aria-label="SUV">SUVS</abbr></button>
+
+                <!-- Vehicles -->
+                <div id="a-dnav__mnu02" role="group" aria-hidden="true" class="a-dnav__vehs">
+                    
+                    <dl class="a-dnav__upcoming" role="group">
+                        <dt>Upcoming vehicles</dt>
+                        <dd><a href="#">2014 Camaro z28</a></dd>
+                        <dd><a href="#">2015 Colordo</a></dd>
+                        <dd><a href="#">2015 Corvette Z06</a></dd>
+                        <dd><a href="#">2014 Cruze</a></dd>
+                        <dd><a href="#">2015 Suburban</a></dd>
+                        <dd><a href="#">2015 Tahoe</a></dd>
+                    </dl>
+
+                    <!-- Models -->
+                    <ul class="a-dnav__models" role="group">
+
+                        <li role="presentation" id="a-dnav__mnu02--mdl01">
+
+                            <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu02--mdl01--notrm--content">
+                                <img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_trax_on.jpg" alt="image description">
+                                <h3>Trax</h3>
+                                <p>from $29,000<sup>&Omega;</sup></p>
+                            </button>
+
+                            <div id="a-dnav__mnu02--mdl01--notrm--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+                                <div class="media">
+                                    <a class="media__img--rev" href="/gm/english/vehicles/chevrolet/traxk/overview">
+                                        <img src="/images/divisional/chevrolet/vehicles/chev_trax_hockey_card.jpg" alt="image description">
+                                    </a>
+                                    <div class="media__bd">
+                                        <h4>Trax 2014</h4> 
+                                        <a href="#" class="a-dnav__cta">Learn More</a>
+                                        <h5>MSRP From $18,695 <sup>&Omega;</sup></h5>
+
+                                        <form class="a-dnav__form--pc" action="">
+                                            <label for="a-dnav__mnu02--mdl01--notrm--pc">
+                                                <span>Enter your postal code to see local offers</span>
+                                            </label>
+                                            <input type="text" maxlength="7" id="a-dnav__mnu02--mdl01--notrm--pc">
+                                        </form>
+
+                                        <p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+                                        <img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_EN.png" alt="image description">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </li>
+
+                        <li role="presentation" id="a-dnav__mnu02--mdl02">
+
+                            <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu02--mdl02--notrm--content">
+                                <img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_orla_on.jpg" alt="image description">
+                                <h3>Orlando</h3>
+                                <p>from $29,000<sup>&Omega;</sup></p>
+                            </button>
+
+                            <div id="a-dnav__mnu02--mdl02--notrm--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+                                <div class="media">
+                                    <a class="media__img--rev" href="/gm/english/vehicles/chevrolet/orlak/overview">
+                                        <img src="/images/divisional/chevrolet/vehicles/chev_orla_hockey_card.jpg" alt="image description">
+                                    </a>
+                                    <div class="media__bd">
+                                        <h4>Orlando 2014</h4> 
+                                        <a href="#" class="a-dnav__cta">Learn More</a>
+                                        <h5>MSRP From $18,695 <sup>&Omega;</sup></h5>
+
+                                        <form class="a-dnav__form--pc" action="">
+                                            <label for="a-dnav__mnu02--mdl02--notrm--pc">
+                                                <span>Enter your postal code to see local offers</span>
+                                            </label>
+                                            <input type="text" maxlength="7" id="a-dnav__mnu02--mdl02--notrm--pc">
+                                        </form>
+
+                                        <p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+                                        <img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_EN.png" alt="image description">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </li>
+
+
+                    </ul>
+
+                </div>
+            </li>
+
+            <!-- Menu 03 -->
+            <li>
+                <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu03">TRUCKS &amp; VANS</button>
+
+                <!-- Vehicles -->
+                <div id="a-dnav__mnu03" role="group" aria-hidden="true" class="a-dnav__vehs">
+                    
+                    <dl class="a-dnav__upcoming" role="group">
+                        <dt>Upcoming vehicles</dt>
+                        <dd><a href="#">2014 Camaro z28</a></dd>
+                        <dd><a href="#">2015 Colordo</a></dd>
+                        <dd><a href="#">2015 Corvette Z06</a></dd>
+                        <dd><a href="#">2014 Cruze</a></dd>
+                        <dd><a href="#">2015 Suburban</a></dd>
+                        <dd><a href="#">2015 Tahoe</a></dd>
+                    </dl>
+
+                    <!-- Models -->
+                    <ul class="a-dnav__models" role="group">
+
+                        <li id="a-dnav__mnu03--mdl01">
+
+                            <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu03--mdl01--trm01--content">
+                                <img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_silv_on.jpg" alt="image description">
+                                <h3>Silverado</h3>
+                                <p>from $29,000<sup>&Omega;</sup></p>
+                            </button>
+
+                            <!-- Trims (optional) -->
+                            <dl id="a-dnav__mnu03--mdl01--trm01" aria-hidden="true" class="a-dnav__trims" role="group">
+
+                                <dt id="a-dnav__mnu03--mdl01--title">Select a Model</dt>
+                                <dd aria-labelledby="a-dnav__mnu03--mdl01--title">
+
+                                    <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu03--mdl01--trm01--content">2014 Silverado 1500</button>
+
+                                    <div id="a-dnav__mnu03--mdl01--trm01--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+                                        <div class="media">
+                                            <a class="media__img--rev" href="/gm/english/vehicles/chevrolet/spark/overview">
+                                                <img src="/images/divisional/chevrolet/vehicles/chev_silv_silverado_hockey_card.jpg" alt="image description">
+                                            </a>
+                                            <div class="media__bd">
+                                                <h4>Silverado 1500</h4> 
+                                                <a href="#" class="a-dnav__cta">Learn More</a>
+                                                <h5>MSRP From $18,695 <sup>&Omega;</sup></h5>
+
+                                                <form class="a-dnav__form--pc" action="">
+                                                    <label for="a-dnav__mnu03--mdl01--trm01--pc">
+                                                        <span>Enter your postal code to see local offers</span>
+                                                    </label>
+                                                    <input type="text" maxlength="7" id="a-dnav__mnu03--mdl01--trm01--pc">
+                                                </form>
+
+                                                <p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+                                                <img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_EN.png" alt="image description">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </dd>
+                                <dd aria-labelledby="a-dnav__mnu03--mdl01--title">
+                                    <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu03--mdl01--trm02--content">2014 2500HD</button>
+
+                                    <div id="a-dnav__mnu03--mdl01--trm02--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+                                        <div class="media">
+                                            <a class="media__img--rev" href="/gm/english/vehicles/chevrolet/silvk/overview">
+                                                <img src="/images/divisional/chevrolet/vehicles/chev_silv_2500_hockey_card.jpg" alt="image description">
+                                            </a>
+                                            <div class="media__bd">
+                                                <h4>Silverado 2500HD</h4> 
+                                                <a href="#" class="a-dnav__cta">Learn More</a>
+                                                <h5>MSRP From $18,695 <sup>&Omega;</sup></h5>
+
+                                                <form class="a-dnav__form--pc" action="">
+                                                    <label for="a-dnav__mnu03--mdl01--trm02--pc">
+                                                        <span>Enter your postal code to see local offers</span>
+                                                    </label>
+                                                    <input type="text" maxlength="7" id="a-dnav__mnu03--mdl01--trm02--pc">
+                                                </form>
+
+                                                <p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+                                                <img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_EN.png" alt="image description">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </dd>
+                                <dd aria-labelledby="a-dnav__mnu03--mdl01--title">
+                                    <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu03--mdl01--trm03--content">2014 Silverado 3500HD</button>
+
+                                    <div id="a-dnav__mnu03--mdl01--trm03--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+                                        <div class="media">
+                                            <a class="media__img--rev" href="/gm/english/vehicles/chevrolet/silvk/overview">
+                                                <img src="/images/divisional/chevrolet/vehicles/chev_silv_3500_hockey_card.jpg" alt="image description">
+                                            </a>
+                                            <div class="media__bd">
+                                                <h4>Silverado 2500HD</h4> 
+                                                <a href="#" class="a-dnav__cta">Learn More</a>
+                                                <h5>MSRP From $18,695 <sup>&Omega;</sup></h5>
+
+                                                <form class="a-dnav__form--pc" action="">
+                                                    <label for="a-dnav__mnu03--mdl01--trm03--pc">
+                                                        <span>Enter your postal code to see local offers</span>
+                                                    </label>
+                                                    <input type="text" maxlength="7" id="a-dnav__mnu03--mdl01--trm03--pc">
+                                                </form>
+
+                                                <p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+                                                <img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_EN.png" alt="image description">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </dd>
+                            </dl>
+                         </li>
+
+                        <li role="presentation" id="a-dnav__mnu03--mdl02">
+
+                            <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu03--mdl02--notrm--content">
+                                <img src="/images/divisional/chevrolet/vehicles/divnav_thumb_chev_expr_on.jpg" alt="image description">
+                                <h3>Express</h3>
+                                <p>from $29,000<sup>&Omega;</sup></p>
+                            </button>
+
+                            <div id="a-dnav__mnu03--mdl02--notrm--content" class="a-dnav__content" aria-hidden="true" tabindex="-1">
+
+                                <div class="media">
+                                    <a class="media__img--rev" href="/gm/english/vehicles/chevrolet/exprk/overview">
+                                        <img src="/images/divisional/chevrolet/vehicles/chev_expr_hockey_card.jpg" alt="image description">
+                                    </a>
+                                    <div class="media__bd">
+                                        <h4>Express 2014</h4> 
+                                        <a href="#" class="a-dnav__cta">Learn More</a>
+                                        <h5>MSRP From $18,695 <sup>&Omega;</sup></h5>
+
+                                        <form class="a-dnav__form--pc" action="">
+                                            <label for="a-dnav__mnu03--mdl02--notrm--pc">
+                                                <span>Enter your postal code to see local offers</span>
+                                            </label>
+                                            <input type="text" maxlength="7" id="a-dnav__mnu03--mdl02--notrm--pc">
+                                        </form>
+
+                                        <p>Trax is the right-sized crossover that delivers the manoeuvrability you need for city streets, combined with an unsurpassed highway fuel efficiency rating of just 5.7 L/100 km.<sup>1</sup> Take to the streets – and roads – with confidence in the 2014 Chevrolet Trax.</p>
+                                        <img src="/images/divisional/chevrolet/vehicles/2014_orla_nav_infobar_EN.png" alt="image description">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </li>
+
+
+                    </ul>
+
+                </div>
+            </li>
+
+
+
+            <!-- Vertical Menus -->
+            <!-- Menu 04 -->
+            <li>
+
+                <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu04">Highlights</button>
+                <ul id="a-dnav__mnu04" aria-hidden="true" class="a-dnav__vertical" role="group">
+                    <li>
+                        <a href="#">Chevrolet Safe &amp; Fun Hockey</a>
+                    </li>
+                    <li>
+                        <a href="#">Pan Am/Parapan Am Games</a>
+                    </li>
+                    <li>
+                        <a href="#">Ecologic</a>
+                    </li>
+                    <li>
+                        <a href="#">Awards and Recognition</a>
+                    </li>
+                    <li>
+                        <a href="#">Chevrolet Safe &amp; Sure</a>
+                    </li>
+                </ul>
+
+            </li>
+            <!-- Vertical Menus -->
+            <!-- Menu 05 -->
+            <li>
+
+                <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu05">Owners</button>
+
+                <ul id="a-dnav__mnu05" aria-hidden="true" class="a-dnav__vertical" role="group">
+                    <li>
+                        <a href="#">Owner Centre</a>
+                    </li>
+                    <li>
+                        <a href="#">Warranty &amp; Roadside Assistance</a>
+                    </li>
+                    <li>
+                        <a href="#">MyLink</a>
+                    </li>
+                    <li>
+                        <a href="#">MyVolt</a>
+                    </li>
+                    <li>
+                        <a href="#">Trailering Guide</a>
+                    </li>
+                </ul>
+
+            </li>
+            <!-- Vertical Menus -->
+            <!-- Menu 06 -->
+            <li>
+
+                <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="a-dnav__mnu06">Shopping Tools</button>
+
+                <ul id="a-dnav__mnu06" aria-hidden="true" class="a-dnav__vertical" role="group">
+                    <li>
+                        <a href="#">Build and Price</a>
+                    </li>
+                    <li>
+                        <a href="#">Estimate Payments</a>
+                    </li>
+                    <li>
+                        <a href="#">New Vehicle Offers</a>
+                    </li>
+                    <li>
+                        <a href="#">Compare Chevrolet</a>
+                    </li>
+                    <li>
+                        <a href="#">Locate a Vehicle</a>
+                    </li>
+                    <li>
+                        <a href="#">Locate a Dealer</a>
+                    </li>
+                    <li>
+                        <a href="#">Schedule a Test Drive</a>
+                    </li>
+                    <li>
+                        <a href="#">Request a Quote</a>
+                    </li>
+                    <li>
+                        <a href="#">Trade-In Appraisal</a>
+                    </li>
+                    <li>
+                        <a href="#">Get Pre-Approved For Credit</a>
+                    </li>
+                </ul>
+
+            </li>
+        </ul>
+
+    </div>
+
+    <div role="main">
+        <div id="flashContent">
+            <div class="broadcastImages" style="display: block;">
+            <img src="/images/divisional/chevrolet/broadcast/chev_2014silv_div_en.jpg" alt="Chevrolet" style="border: none;" usemap="#silv">
+            </div>
+        </div>
+        <h1>header</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo, repellat, officia natus id cupiditate molestiae laborum ab in aperiam voluptate necessitatibus eaque minus. Ducimus, voluptates autem ullam reprehenderit assumenda cum!</p>
+        <label for="myinput">label <input id="myinput" type="text"></label>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, voluptates, tempore rem beatae porro quasi eaque deleniti culpa quos fuga. Inventore, minus accusantium recusandae quibusdam eius dicta quas veritatis ad nam incidunt libero praesentium reprehenderit amet facilis molestiae blanditiis dolore nihil sunt aliquid aperiam ut consectetur deserunt! Impedit, odit, similique beatae molestias commodi ipsam? Excepturi, nulla, libero ex perferendis minima sed saepe distinctio quidem quis culpa ipsam neque iusto pariatur laborum voluptate ullam voluptatibus totam illo facere dolorem voluptates tempore earum accusantium exercitationem fugit rem atque consectetur cupiditate dolorum accusamus sunt a veniam velit consequuntur esse reprehenderit nostrum magni. Suscipit!</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, voluptates, tempore rem beatae porro quasi eaque deleniti culpa quos fuga. Inventore, minus accusantium recusandae quibusdam eius dicta quas veritatis ad nam incidunt libero praesentium reprehenderit amet facilis molestiae blanditiis dolore nihil sunt aliquid aperiam ut consectetur deserunt! Impedit, odit, similique beatae molestias commodi ipsam? Excepturi, nulla, libero ex perferendis minima sed saepe distinctio quidem quis culpa ipsam neque iusto pariatur laborum voluptate ullam voluptatibus totam illo facere dolorem voluptates tempore earum accusantium exercitationem fugit rem atque consectetur cupiditate dolorum accusamus sunt a veniam velit consequuntur esse reprehenderit nostrum magni. Suscipit!</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, voluptates, tempore rem beatae porro quasi eaque deleniti culpa quos fuga. Inventore, minus accusantium recusandae quibusdam eius dicta quas veritatis ad nam incidunt libero praesentium reprehenderit amet facilis molestiae blanditiis dolore nihil sunt aliquid aperiam ut consectetur deserunt! Impedit, odit, similique beatae molestias commodi ipsam? Excepturi, nulla, libero ex perferendis minima sed saepe distinctio quidem quis culpa ipsam neque iusto pariatur laborum voluptate ullam voluptatibus totam illo facere dolorem voluptates tempore earum accusantium exercitationem fugit rem atque consectetur cupiditate dolorum accusamus sunt a veniam velit consequuntur esse reprehenderit nostrum magni. Suscipit!</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, voluptates, tempore rem beatae porro quasi eaque deleniti culpa quos fuga. Inventore, minus accusantium recusandae quibusdam eius dicta quas veritatis ad nam incidunt libero praesentium reprehenderit amet facilis molestiae blanditiis dolore nihil sunt aliquid aperiam ut consectetur deserunt! Impedit, odit, similique beatae molestias commodi ipsam? Excepturi, nulla, libero ex perferendis minima sed saepe distinctio quidem quis culpa ipsam neque iusto pariatur laborum voluptate ullam voluptatibus totam illo facere dolorem voluptates tempore earum accusantium exercitationem fugit rem atque consectetur cupiditate dolorum accusamus sunt a veniam velit consequuntur esse reprehenderit nostrum magni. Suscipit!</p>
+    </div>
+
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+// IIFE to protect global pollution
+(function ($) {
+
+    // Object literal to encapsulate properties & methods
+    var divNav = {
+
+        // Store references 
+        el : {
+            root : $('#accessible-div-nav'),
+            verticalMenus : $('.a-dnav__vertical'),
+            activeItem : null,
+            keycodes : {
+                TAB:    9,
+                ENTER:  13,
+                ESC:    27,
+                SPACE:  32,
+                LEFT:   37,
+                UP:     38,
+                RIGHT:  39,
+                DOWN:   40,
+                HELP:   191
+            }
+        },
+
+        bindEvents : function () {
+            var menuItems = this.el.root.find('[type=button]').add('.a-dnav__content').add('.a-dnav__upcoming a').add('.a-dnav__vertical a');
+            var formPC = this.el.root.find('.a-dnav__form--pc');
+            var vertMenu = this.el.verticalMenus;
+            var verticalTimeout = null;
+
+            menuItems.on('click', this.handleClick);
+            menuItems.on('keydown', this.handleKeyDown);
+
+            // TODO for some reason when using JAWS, can't get to vertical menus
+            vertMenu.prev().on('mouseenter', this.handleMouseOverVerticals);
+            vertMenu.parent().on('mouseleave', this.hideVertical);
+
+            // this.el.verticalMenus.on('mouseleave', function (elem) {
+            //     verticalTimeout = setTimeout(function () {
+            //         divNav.hideOtherMenus($(elem.currentTarget).prev());
+            //     }, 200);
+            // }).prev().on('mouseover', function (event) {
+            //     clearTimeout(verticalTimeout);
+            //     return divNav.handleMouseOverVerticals($(this), event);
+            // })   ;
+
+            $(document).on('click', divNav.handleDocumentClick);
+
+            formPC.on('submit', function (event) {
+                event.preventDefault();
+                divNav.verifyPostal($(this).find('input'));
+            }).find('input').blur(function () {
+                divNav.verifyPostal($(this));
+            }).focus(function () {
+                divNav.$activeItem = $(this);
+            });
+
+ 
+        },
+
+        hideVertical : function () {
+            var el = $(this).children('button');
+            if (!el.is(':focus')) {
+                divNav.hideOtherMenus(el);
+            }
+        },
+
+        handleClick : function () {
+            divNav.el.activeItem = divNav.showOwns( $(this) );
+            event.stopPropagation();
+        },
+
+        /**
+        * Handle document clicks (not originating from menu) to close menu
+        * 
+        * @param {object} event - Associated event
+        */
+        handleDocumentClick : function (event) {
+            if (!$(event.target).closest(divNav.el.root).length) {
+                divNav.el.activeItem = divNav.el.root.children('li').children('[aria-expanded=true]');
+                divNav.hideOtherMenus(divNav.el.activeItem);
+                $('.a-dnav__mask').hide();
+                $(event.target).focus();
+            }
+        },
+
+        handleMouseOverVerticals : function () {
+            var target = $(event.target);
+            event.preventDefault();
+            divNav.toggleVerticalOffsetClass(target);
+            divNav.showOwns(target);
+        },
+
+        handleKeyDown : function (event) {
+            var el = $(this);
+            var closestMenu = el.closest('[role=group]');
+            var key = divNav.el.keycodes;
+
+            if ( divNav.isValidKeycode(event) ) {
+
+                switch (event.keyCode) {
+                case key.TAB:
+                    return true; // normal tabbing
+                case key.ENTER:
+                case key.SPACE:
+                    if (closestMenu.hasClass('a-dnav__upcoming') || el.hasClass('a-dnav__content')) { return true; }
+                    divNav.el.activeItem = divNav.moveDown(el, event);
+                    break;
+                case key.DOWN:
+                    if (closestMenu.hasClass('a-dnav__vertical')) {
+                        divNav.el.activeItem = divNav.moveRight(el, event);
+                    } else {
+                       divNav.el.activeItem = divNav.moveDown(el);
+                    }
+                    break;
+                case key.UP:
+                    divNav.el.activeItem = divNav.moveUp(el);
+                    break;
+                case key.RIGHT:
+                    divNav.el.activeItem = divNav.moveRight(el, event);
+                    break;
+                case key.LEFT:
+                    divNav.el.activeItem = divNav.moveLeft(el, event);
+                    break;
+                case key.ESC:
+                    divNav.el.activeItem = divNav.moveEscape(el, event);
+                    break;
+                case key.HELP:
+                    alert('Use arrow keys to move around.\nENTER or SPACE to select.\nESC close currently expanded menu.');
+                    break;
+                }
+                if (divNav.el.activeItem) {divNav.el.activeItem.focus();}
+            }
+        },
+
+        /**
+        * Main selection algo
+        * - each level behaves slightly differently
+        * - chooses either first or previously selected child
+        * 
+        * @param {object} elem - jQuery object
+        * @return {object} el - jQuery object
+        */
+        moveDown : function (elem) {
+
+            var el = $(elem);
+            var closestMenu = el.closest('[role=group]');
+            var elNext = el.next();
+            var model = null;
+            var modelExpanded = null;
+            var elExpanded = null;
+
+            if (el.hasClass('a-dnav__content')) {
+                return;
+            } else {
+                if (closestMenu.hasClass('a-dnav__upcoming')) {
+                    model = closestMenu.next().find('[type=button]');
+                    modelExpanded = model.filter('[aria-expanded=true]');
+                    el = (modelExpanded.length) ? modelExpanded : model.first();
+                } else { // has owns
+                    el = this.showOwns(elem);
+                    if (closestMenu.hasClass('a-dnav__trims') || elNext.hasClass('a-dnav__content')) {
+                        el = elNext;
+                    } else {
+                        if (el.parent().parent().hasClass('a-dnav')) {
+                            // going into Upcoming or vertical
+                            el =  elNext.find('a').first();
+                            event.preventDefault();
+                        } else {
+                            elNext = elNext.find('[type=button]');
+                            elExpanded = elNext.filter('[aria-expanded=true]');
+                            el = (elExpanded.length) ? elExpanded : elNext.first();
+                        }
+                    }
+                }
+            }
+            return el;
+        },
+
+        moveUp : function (elem) {
+
+            var el = $(elem);
+            var closestMenu = el.closest('[role=group]');
+
+            if (closestMenu.hasClass('a-dnav__upcoming')) {
+                el = closestMenu.parent().prev();
+            }
+            else if (el.hasClass('a-dnav__content')) {
+                el = el.prev();
+            }
+            else if (closestMenu.hasClass('a-dnav__models')) {
+                el = closestMenu.prev().find('a').first();
+            }
+            else {
+                el = closestMenu.prev();
+            }
+
+            return el;
+        },
+
+
+        moveRight : function (elem, event) {
+
+            var el = $(elem);
+            var closestMenu = el.closest('[role=group]');
+            var selectedItem = null;
+
+            if (closestMenu.hasClass('a-dnav__vertical')) {
+                if (event.which === 39) { // right arrow
+                    selectedItem = this.showOwns(closestMenu.parent().next().children('button'));
+                    return selectedItem;
+                }
+                return el.parent().next().find('a');
+            }
+            if (closestMenu.hasClass('a-dnav__upcoming')) {
+                return el.parent().next().find('a');
+            } 
+            // Stay on input field
+            selectedItem = (divNav.el.activeItem && divNav.el.activeItem.is('input')) ? divNav.el.activeItem : this.showOwns(el.parent().next().find('[type=button]').first());
+            
+            if (selectedItem.next().is('.a-dnav__vertical')) {
+                this.toggleVerticalOffsetClass(selectedItem);
+            }
+            
+
+            return selectedItem;
+        },
+
+
+        moveLeft : function (elem, event) {
+
+            var el = $(elem);
+            var closestMenu = el.closest('[role=group]');
+            var selectedItem = null;
+
+            if (closestMenu.hasClass('a-dnav__vertical')) {
+                if (event.which === 37) { // left arrow
+                    selectedItem = this.showOwns(closestMenu.parent().prev().children('button'));
+                    return selectedItem;
+                }
+                return el.parent().prev().find('a');
+            }
+            if (closestMenu.hasClass('a-dnav__upcoming')) {
+                return el.parent().prev().find('a');
+            } 
+            // Stay on input field
+            selectedItem = (divNav.el.activeItem && divNav.el.activeItem.is('input')) ? divNav.el.activeItem : this.showOwns(el.parent().prev().find('[type=button]').first());
+            
+            if (selectedItem.next().is('.a-dnav__vertical')) {
+                this.toggleVerticalOffsetClass(selectedItem);
+            }
+
+            return selectedItem;
+        },        
+
+
+        moveEscape : function (elem, event) {
+
+            var el = $(elem);
+            var closestMenu = el.closest('[role=group]');
+
+            if (el.hasClass('a-dnav__content')) {
+                el.attr('aria-hidden', true);
+            } else {
+                if (el.parent().parent().hasClass('a-dnav')) {
+                    $('.a-dnav__mask').hide();
+                    divNav.unDimModels('all');
+                    divNav.hideOtherMenus(this.el.root.find('[aria-expanded=true]'));
+                    return;
+                } else {
+                    divNav.unDimModels();
+                    if (closestMenu.hasClass('a-dnav__upcoming')) {
+                        divNav.hideOtherMenus(closestMenu.next().find('[type=button]:visible'));
+                    } else {
+                        divNav.hideOtherMenus(elem);
+                    }
+                }
+            }
+            return divNav.moveUp(elem, event);
+        },
+
+
+        showOwns : function (elem) {
+
+            var el = $(elem);
+            var owns = el.siblings();
+            var parent = el.parent();
+
+            if (!el.is('a')) {
+                if (parent.parent().hasClass('a-dnav__models')) {
+                    divNav.dimModelSiblings(elem);
+                }
+                if (!owns.is(':visible')) {
+                    // console.log(el.attr('aria-controls'));
+                    el.attr({
+                        'aria-expanded': true,
+                        'aria-checked' : true,
+                        'aria-activedescendant': el.attr('aria-controls')
+                    })
+                    .addClass('a-dnav--fade');
+
+                    owns.attr('aria-hidden', false);
+                }
+                // Auto-select 1st trim as convenience 
+                // parent.find('.a-dnav__trims button:eq(0)').click();
+            }
+
+            // hide other menus
+            divNav.hideOtherMenus(parent.siblings().children('button'));
+
+            // display mask only for non vertical menus
+            if (!$('.a-dnav__vertical').is(':visible')) {
+                $('.a-dnav__mask').show();
+            }
+            else {
+                $('.a-dnav__mask').hide();
+            }
+
+            return el;
+        },
+
+        /**
+        * Hides other menus by changing aria attributes
+        * - only acts on aria-expanded (i.e. showing) and not anchors
+        * 
+        * @param {object} elems - jQuery object (of elements to be hidden)
+        */
+        hideOtherMenus : function (elems) {
+            var el = null, i;
+            for (i = 0; i < elems.length; i += 1) {
+                el = $(elems[i]);
+                if (el.is('[aria-expanded=true]') && !el.is('a')) {
+                    el.attr({
+                        'aria-expanded': false,
+                        'aria-checked' : false,
+                        'aria-activedescendant' : null
+                    })
+                        .siblings()
+                        .attr('aria-hidden', true);
+                }
+            }
+        },
+
+        /**
+        * Dim/un-dim other models
+        * 
+        * @param {object} elem - jQuery object
+        */ 
+        dimModelSiblings : function (elem) {
+            var modelBtns = $('.a-dnav__models:visible > li > button');
+            var modelDimClass = 'a-dnav__models--dimmed';
+            if (elem) { // dim all models except for elem
+                if (elem.is('.a-dnav__content')) { elem = elem.prev(); }
+                modelBtns.removeClass(modelDimClass).not(elem).addClass(modelDimClass);
+            } 
+        },
+
+        unDimModels : function (which) {
+            var modelBtns = (which === 'all') ? $('.a-dnav__models > li > button') : $('.a-dnav__models:visible > li > button');
+            modelBtns.removeClass('a-dnav__models--dimmed');
+        },
+
+        verifyPostal : function (elem) {
+            var val = elem.val();
+            if (val === '') {
+                elem.removeClass('a-dnav__form--error a-dnav__form--has-content');
+                return false;
+            }
+            else {
+                elem.addClass('a-dnav__form--has-content');
+                if ( this.isValidPostal(val) ) {
+                    elem.removeClass('a-dnav__form--error');
+                    // formPC.submit();
+                    // return true;
+                }
+                else {
+                    elem.addClass('a-dnav__form--error').focus();
+                    return false;
+                }
+            }
+        },
+
+        isValidPostal : function (str) {
+            var regex = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
+            return regex.test(str);
+        },
+
+        /**
+        * A general way to assign dynamic class names for the vertical menus
+        * 
+        * @param {object} elem - jQuery object (i.e. root label)
+        */
+        toggleVerticalOffsetClass : function (elem) {
+            var vertMenu = divNav.el.verticalMenus;
+            var dropDownWidth = vertMenu.width();
+            var labelWidth = elem.width();
+            var marginOffset = (dropDownWidth - labelWidth)/2;
+            var roughOffset = Math.round(marginOffset/10)*10;
+            var className;
+            // remove classes beginning with 'a-dnav__vertical--marginOffset'
+            vertMenu.removeClass( function (index, css) {
+                var re = /\ba-dnav__vertical--marginOffset\S+/g;
+                return (css.match(re) || []).join(' ');
+            });
+            if (roughOffset > 0  && roughOffset < 100) {
+                className = 'a-dnav__vertical--marginOffset' + roughOffset;
+            } else {
+                className = 'a-dnav__vertical--marginOffsetMinMax';
+            }
+            vertMenu.addClass(className);
+        },
+
+        isValidKeycode : function (event) {
+            var el = divNav.el;
+            var keyPressed = event.which;
+            var key;
+
+            // if key is one of keycodes
+            for (key in el.keycodes) {
+                if (el.keycodes[key] === keyPressed) {
+                    // prevent normal scrolling
+                    if (keyPressed === 40 || keyPressed === 38 || keyPressed === 32) {
+                        event.preventDefault();
+                    }
+                    return true; 
+                }
+            }
+            return false;
+        },
+
+        init : function () {
+            this.bindEvents();
+        }
+    };
+
+    // Kick it all off
+    divNav.init();
+
+})(jQuery);
+
+
+</script>       
+</body>
+</html>
